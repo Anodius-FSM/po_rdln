@@ -148,7 +148,7 @@ const common = (() => {
         );
         
         if (!response.ok) {
-            throw new Error(`🚀🚀🚀 Failed to fetch UdfMeta, got status ${response.status}`);
+            throw new Error(`🚀🚀🚀 Failed to fetch Service Call type, got status ${response.status}`);
         }
 
         return (await response.json()).data; 

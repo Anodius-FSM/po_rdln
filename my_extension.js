@@ -13,12 +13,13 @@ const my_extension = (() => {
         const context = await common.getContext();
         console.log("🚀 ~ testMyExtension ~ context:", context)
 
-        utils.setFieldValue('#info', `User: ${context.user} :: ${context.account} :: ${context.company}`);
+       // utils.setFieldValue('#info', `User: ${context.user} :: ${context.account} :: ${context.company}`);
     }
 
     async function startExtension() {
         
-        const servicallType = await fetchServiceCallType('7A5FBAE82151416CA5B87201A7F8EBAC');
+        console.log("🚀 ~ startExtension ~ startExtension:")
+        const servicallType = await common.fetchServiceCallType('7A5FBAE82151416CA5B87201A7F8EBAC');
         console.log("🚀 ~ startExtension ~ servicallType:", servicallType)
     }
 
