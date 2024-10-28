@@ -127,10 +127,10 @@ const common = (() => {
 
         return (await response.json()).data;
     }
-
+//https://tomi639.github.io/po_rdln/ https://eu.fsm.cloud.sap/api/query/v1?
     async function fetchServiceCallType(serviceCallId) {
         const response = await fetch(
-            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+            'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
                 dtos: 'ServiceCall.27'
             }), {
