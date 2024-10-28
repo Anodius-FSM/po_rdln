@@ -1,7 +1,7 @@
 {
-    "name": "Proces obhliadka RDLN",
+    "name": "Obhliadka",
     "provider": "tfo",
-    "description": "Obhliadka RDLN",
+    "description": "Proces obhliadka RDLN",
     "version": "1.0.0",
     "icon": "https://raw.githubusercontent.com/Anodius-FSM/FSM-Extensions/refs/heads/main/nastroje-partner/icon.svg"
 }

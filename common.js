@@ -128,6 +128,32 @@ const common = (() => {
         return (await response.json()).data;
     }
 
+    async function fetchServiceCallType(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27'
+            }), {
+                method: 'POST',
+                header: await common.getHeaders(),
+                body: JSON.stringify({
+                    query:
+                        `SELECT
+                            sc.typeCode AS typeCode
+                            FROM ServiceCall sc
+                            WHERE sc.id = '${serviceCallId}' `
+
+                })
+            }
+        );
+        
+        if (!response.ok) {
+            throw new Error(`🚀🚀🚀 Failed to fetch UdfMeta, got status ${response.status}`);
+        }
+
+        return (await response.json()).data; 
+    }
+
     return {
         setShellSdk,
         getShellSdk,
@@ -135,7 +161,8 @@ const common = (() => {
         getHeaders,
         getSearchParams,
         fetchUdfMeta,
-        fetchUdfMetaByFieldName
+        fetchUdfMetaByFieldName,
+        fetchServiceCallType
     }
 
 })();
