@@ -128,12 +128,11 @@ const common = (() => {
         return (await response.json()).data;
     }
 
-//SELECT sc.typeCode FROM ServiceCall sc JOIN Activity a ON a.object.objectId = sc.id WHERE sc.id = '7A5FBAE82151416CA5B87201A7F8EBAC'
     async function fetchServiceCallType(serviceCallId) {
         const response = await fetch(
-            'https:///eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
-                dtos: 'ServiceCall.27;Activity.43'
+                dtos: 'ServiceCall.27;Activity'
             }), {
                 method: 'POST',
                 header: await common.getHeaders(),
