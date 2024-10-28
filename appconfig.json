@@ -1,0 +1,7 @@
+{
+    "name": "Proces obhliadka RDLN",
+    "provider": "tfo",
+    "description": "Obhliadka RDLN",
+    "version": "1.0.0",
+    "icon": "https://raw.githubusercontent.com/tomi639/js-test-extension/master/icon.png"
+}
