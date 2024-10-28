@@ -127,7 +127,7 @@ const common = (() => {
 
         return (await response.json()).data;
     }
-//https://tomi639.github.io/po_rdln/ https://eu.fsm.cloud.sap/api/query/v1?
+// https://eu.fsm.cloud.sap/api/query/v1?
     async function fetchServiceCallType(serviceCallId) {
         const response = await fetch(
             'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
@@ -148,6 +148,7 @@ const common = (() => {
         );
         
         if (!response.ok) {
+            console.log("🚀 ~ fetchServiceCallType ~ response:", response);
             throw new Error(`🚀🚀🚀 Failed to fetch Service Call type, got status ${response.status}`);
         }
 
