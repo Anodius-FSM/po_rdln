@@ -21,7 +21,10 @@ const my_extension = (() => {
 
         console.log("🚀 ~ startExtension ~ startExtension:")
         try {
-            const serviceCallType = await common.fetchServiceCallType('7A5FBAE82151416CA5B87201A7F8EBAC');
+            const context = await common.getContext();
+            console.log("🚀 ~ startExtension ~ selectedServiceCallId:", context.viewState.selectedServiceCallId);
+            const serviceCallType = await common.fetchServiceCallType(context.viewState.selectedServiceCallId);
+            
             if (serviceCallType !== '-7') {
                 utils.setFieldValue('#info', 'Toto SV nie je typu Obhliadka a teda neobsahuje žiadne dáta na zobrazenie.');
             } else {
