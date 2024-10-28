@@ -132,7 +132,7 @@ const common = (() => {
         const response = await fetch(
             'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
-                dtos: 'ServiceCall.27;Activity'
+                dtos: 'ServiceCall.27;Activity.43'
             }), {
                 method: 'POST',
                 headers: await common.getHeaders(),
