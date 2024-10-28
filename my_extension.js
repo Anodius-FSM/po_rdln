@@ -12,6 +12,11 @@ const my_extension = (() => {
     async function testMyExtension() {
         const context = await common.getContext();
         console.log("🚀 ~ testMyExtension ~ context:", context)
+        // 2C2CA7F13B8647EBA74AF129B0E67043
+
+        const resp = await common.fetchPeriods('2C2CA7F13B8647EBA74AF129B0E67043');
+        console.log("🚀 ~ testMyExtension ~ resp:", resp)
+        
 
         // utils.setFieldValue('#info', `User: ${context.user} :: ${context.account} :: ${context.company}`);
     }
