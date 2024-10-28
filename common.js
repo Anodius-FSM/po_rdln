@@ -48,7 +48,6 @@ const common = (() => {
 
     async function getHeaders() {
         const context = await common.getContext();
-        console.log('🚀 🚀 token 🚀 🚀 ',context.auth.access_token)
         return {
             'Accept': 'application/json',
             'Authorization': `Bearer ${context.auth.access_token}`,
@@ -129,11 +128,12 @@ const common = (() => {
         return (await response.json()).data;
     }
 
+//SELECT sc.typeCode FROM ServiceCall sc JOIN Activity a ON a.object.objectId = sc.id WHERE sc.id = '7A5FBAE82151416CA5B87201A7F8EBAC'
     async function fetchServiceCallType(serviceCallId) {
         const response = await fetch(
             'https:///eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
-                dtos: 'ServiceCall.27'
+                dtos: 'ServiceCall.27;Activity.43'
             }), {
                 method: 'POST',
                 header: await common.getHeaders(),
@@ -142,6 +142,7 @@ const common = (() => {
                         `SELECT
                             sc.typeCode AS typeCode
                             FROM ServiceCall sc
+                            JOIN Activity a ON a.object.objectId = sc.id
                             WHERE sc.id = '${serviceCallId}'`
 
                 })
@@ -156,44 +157,6 @@ const common = (() => {
         return (await response.json()).data; 
     }
 
-    // totot je tu len re test
-    async function fetchPeriods(businessPartnerId) {
-        const response = await fetch(
-          'https://eu.coresuite.com/api/query/v1?' + new URLSearchParams({
-            ...await common.getSearchParams(),
-            dtos: 'UdoValue.9',
-            pageSize: 1000,
-            page: 1,
-          }),
-          {
-            method: 'POST',
-            headers: await common.getHeaders(),
-            body: JSON.stringify({
-              query: `
-                SELECT
-                  uv.id AS udoId,
-                  uv.udf.z_f_sfr_partner AS businessPartnerId,
-                  uv.udf.z_f_sfr_zucobd AS monthYear,
-                  uv.udf.z_f_sfr_schvalenie AS approved,
-                  uv.udf.z_f_sfr_schvalovatel AS approvedByName,
-                  uv.udf.z_f_sfr_datumschvalenia AS approvalDate
-                FROM UdoValue uv
-                WHERE uv.udf.z_f_sfr_partner = '${businessPartnerId}'
-                ORDER BY uv.createDateTime DESC
-              `,
-            }),
-          },
-        );
-    
-        if (!response.ok) {
-          throw new Error(`Failed to fetch approval status, got status ${response.status}`);
-        }
-    
-        const body = await response.json();
-    
-        return body.data;
-      }
-
     return {
         setShellSdk,
         getShellSdk,
@@ -202,8 +165,7 @@ const common = (() => {
         getSearchParams,
         fetchUdfMeta,
         fetchUdfMetaByFieldName,
-        fetchServiceCallType,
-        fetchPeriods
+        fetchServiceCallType
     }
 
 })();
