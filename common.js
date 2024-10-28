@@ -129,6 +129,7 @@ const common = (() => {
     }
 
     async function fetchServiceCallType(serviceCallId) {
+        console.log('header: ', await common.getHeaders());
         const response = await fetch(
             'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
