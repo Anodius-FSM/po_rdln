@@ -48,6 +48,7 @@ const common = (() => {
 
     async function getHeaders() {
         const context = await common.getContext();
+        console.log('🚀 🚀 token 🚀 🚀 ',context.auth.access_token)
         return {
             'Accept': 'application/json',
             'Authorization': `Bearer ${context.auth.access_token}`,
