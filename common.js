@@ -135,7 +135,7 @@ const common = (() => {
                 dtos: 'ServiceCall.27;Activity'
             }), {
                 method: 'POST',
-                header: await common.getHeaders(),
+                headers: await common.getHeaders(),
                 body: JSON.stringify({
                     query:
                         `SELECT

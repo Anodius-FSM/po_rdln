@@ -20,7 +20,6 @@ const my_extension = (() => {
         console.log("🚀 ~ startExtension ~ startExtension:")
         try {
             const context = await common.getContext();
-            console.log("🚀 ~ startExtension ~ selectedServiceCallId:", context.viewState.selectedServiceCallId);
             const serviceCallType = await common.fetchServiceCallType(context.viewState.selectedServiceCallId);
             
             if (serviceCallType !== '-7') {
