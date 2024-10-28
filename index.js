@@ -14,4 +14,6 @@
     bootstrap();
     my_extension.testMyExtension();
 
+    utils.setUpModal(['#myImg1', '#myImg2', '#myImg3', '#myImg4' ]);
+
 })();
