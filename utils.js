@@ -55,9 +55,19 @@ const utils = (() => {
         });
     }
 
+    function fillStaticData(inputData, toIgnore) {
+        const inputKeys = Object.keys(inputData);
+        const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
+
+        dataKeys.forEach(key => {
+            getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
+        });
+    }
+
     return {
         setFieldValue,
         setUpModal,
-        createTableBody
+        createTableBody,
+        fillStaticData
     }
 })();

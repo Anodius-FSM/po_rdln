@@ -24,7 +24,9 @@ const my_extension = (() => {
                 const deviceData = await common.fetchDeviceData(serviceCallId);
                 console.log("🚀 ~ startExtension ~ deviceData:", deviceData);
 
-
+                if (generalData) {
+                    utils.fillStaticData(generalData, ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech' ])
+                }
                 if (skenData) {
                     utils.createTableBody('#sken_table', ['bod', 'kapacita', 'ssid', 'frekvencia', 'vzdialenost', 'vysledok', 'datum'], skenData);
                 }
