@@ -143,12 +143,14 @@ const common = (() => {
                 })
             }
         );
+        console.log('🚀🚀🚀',response);
+        console.log()
         
         if (!response.ok) {
             console.log("🚀 ~ fetchServiceCallType ~ response:", response);
             throw new Error(`🚀🚀🚀 Failed to fetch Service Call type, got status ${response.status}`);
         }
-
+        console.log(('🚀🚀🚀', await response.json()).data);
         return (await response.json()).data; 
     }
 
