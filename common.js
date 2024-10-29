@@ -156,7 +156,7 @@ const common = (() => {
         const response = await fetch(
             'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
-                dtos: 'ServiceCall.27;Activity.43;Address.22;BusinessPartner.25;UnifiedPerson.13;UdoValue.10;UdoMeta.10;UdfMeta.20 '
+                dtos: 'ServiceCall.27;Activity.43;Address.22;BusinessPartner.25;UnifiedPerson.13;UdoValue.10'
             }), {
                 method:'POST',
                 headers: await common.getHeaders(),
