@@ -210,7 +210,8 @@ const common = (() => {
         getSearchParams,
         fetchUdfMeta,
         fetchUdfMetaByFieldName,
-        fetchServiceCallType
+        fetchServiceCallType,
+        fetchGeneralData
     }
 
 })();
