@@ -152,6 +152,56 @@ const common = (() => {
         return (await response.json()).data; 
     }
 
+    async function fetchGeneralData(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27;Activity.43;Address.22;BusinessPartner.25;UnifiedPerson.13;UdoValue.10;UdoMeta.10;UdfMeta.20 '
+            }), {
+                method:'POST',
+                headers: await common.getHeaders(),
+                body: JSON.stringify({
+                    query:
+                    `SELECT uv.udf.z_f_obh_pristupbod AS bod,
+                        uv.udf.z_f_obh_pristupbodfinal AS bod_final,
+                        uv.udf.z_f_obh_pristupbodfinal AS bod_final,
+                        uv.udf.z_f_obh_uspech AS uspesna,
+                        uv.udf.z_f_obh_maxrychlost AS max_rychlost,
+                        uv.udf.z_f_obh_techinstall AS install_technik,
+                        uv.udf.z_f_obh_dovodneuspech AS dovod_neuspech,
+                        uv.udf.z_f_obh_narocnost AS narocnost,
+                        uv.udf.z_f_obh_pocettech AS pocet_technikov,
+                        uv.udf.z_f_obh_casinstall AS cas_install,
+                        uv.udf.z_f_obh_rebrik AS rebrik,
+                        uv.udf.z_f_obh_internet AS sluzba_internet,
+                        uv.udf.z_f_obh_internettv AS sluzba_internettv,
+                        uv.udf.z_f_obh_poznamkatech AS poznamka_technika,
+                        uv.udf.z_f_obh_poznamkakontr AS poznamka_kontrolora,
+                        sc.udf.z_f_sc_obhliadkastav AS stav,
+                        sc.createDateTime AS datum_vytvorenia,
+                        up.firstName + ' ' + up.lastName AS technik,
+                        ad.street AS ulica,
+                        ad.streetNo AS cislo_domu,
+                        ad.city AS mesto,
+                        ad.zipCode AS psc,
+                        bp.name AS meno_partnera
+                    FROM UdoValue uv
+                        JOIN Activity ac ON ac.id = uv.udf.z_f_obh_activity
+                        JOIN ServiceCall sc ON sc.id = ac.object.objectId
+                        JOIN Address ad ON ac.address = ad.id
+                        JOIN BusinessPartner bp ON ac.businessPartner = bp.id
+                        JOIN UnifiedPerson up ON up.id IN ac.responsibles
+                    WHERE sc.id = '${serviceCallId}'`
+                })
+            }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchGeneralData ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch general data, got status ${response.status}`);
+        }
+        return (await response.json()).data; 
+    }
+
     return {
         setShellSdk,
         getShellSdk,
