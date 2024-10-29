@@ -51,7 +51,6 @@ const utils = (() => {
             headerArray.forEach((head, i ) => {
                 let cell = row.insertCell(i);
                 cell.innerText = d[head]; 
-                console.log("🚀 ~ headerArray.forEach ~ head:", head)
             });
         });
     }
@@ -60,9 +59,14 @@ const utils = (() => {
         const inputKeys = Object.keys(inputData);
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
 
+        
+
         dataKeys.forEach(key => {
-            console.log("🚀 ~ fillStaticData ~ key:", key)
-            getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
+            if ( key = 'datum_vytvorenia') {
+                getDomElement(`#${key}`).innerHTML = inputData[key].split('T')[0] || 'error';
+            } else {
+                getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
+            }
         });
     }
 
