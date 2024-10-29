@@ -6,6 +6,14 @@ body {
     color: red;
 }
 
+.general_content {
+    display: flex;
+}
+
+.col1, .col2, .col3, .col4 {
+    flex-grow: 1;
+}
+
 .general {
     background-color: bisque;
 }
