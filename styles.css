@@ -8,10 +8,21 @@ body {
 
 .general_content {
     display: flex;
+    gap: 1rem;
 }
 
 .col1, .col2, .col3, .col4 {
     flex-grow: 1;
+}
+
+.card {
+    display: grid;
+    border: darkslategray 1px solid;
+    /* grid-template-rows: max-content 200px 1fr; */
+}
+
+p.header {
+    text-align: center;
 }
 
 .general {

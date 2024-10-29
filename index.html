@@ -12,48 +12,104 @@
     <p id="info"></p>
     <p id="error"></p>
 
-    <div class="general">
-        <!-- <p><span>Bod:</span><span id="bod"></span></p>
-        <p><span>Bod_final:</span><span id="bod_final"></span></p>
-        <p><span>cas_install:</span><span id="cas_install"></span></p>
-        <p><span>Číslo domu:</span><span id="cislo_domu"></span></p>       
-        <p><span>Dátum vytvorenia:</span><span id="bod"></span></p>
-        <p><span>Dôvod neúspechu:</span><span id="bod"></span></p>
-        <p><span>install technik:</span><span id="bod"></span></p>
-        <p><span>Max. rýchlosť:</span><span id="bod"></span></p>
-        <p><span>Meno partnera:</span><span id="bod"></span></p>
-        <p><span>Mesto:</span><span id="bod"></span></p>
-        <p><span>Náročnosť:</span><span id="bod"></span></p>
-        <p><span>Počet technikov:</span><span id="bod"></span></p>
-        <p><span>Poznámka kontrolóra:</span><span id="bod"></span></p>
-        <p><span>Poznámka technika:</span><span id="bod"></span></p>
-        <p><span>PSČ:</span><span id="bod"></span></p>
-        <p><span>Rebrík:</span><span id="bod"></span></p>
-        <p><span>Služba internet:</span><span id="bod"></span></p>
-        <p><span>Služba internet tv:</span><span id="bod"></span></p>
-        <p><span>Stav:</span><span id="bod"></span></p>
-        <p><span>Technik:</span><span id="bod"></span></p>
-        <p><span>Ulica:</span><span id="bod"></span></p>
-        <p><span>Úspešná:</span><span id="bod"></span></p> -->
-    </div>
-
     <div class="general_content">
         <div class="col1">
             <div><button type="button">Uložiť</button></div>
-            <div>Stav obhliadky</div>
-            <div>Zákazník</div>
-            <div>Záujem o sluzby</div>
+            <div><p>Stav obhliadky - PREBIEHA </p></div>
+            <div class="card">
+                <header>
+                    <p class="header">Zákazník</p>
+                </header>
+                <div class="content">
+                    <p id="meno_partnera">Ondrej Machula</p>
+                    <p><span id="ulica">Landererova </span><span id="cislo_domu">3</span></p>
+                    <p><span id="psc">81109</span><span id="mesto">Bratislava</span></p>
+                    <p>Dátum vystavenia: <span id="datum_vytvorenia">28.10.2024</span></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <header>
+                    <p class="header">Záujem o sluzby</p>
+                </header>
+                <div class="content">
+                    <p><label for="sluzba_internet">Internet</label><input type="checkbox" name="" id="sluzba_internet"></p>
+                    <p><label for="sluzba_internettv">Internetová TV</label><input type="checkbox" name="" id="sluzba_internettv"></p>
+                </div>
+            </div>
         </div>
+
         <div class="col2">
-            <div>Výstup kontrolóra</div>
-            <div>Dáta z obhliadky</div>
+            <div class="card">
+                <header>
+                    <p class="header">Výstup kontrolóra</p>
+                </header>
+                <div class="content">
+                    <label for="bod_final">Finálny prístup. bod</label>
+                    <select name="" id="bod_final">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    <p>Maximálna rýchlosť <span id="max_rychlost">sss</span></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <header>
+                    <p class="header">Dáta z obhliadky</p>
+                </header>
+                <div class="content">
+                    <p>Technik <span id="technik"></span></p>
+                    <p>Záujem o montáž <span id="install_technik"></span></p>
+                    <p>Prístupový bod <span id="bod"></span></p>
+                    <label for="uspesna">Úspešnosť </label> <!-- <span id="uspesna"></span> -->
+                    <select name="" id="uspesna">
+                        <option value="uspesna">uspesna</option>
+                        <option value="neuspesna">neuspesna</option>
+                    </select>
+                    <p>Dôvod neúspechu <span id="dovod_neuspech"></span></p>
+                    <p>Náročnosť(1-5) <span id="narocnost"></span></p>
+                    <p>Počet technikov <span id="pocet_technikov"></span></p>
+                    <p>Potrebný čas v hod. <span id="cas_install"></span></p>
+                    <p>Typ rebríka <span id="rebrik"></span></p>
+                </div>
+            </div>
         </div>
+
         <div class="col3">
-            <div class="poznamka_kontrolora">Poznámka kontrolóra</div>
-            <div class="poznamka_technika">Poznámka technika</div>
+            <div class="card">
+                <header>
+                    <p class="header">Poznámka kontrolóra</p>
+                </header>
+                <div class="content">
+                    <textarea id="poznamka_kontrolora" cols="30" rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <header>
+                    <p class="header">Poznámka technika</p>
+                </header>
+                <div class="content">
+                    <textarea id="poznamka_technika" cols="30" rows="5"></textarea>
+                </div>
+            </div>
         </div>
-        <div class="col4">
-            Zariadenie a materiály
+        <div class="col4"> 
+            <div class="card">
+                <header>
+                    <p class="header">Zariadenie a materiály</p>
+                </header>
+                <div class="content">
+                    <p>typ model/ine</p>
+                    <p>typ model/ine</p>
+                    <p>typ model/ine</p>
+                    <p>typ model/ine</p>
+                    <p>typ model/ine</p>
+
+                    <p>typ model/ine</p>
+                </div>
+            </div>
         </div>
     </div>
 

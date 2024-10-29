@@ -15,7 +15,6 @@ const my_extension = (() => {
                 utils.setFieldValue('#info', 'Toto SV nie je typu Obhliadka a teda neobsahuje žiadne dáta na zobrazenie.');
             } else {
                 // run the extension
-                utils.setFieldValue('#info', 'Start extension....');
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 console.log("🚀 ~ startExtension ~ generalData:", generalData);
 
