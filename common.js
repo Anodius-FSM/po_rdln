@@ -134,22 +134,22 @@ const common = (() => {
                 ...await common.getSearchParams(),
                 dtos: 'ServiceCall.27'
             }), {
-                method: 'POST',
-                headers: await common.getHeaders(),
-                body: JSON.stringify({
-                    query:
-                        `SELECT sc.typeCode AS typeCode FROM ServiceCall sc
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query:
+                    `SELECT sc.typeCode AS typeCode FROM ServiceCall sc
                             WHERE sc.id = '${serviceCallId}'`
-                })
-            }
+            })
+        }
         );
-  
+
         if (!response.ok) {
             console.log("🚀 ~ fetchServiceCallType ~ response:", response);
             throw new Error(`🚀🚀🚀 Failed to fetch Service Call type, got status ${response.status}`);
         }
 
-        return (await response.json()).data; 
+        return (await response.json()).data;
     }
 
     async function fetchGeneralData(serviceCallId) {
@@ -158,10 +158,10 @@ const common = (() => {
                 ...await common.getSearchParams(),
                 dtos: 'ServiceCall.27;Activity.43;Address.22;BusinessPartner.25;UnifiedPerson.13;UdoValue.10'
             }), {
-                method:'POST',
-                headers: await common.getHeaders(),
-                body: JSON.stringify({
-                    query:
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query:
                     `SELECT uv.udf.z_f_obh_pristupbod AS bod,
                         uv.udf.z_f_obh_pristupbodfinal AS bod_final,
                         uv.udf.z_f_obh_pristupbodfinal AS bod_final,
@@ -192,14 +192,72 @@ const common = (() => {
                         JOIN BusinessPartner bp ON ac.businessPartner = bp.id
                         JOIN UnifiedPerson up ON up.id IN ac.responsibles
                     WHERE sc.id = '${serviceCallId}'`
-                })
-            }
+            })
+        }
         );
         if (!response.ok) {
             console.log("🚀 ~ fetchGeneralData ~ response:", response);
             throw new Error(`🚀🚀🚀 Failed to fetch general data, got status ${response.status}`);
         }
-        return (await response.json()).data; 
+        return (await response.json()).data;
+    }
+
+    async function fetchSkenData(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27;Activity.43;UdoValue.10'
+            }), {
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query:
+                    `SELECT uv.udf.z_f_obs_bod AS bod,
+                        uv.udf.z_f_obs_kapacita AS kapacita,
+                        uv.udf.z_f_obs_ssid AS ssid,
+                        uv.udf.z_f_obs_frekvencia AS frekvencia,
+                        uv.udf.z_f_obs_vzdialenost AS vzdialenost,
+                        uv.udf.z_f_obs_vysledok AS vysledok,
+                        uv.udf.z_f_obs_datum AS datum
+                    FROM UdoValue uv
+                        JOIN Activity ac ON ac.id = uv.udf.z_f_obs_activity
+                        JOIN ServiceCall sc ON sc.id = ac.object.objectId
+                    WHERE sc.id = '${serviceCallId}'`
+            })
+        }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchSkenData ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch sken data, got status ${response.status}`);
+        }
+        return (await response.json()).data;
+    }
+
+    async function fetchDeviceData(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27;Activity.43;UdoValue.10'
+            }), {
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query:
+                    `SELECT uv.udf.z_f_obz_typ AS typ,
+                            uv.udf.z_f_obz_model AS model,
+                            uv.udf.z_f_obz_ine AS ine
+                        FROM UdoValue uv
+                            JOIN Activity ac ON ac.id = uv.udf.z_f_obz_activity
+                            JOIN ServiceCall sc ON sc.id = ac.object.objectId
+                        WHERE sc.id = '${serviceCallId}'`
+            })
+        }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchDeviceData ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch device data, got status ${response.status}`);
+        }
+        return (await response.json()).data;
     }
 
     return {
@@ -211,7 +269,9 @@ const common = (() => {
         fetchUdfMeta,
         fetchUdfMetaByFieldName,
         fetchServiceCallType,
-        fetchGeneralData
+        fetchGeneralData,
+        fetchSkenData,
+        fetchDeviceData
     }
 
 })();

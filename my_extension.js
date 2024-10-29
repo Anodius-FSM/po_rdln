@@ -1,14 +1,5 @@
-/**
- * Rename this file accordong to your needs..
- * this file should contain the main logic of the extension
- * 
- * 
- * 
- * 
- */
-
 const my_extension = (() => {
-
+    // TODO: remove this function
     async function testMyExtension() {
         const context = await common.getContext();
         console.log("🚀 ~ testMyExtension ~ context:", context)
@@ -27,7 +18,12 @@ const my_extension = (() => {
                 utils.setFieldValue('#info', 'Start extension....');
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 console.log("🚀 ~ startExtension ~ generalData:", generalData);
-                
+
+                const skenData = await common.fetchSkenData(serviceCallId);
+                console.log("🚀 ~ startExtension ~ skenData:", skenData);
+
+                const deviceData = await common.fetchDeviceData(serviceCallId);
+                console.log("🚀 ~ startExtension ~ deviceData:", deviceData);
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)
@@ -39,7 +35,4 @@ const my_extension = (() => {
         testMyExtension,
         startExtension
     }
-
-
-
 })();
