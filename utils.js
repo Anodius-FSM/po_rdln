@@ -51,6 +51,7 @@ const utils = (() => {
             headerArray.forEach((head, i ) => {
                 let cell = row.insertCell(i);
                 cell.innerText = d[head]; 
+                console.log("🚀 ~ headerArray.forEach ~ head:", head)
             });
         });
     }
@@ -60,6 +61,7 @@ const utils = (() => {
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
 
         dataKeys.forEach(key => {
+            console.log("🚀 ~ fillStaticData ~ key:", key)
             getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
         });
     }
