@@ -24,6 +24,11 @@ const my_extension = (() => {
 
                 const deviceData = await common.fetchDeviceData(serviceCallId);
                 console.log("🚀 ~ startExtension ~ deviceData:", deviceData);
+
+
+                if (skenData) {
+                    utils.createTableBody('#sken_table', ['bod', 'kapacita', 'ssid', 'frekvencia', 'vzdialenost', 'vysledok', 'datum'], skenData);
+                }
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)

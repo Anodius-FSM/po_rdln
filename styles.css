@@ -6,6 +6,18 @@ body {
     color: red;
 }
 
+.general {
+    background-color: bisque;
+}
+
+.devices {
+    background-color: burlywood;
+}
+
+.sken {
+    background-color: lightcoral;
+}
+
 .photos {
     display: flex;
     gap: 1rem;

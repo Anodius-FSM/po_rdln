@@ -43,8 +43,21 @@ const utils = (() => {
         }
     }
 
+    function createTableBody(tableId, headerArray, data) {
+        let table = getDomElement(tableId);
+
+        data.forEach(d => {
+            let row = table.insertRow(-1); // add a row at the end of the table
+            headerArray.forEach((head, i ) => {
+                let cell = row.insertCell(i);
+                cell.innerText = d[head]; 
+            });
+        });
+    }
+
     return {
         setFieldValue,
-        setUpModal
+        setUpModal,
+        createTableBody
     }
 })();
