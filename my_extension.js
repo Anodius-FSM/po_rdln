@@ -20,10 +20,11 @@ const my_extension = (() => {
             const context = await common.getContext();
             const serviceCallType = await common.fetchServiceCallType(context.viewState.selectedServiceCallId);
             console.log("🚀 ~ startExtension ~ serviceCallType:", serviceCallType);       
-            if (serviceCallType !== '-7') {
+            if (serviceCallType[0].typeCode !== '-7') {
                 utils.setFieldValue('#info', 'Toto SV nie je typu Obhliadka a teda neobsahuje žiadne dáta na zobrazenie.');
             } else {
                 // run the extension
+                utils.setFieldValue('#info', 'Start extension....');
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)
