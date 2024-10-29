@@ -62,7 +62,7 @@ const utils = (() => {
         
 
         dataKeys.forEach(key => {
-            if ( key = 'datum_vytvorenia') {
+            if ( key === 'datum_vytvorenia') {
                 getDomElement(`#${key}`).innerHTML = inputData[key].split('T')[0] || 'error';
             } else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
