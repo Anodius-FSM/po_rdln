@@ -65,7 +65,7 @@ table {
     border: 1px solid #32363a;
 } */
 
-thead {
+.theadrow {
     border-bottom: 2px solid #32363a;
 }
 
@@ -73,7 +73,7 @@ table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-tbody tr:hover {
+.skenbody > tr:hover {
     background-color: #ddd;
 }
 
