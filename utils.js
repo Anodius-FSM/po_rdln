@@ -37,9 +37,9 @@ const utils = (() => {
     }
     function getBodSelectionData(skenData) {
         const bodSet = new Set();
-        skenData.forEach(sken => bodSet.add(sken.bod));
+        skenData.forEach(sken => bodSet.add((sken.bod).split(' ')[0]));
         let retObj = {};
-        skenData.forEach((value1, value2) => retObj[(value1.split(' ')[0])] = value2.split(' ')[0]);
+        skenData.forEach((value1, value2) => retObj[value1] = value2);
     }
     /**
      * 
