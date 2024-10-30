@@ -86,7 +86,7 @@ const utils = (() => {
         });
     }
 
-    function initSelectOptions(domId, ) {
+    function initSelectOptions(domId, data ) {
 
     }
 
@@ -94,6 +94,7 @@ const utils = (() => {
         setFieldValue,
         setUpModal,
         createTableBody,
-        fillStaticData
+        fillStaticData,
+        initSelectOptions
     }
 })();
