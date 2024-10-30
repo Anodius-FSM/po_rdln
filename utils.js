@@ -33,7 +33,6 @@ const utils = (() => {
         return document.querySelector(id);
     }
     function setBackgroundColor(selector, color) {
-        console.log({selector, color});
         getDomElement(selector).style.backgroundColor = color;
     }
     /**
@@ -113,10 +112,13 @@ const utils = (() => {
 
         if (selectedValue) {
             select.value = selectedValue;
+            console.log("🚀 ~ initSelectOptions ~ select:", select)
+            
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         }
 
         select.addEventListener('change', e => {
+            console.log('🚀 ~ initSelectOptions change event: ', e.target.value);
             if (useColors) {
                 select.style.backgroundColor = COLOR_MAP.get(e.target.value);
             }
