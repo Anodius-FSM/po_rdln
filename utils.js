@@ -79,7 +79,7 @@ const utils = (() => {
         dataKeys.forEach(key => {
             if ( key === 'datum_vytvorenia') {
                 console.log(inputData[key].split('T')[0]);
-                getDomElement(`#${key}`).innerHTML = inputData[key].split('T')[0] || 'error';
+                getDomElement(`#${key}`).innerHTML = moment(inputData[key]).format('DD.MM.YYYY') || 'error';
             } if (key === 'stav') {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
