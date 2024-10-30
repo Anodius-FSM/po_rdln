@@ -28,6 +28,7 @@ const utils = (() => {
         return document.querySelector(id);
     }
     function setBackgroundColor(selector, color) {
+        console.log({selector, color});
         getDomElement(selector).style.backgroundColor = color;
     }
     /**
@@ -77,7 +78,7 @@ const utils = (() => {
             if ( key === 'datum_vytvorenia') {
                 getDomElement(`#${key}`).innerHTML = inputData[key].split('T')[0] || 'error';
             } if (key === 'stav') {
-                setBackgroundColor(`.${key}`, COLOR_MAP.get(key));
+                setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             } 
             else {
