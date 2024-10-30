@@ -80,11 +80,15 @@ const utils = (() => {
             if ( key === 'datum_vytvorenia') {
                 console.log(inputData[key].split('T')[0]);
                 getDomElement(`#${key}`).innerHTML = moment(inputData[key]).format('DD.MM.YYYY') || 'error';
+                console.log('moment: ',moment(inputData[key]).format('DD.MM.YYYY'));
+                console.log(getDomElement(`#${key}`).innerHTML);
+
             } if (key === 'stav') {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             } 
             else {
+                console.log(key);
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
         });
