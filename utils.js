@@ -46,7 +46,10 @@ const utils = (() => {
             
     );
         let retObj = {};
-        skenData.forEach((value1, value2) => retObj[value1] = value2);
+        skenData.forEach((value1, value2) => {
+            console.log('🚀 value1 value2 🚀: ', [value1, value2] ); 
+            retObj[value1] = value2; });
+        console.log(retObj);    
         return retObj;
     }
     /**
