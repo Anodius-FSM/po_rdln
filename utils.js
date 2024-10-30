@@ -106,7 +106,7 @@ const utils = (() => {
                 option.style.backgroundColor = COLOR_MAP.get(key);
             }
 
-            let optionText = documnet.createTextNode(key);
+            let optionText = document.createTextNode(key);
             option.appendChild(optionText);
             select.appendChild(option);
         }
