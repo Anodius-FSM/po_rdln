@@ -10,7 +10,12 @@ const utils = (() => {
         ['ZAPARKOVANE', '#FFA500'],
         ['ZRIADITELNA', '#008000'],
         ['ZMENA_SLUZBY ', '#008000'],
-        ['NEZRIADITELNA', '#FF0000'] 
+        ['NEZRIADITELNA', '#FF0000'],
+        ['1','#008000'],
+        ['2','#FFFF00'],
+        ['3','#FFA500'], 
+        ['4','#ff8000'],
+        ['5','#FF0000'],
     ]);
     /**
      * 
@@ -86,9 +91,25 @@ const utils = (() => {
             }
         });
     }
+    /**
+     * 
+     * @param {string} domId 
+     * @param {*} data 
+     * @param {boolean} useColors 
+     */
+    function initSelectOptions(domId, data, useColors ) {
+        const select = getDomElement(domId);
+        for (let key in data) {
+            let option = document.createElement('option');
+            option.setAttribute('value', data[key]);
+            if (useColors) {
+                option.style.backgroundColor = COLOR_MAP.get(key);
+            }
 
-    function initSelectOptions(domId, data ) {
-
+            let optionText = documnet.createTextNode(key);
+            option.appendChild(optionText);
+            select.appendChild(option);
+        }
     }
 
     return {
