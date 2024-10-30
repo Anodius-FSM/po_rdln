@@ -51,8 +51,18 @@ p.header {
     background-color: burlywood;
 }
 
-.sken {
+/* .sken {
     background-color: lightcoral;
+} */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+table, thead, th {
+    border: 1px solid #32363a;
 }
 
 .photos {
