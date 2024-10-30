@@ -97,7 +97,7 @@ const utils = (() => {
      * @param {*} data 
      * @param {boolean} useColors 
      */
-    function initSelectOptions(domId, data, useColors ) {
+    function initSelectOptions(domId, data, selectedValue, useColors ) {
         const select = getDomElement(domId);
         for (let key in data) {
             let option = document.createElement('option');
@@ -110,6 +110,17 @@ const utils = (() => {
             option.appendChild(optionText);
             select.appendChild(option);
         }
+
+        if (selectedValue) {
+            select.value = selectedValue;
+            select.style.backgroundColor = COLOR_MAP.get(selectedValue);
+        }
+
+        select.addEventListener('change', e => {
+            if (useColors) {
+                select.style.backgroundColor = COLOR_MAP.get(e.target.value);
+            }
+        });
     }
 
     return {

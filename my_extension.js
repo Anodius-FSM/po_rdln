@@ -26,7 +26,7 @@ const my_extension = (() => {
 
                 if (generalData) {
                     utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech' ]);
-                    utils.initSelectOptions('#narocnost', {'1':'', '2':'', '3':'', '4':'', '5':''}, true);
+                    utils.initSelectOptions('#narocnost', {'1':'', '2':'', '3':'', '4':'', '5':''}, generalData[0].narocnost , true);
                 }
                 if (skenData) {
                     utils.createTableBody('#sken_table', ['bod', 'kapacita', 'ssid', 'frekvencia', 'vzdialenost', 'vysledok', 'datum'], skenData);
