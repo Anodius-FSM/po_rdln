@@ -35,6 +35,12 @@ const utils = (() => {
     function setBackgroundColor(selector, color) {
         getDomElement(selector).style.backgroundColor = color;
     }
+    function getBodSelectionData(skenData) {
+        const bodSet = new Set();
+        skenData.forEach(sken => bodSet.add(sken.bod));
+        let retObj = {};
+        skenData.forEach((value1, value2) => retObj[(value1.split(' ')[0])] = value2.split(' ')[0]);
+    }
     /**
      * 
      * @param {[string]} imgId 
@@ -126,6 +132,7 @@ const utils = (() => {
         setUpModal,
         createTableBody,
         fillStaticData,
-        initSelectOptions
+        initSelectOptions,
+        getBodSelectionData
     }
 })();
