@@ -1,5 +1,6 @@
 body {
     background-color: fff;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #error {
@@ -30,11 +31,16 @@ body {
 .card {
     display: grid;
     border: darkslategray 1px solid;
+    font-size: 0.875rem;
     /* grid-template-rows: max-content 200px 1fr; */
 }
 
 p.header {
     text-align: center;
+    color:  #32363a;
+    line-height: 16px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .general {
