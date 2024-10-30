@@ -101,9 +101,9 @@ const utils = (() => {
         for (let key in data) {
             let option = document.createElement('option');
             option.setAttribute('value', data[key]);
-            if (key == selectedValue) {
-                option.setAttribute('selected', 'selected');
-            }
+            // if (key == selectedValue) {
+            //     option.setAttribute('selected', 'selected');
+            // }
             if (useColors) {
                 option.style.backgroundColor = COLOR_MAP.get(key);
             }
@@ -112,16 +112,12 @@ const utils = (() => {
             option.appendChild(optionText);
             select.appendChild(option);
         }
-        console.log(selectedValue);
         if (selectedValue) {
             select.value = selectedValue;
-            console.log("🚀 ~ initSelectOptions ~ select:", select.value)
-            
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         }
 
         select.addEventListener('change', () => {
-            console.log('🚀 ~ initSelectOptions change event: ', select.value);
             if (useColors) {
                 select.style.backgroundColor = COLOR_MAP.get(select.value);
             }
