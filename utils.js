@@ -37,16 +37,10 @@ const utils = (() => {
     }
     function getBodSelectionData(skenData) {
         const bodSet = new Set();
-        skenData.forEach(sken => {
-            console.log('🚀 sken.bod 🚀: ', sken.bod);
-            console.log('🚀🚀🚀 sken.bod.split: ', (sken.bod).split(' ')[0])
-            bodSet.add((sken.bod).split(' ')[0]);
-
-        } 
-            
-    );
+        skenData.forEach(sken => bodSet.add((sken.bod).split(' ')[0]));
+        
         let retObj = {};
-        skenData.forEach((value1, value2) => {
+        bodSet.forEach((value1, value2) => {
             console.log('🚀 value1 value2 🚀: ', [value1, value2] ); 
             retObj[value1] = value2; });
         console.log(retObj);    
