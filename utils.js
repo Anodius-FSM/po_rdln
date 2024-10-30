@@ -76,10 +76,9 @@ const utils = (() => {
         const inputKeys = Object.keys(inputData);
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
 
-        
-
         dataKeys.forEach(key => {
             if ( key === 'datum_vytvorenia') {
+                console.log(inputData[key].split('T')[0]);
                 getDomElement(`#${key}`).innerHTML = inputData[key].split('T')[0] || 'error';
             } if (key === 'stav') {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
