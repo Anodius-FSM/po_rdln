@@ -16,6 +16,8 @@ const utils = (() => {
         ['3','#FFA500'], 
         ['4','#ff8000'],
         ['5','#FF0000'],
+        ['ANO', '#66b266'],
+        ['NIE', '#ff6666']
     ]);
     /**
      * 
@@ -38,12 +40,9 @@ const utils = (() => {
     function getBodSelectionData(skenData) {
         const bodSet = new Set();
         skenData.forEach(sken => bodSet.add((sken.bod).split(' ')[0]));
-        
+
         let retObj = {};
-        bodSet.forEach((value1, value2) => {
-            console.log('🚀 value1 value2 🚀: ', [value1, value2] ); 
-            retObj[value1] = value2; });
-        console.log(retObj);    
+        bodSet.forEach((value1, value2) => retObj[value1] = value2); 
         return retObj;
     }
     /**
