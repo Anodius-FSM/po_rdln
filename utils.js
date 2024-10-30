@@ -112,13 +112,13 @@ const utils = (() => {
 
         if (selectedValue) {
             select.value = selectedValue;
-            console.log("🚀 ~ initSelectOptions ~ select:", select)
+            console.log("🚀 ~ initSelectOptions ~ select:", select.value)
             
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         }
 
         select.addEventListener('change', e => {
-            console.log('🚀 ~ initSelectOptions change event: ', e.target.value);
+            console.log('🚀 ~ initSelectOptions change event: ', e);
             if (useColors) {
                 select.style.backgroundColor = COLOR_MAP.get(e.target.value);
             }
