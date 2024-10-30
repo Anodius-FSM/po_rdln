@@ -108,9 +108,6 @@ const utils = (() => {
         for (let key in data) {
             let option = document.createElement('option');
             option.setAttribute('value', data[key]);
-            // if (key == selectedValue) {
-            //     option.setAttribute('selected', 'selected');
-            // }
             if (useColors) {
                 option.style.backgroundColor = COLOR_MAP.get(key);
             }

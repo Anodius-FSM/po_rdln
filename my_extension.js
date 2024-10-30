@@ -16,18 +16,13 @@ const my_extension = (() => {
             } else {
                 // run the extension
                 const generalData = await common.fetchGeneralData(serviceCallId);
-                console.log("🚀 ~ startExtension ~ generalData:", generalData);
-
                 const skenData = await common.fetchSkenData(serviceCallId);
-                console.log("🚀 ~ startExtension ~ skenData:", skenData);
-
                 const deviceData = await common.fetchDeviceData(serviceCallId);
-                console.log("🚀 ~ startExtension ~ deviceData:", deviceData);
-
+                //{'ANO': 'Úspešná', 'NIE': 'Neúspešná'}
                 if (generalData) {
                     utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech' ]);
                     utils.initSelectOptions('#narocnost', {'1':'1', '2':'2', '3':'3', '4':'4', '5':'5'}, generalData[0].narocnost , true);
-                    utils.initSelectOptions('#uspesna', {'ANO': 'Úspešná', 'NIE': 'Neúspešná'}, generalData[0].uspesna, true);
+                    utils.initSelectOptions('#uspesna', {'Úspešná': 'ANO','Neúspešná': 'NIE'}, generalData[0].uspesna, true);
                 }
                 if (skenData) {
                     utils.initSelectOptions('#bod_final', utils.getBodSelectionData(skenData), generalData[0].bod_final, false);
