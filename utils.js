@@ -77,18 +77,12 @@ const utils = (() => {
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
 
         dataKeys.forEach(key => {
-            if ( key === 'datum_vytvorenia') {
-                console.log(inputData[key].split('T')[0]);
+            if ( key === 'datum_vytvorenia') {               
                 getDomElement(`#${key}`).innerHTML = moment(inputData[key]).format('DD.MM.YYYY') || 'error';
-                console.log('moment: ',moment(inputData[key]).format('DD.MM.YYYY'));
-                console.log(getDomElement(`#${key}`).innerHTML);
-
-            } if (key === 'stav') {
+            } else if (key === 'stav') {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
-            } 
-            else {
-                console.log(key);
+            } else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
         });
