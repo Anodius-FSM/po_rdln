@@ -17,10 +17,12 @@ const utils = (() => {
         ['4','#ff8000'],
         ['5','#FF0000'],
         ['ANO', '#66b266'],
-        ['NIE', '#ff6666']
+        ['NIE', '#ff6666'],
+        ['Úspešná', '#66b266'],
+        ['Neúspešná', '#ff6666']
     ]);
     /**
-     * 
+     * Úspešná': 'ANO','Neúspešná
      * @param {string} id: DOM elements id 
      * @param {string} value: value of the selected element  
      */
