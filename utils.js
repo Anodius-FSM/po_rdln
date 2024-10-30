@@ -109,7 +109,7 @@ const utils = (() => {
             option.appendChild(optionText);
             select.appendChild(option);
         }
-
+        console.log(selectedValue);
         if (selectedValue) {
             select.value = selectedValue;
             console.log("🚀 ~ initSelectOptions ~ select:", select.value)
@@ -117,10 +117,10 @@ const utils = (() => {
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         }
 
-        select.addEventListener('change', e => {
-            console.log('🚀 ~ initSelectOptions change event: ', e);
+        select.addEventListener('change', () => {
+            console.log('🚀 ~ initSelectOptions change event: ', select.value);
             if (useColors) {
-                select.style.backgroundColor = COLOR_MAP.get(e.target.value);
+                select.style.backgroundColor = COLOR_MAP.get(select.value);
             }
         });
     }
