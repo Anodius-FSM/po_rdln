@@ -3,6 +3,15 @@
  */
 
 const utils = (() => {
+
+    const COLOR_MAP = new Map([
+        ['PREBIEHA', '#FFFF00' ],
+        ['KONTROLA', '#FFFF00'],
+        ['ZAPARKOVANE', '#FFA500'],
+        ['ZRIADITELNA', '#008000'],
+        ['ZMENA_SLUZBY ', '#008000'],
+        ['NEZRIADITELNA', '#FF0000'] 
+    ]);
     /**
      * 
      * @param {string} id: DOM elements id 
@@ -17,6 +26,9 @@ const utils = (() => {
      */
     function getDomElement(id) {
         return document.querySelector(id);
+    }
+    function setBackgroundColor(selector, color) {
+        getDomElement(selector).style.backgroundColor = color;
     }
     /**
      * 
@@ -64,10 +76,18 @@ const utils = (() => {
         dataKeys.forEach(key => {
             if ( key === 'datum_vytvorenia') {
                 getDomElement(`#${key}`).innerHTML = inputData[key].split('T')[0] || 'error';
-            } else {
+            } if (key === 'stav') {
+                setBackgroundColor(`.${key}`, COLOR_MAP.get(key));
+                getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
+            } 
+            else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
         });
+    }
+
+    function initSelectOptions(domId, ) {
+
     }
 
     return {

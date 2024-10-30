@@ -7,13 +7,25 @@ body {
 }
 
 .general_content {
-    display: flex;
+    /* display: flex;
+    gap: 1rem; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
 
-.col1, .col2, .col3, .col4 {
-    flex-grow: 1;
+.stav-div {
+    display: grid;
+    /* grid-auto-flow: column; */
+    grid-template-columns: 1fr 1fr;
 }
+.stav {
+    text-align: center;
+}
+
+/* .col1, .col2, .col3, .col4 {
+    flex-grow: 1;
+} */
 
 .card {
     display: grid;
