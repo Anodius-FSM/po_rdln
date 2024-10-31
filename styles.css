@@ -7,6 +7,22 @@ body {
     color: red;
 }
 
+.save-button {
+    color: #0064d9;
+    border-color: #bcc3ca;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    border-width: 0.0625rem;
+    font-size: .875rem;
+    font-weight: 400;
+    height: 2.25rem;
+}
+
+.save-button:hover {
+    background-color: #ddd;
+}
+
+
 .general_content {
     /* display: flex;
     gap: 1rem; */
