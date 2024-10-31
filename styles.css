@@ -79,11 +79,14 @@ span {
 .device-typ>p {
     font-size: 0.775rem;
     font-weight: 500;
-    color: red
 }
 .model-ine>p {
     font-size: 0.875rem;
     font-weight: 400;
+}
+
+select {
+    border-radius: 5px;
 }
 
 table {
@@ -105,11 +108,11 @@ th {
     padding: 0.5rem 0.25rem;
 }
 
-table tr:nth-child(even) {
+table#sken_table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-table tbody tr:hover {
+table#sken_table tbody tr:hover {
     background-color: #ddd;
 }
 

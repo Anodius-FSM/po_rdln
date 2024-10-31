@@ -147,14 +147,17 @@ const utils = (() => {
         let deviceData = '';
         let deviceTyp = '';
         data.forEach(d => {
-            deviceTyp += `<p>${DEVICE_TYP.get(d.typ)}</p>`
-
+            // deviceTyp += `<p>${DEVICE_TYP.get(d.typ)}</p>`
+            deviceData += `<tr><td>${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
-                deviceData += `<p>${d.model} / ${d.ine}</p>`;
+                deviceData += `<td class="center-align">${d.model} / ${d.ine}</td></tr>`
+                //deviceData += `<p>${d.model} / ${d.ine}</p>`;
             } else if (d.model !== 'null' && d.ine === 'null')  {
-                deviceData += `<p>${d.model}</p>`
+                deviceData += `<td class="center-align">${d.model}</td></tr>`
+                // deviceData += `<p>${d.model}</p>`
             } else if (d.model === 'null' && d.ine !== 'null') {
-                deviceData += `<p>${d.ine}</p>`;
+                // deviceData += `<p>${d.ine}</p>`;
+                deviceData += `<td class="center-align">${d.ine}</td></tr>`
             }
         });
 
