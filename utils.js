@@ -108,8 +108,10 @@ const utils = (() => {
             }
         });
         if (inputData.dovod_neuspech === 'null') {
-            getDomElement('.dovod_neuspech').style.visibility = 'hidden';
-            getDomElement('#dovod_neuspech').style.visibility = 'hidden';
+            // getDomElement('.dovod_neuspech').style.visibility = 'hidden';
+            // getDomElement('#dovod_neuspech').style.visibility = 'hidden';
+            getDomElement('.dovod_neuspech').remove();
+            getDomElement('.dovod_neuspech').remove();
         }
     }
     /**
@@ -160,7 +162,7 @@ const utils = (() => {
             }
         });
 
-        getDomElement('.zar_mat').innerHTML = deviceData;
+        getDomElement('#zar_mat').innerHTML = deviceData;
     }
 
     return {
