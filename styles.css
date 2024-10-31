@@ -20,6 +20,9 @@ body {
     /* grid-auto-flow: column; */
     grid-template-columns: 1fr 1fr;
 }
+.stav-div, .save-div, .card, .content, .sken, #fotky {
+    margin: 1rem;
+}
 .stav {
     border-radius: 1rem;
     text-align: center;
@@ -31,9 +34,17 @@ body {
 
 .card {
     display: grid;
-    border: #ccc 1px solid;
+    border: #eee 1px solid;
     font-size: 0.875rem;
     /* grid-template-rows: max-content 200px 1fr; */
+}
+
+textarea {
+    border-color: #ddd;
+}
+
+p, label { /* #meno_partnera, .datum_vytvorenia, .stav-div */
+    font-weight: 600; 
 }
 
 p.header {
@@ -44,17 +55,9 @@ p.header {
     font-weight: 600;
 }
 
-.general {
-    background-color: bisque;
+span {
+    font-weight: 400;
 }
-
-.devices {
-    background-color: burlywood;
-}
-
-/* .sken {
-    background-color: lightcoral;
-} */
 
 table {
     border-collapse: collapse;
@@ -67,14 +70,19 @@ table {
 } */
 
 .theadrow {
+  
     border-bottom: 2px solid #32363a;
+    background-color: #e2e2e2;
+}
+th {
+    padding: 0.5rem 0.25rem;
 }
 
 table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-table tr:hover {
+table tbody tr:hover {
     background-color: #ddd;
 }
 
