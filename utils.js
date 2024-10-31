@@ -109,9 +109,10 @@ const utils = (() => {
         });
         if (inputData.dovod_neuspech === 'null') {
             // getDomElement('.dovod_neuspech').style.visibility = 'hidden';
-            // getDomElement('#dovod_neuspech').style.visibility = 'hidden';
+            // getDomElement('#dovod_neuspech').style.visibility = 'hidden';dov_neusp
             getDomElement('.dovod_neuspech').remove();
             getDomElement('#dovod_neuspech').remove();
+            getDomElement('#dov_neusp').remove();
         }
     }
     /**
@@ -149,7 +150,7 @@ const utils = (() => {
         let deviceData = '';
         data.forEach(d => {
             // deviceTyp += `<p>${DEVICE_TYP.get(d.typ)}</p>`
-            deviceData += `<tr><td>${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr><td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `<td class="center-align">${d.model} / ${d.ine}</td></tr>`
                 //deviceData += `<p>${d.model} / ${d.ine}</p>`;
