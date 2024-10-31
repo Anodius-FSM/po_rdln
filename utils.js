@@ -21,6 +21,15 @@ const utils = (() => {
         ['Úspešná', '#66b266'],
         ['Neúspešná', '#ff6666']
     ]);
+
+    const DEVICE_TYP = new Map([
+        ['KONZOLA_SAT','SAT konzola'],
+        ['KONZOLA','Konzola/ Držiak'],
+        ['ZARIADENIE','Zariadenie'],
+        ['DRZIAK_BALKON','Držiak na satelit na balkón (vodorovná tyč)'],
+        ['MATERIAL','Materiál'],
+        ['DRZIAK_STA','Držiak na STA (zvislá tyč)']
+    ]);
     /**
      * Úspešná': 'ANO','Neúspešná
      * @param {string} id: DOM elements id 
@@ -98,6 +107,10 @@ const utils = (() => {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
         });
+        if (inputData.dovod_neuspech === 'null') {
+            getDomElement('.dovod_neuspech').style.visibility = 'hidden';
+            getDomElement('#dovod_neuspech').style.visibility = 'hidden';
+        }
     }
     /**
      * 
@@ -132,8 +145,10 @@ const utils = (() => {
 
     function showDeviceData(data) {
         let deviceData = '';
+        let deviceTyp = '';
         data.forEach(d => {
-            //deviceData += d.ine ? `<p></p>` : `<p></p>`;
+            deviceTyp += `<p>${DEVICE_TYP.get(d.typ)}</p>`
+
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `<p>${d.model} / ${d.ine}</p>`;
             } else if (d.model !== 'null' && d.ine === 'null')  {
@@ -143,7 +158,8 @@ const utils = (() => {
             }
         });
 
-        getDomElement('#zar_mat').innerHTML = deviceData;
+        getDomElement('.device-typ').innerHTML = deviceTyp;
+        getDomElement('.model-ine').innerHTML = deviceData;
     }
 
     return {

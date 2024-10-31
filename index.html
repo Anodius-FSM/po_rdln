@@ -66,17 +66,28 @@
                     <p class="header">Dáta z obhliadky</p>
                 </header>
                 <div class="content data-content">
-                    <p>Technik</p><p><span id="technik"></span></p>
-                    <p>Záujem o montáž</p> <p><span id="install_technik"></span></p>
-                    <p>Prístupový bod</p> <p><span id="bod"></span></p>
-                    <label for="uspesna">Úspešnosť </label>
-                    <select name="uspesna" id="uspesna"></select>
-                    <p class="dovod_neuspech">Dôvod neúspechu</p> <p><span id="dovod_neuspech"></span></p>
-                    <label for="narocnost">Náročnosť(1-5)</label>
-                    <select name="narocnost" id="narocnost"></select>
-                    <p>Počet technikov</p> <p><span id="pocet_technikov"></span></p>
-                    <p>Potrebný čas v hod.</p> <p><span id="cas_install"></span></p>
-                    <p>Typ rebríka <span id="rebrik"></span></p>
+                    <div>
+                        <p>Technik</p>
+                        <p>Záujem o montáž</p> 
+                        <p>Prístupový bod</p> 
+                        <label for="uspesna">Úspešnosť </label>
+                        <p class="dovod_neuspech">Dôvod neúspechu</p> 
+                        <label for="narocnost">Náročnosť(1-5)</label>
+                        <p>Počet technikov</p> 
+                        <p>Potrebný čas v hod.</p> 
+                        <p>Typ rebríka</p> 
+                    </div>
+                    <div class="center-align">
+                        <p><span id="technik"></span></p>
+                        <p><span id="install_technik"></span></p>
+                        <p><span id="bod"></span></p>
+                        <select name="uspesna" id="uspesna"></select>
+                        <p><span id="dovod_neuspech"></span></p>
+                        <select name="narocnost" id="narocnost"></select>
+                        <p><span id="pocet_technikov"></span></p>
+                        <p><span id="cas_install"></span></p>
+                        <p><span id="rebrik"></span></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,8 +116,9 @@
                 <header>
                     <p class="header">Zariadenie a materiály</p>
                 </header>
-                <div id="zar_mat" class="content center-align">
-                  
+                <div id="zar_mat" class="content data-content">
+                  <div class="device-typ"></div>
+                  <div class="model-ine center-align"></div>
                 </div>
             </div>
         </div>
