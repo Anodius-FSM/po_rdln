@@ -145,7 +145,6 @@ const utils = (() => {
 
     function showDeviceData(data) {
         let deviceData = '';
-        let deviceTyp = '';
         data.forEach(d => {
             // deviceTyp += `<p>${DEVICE_TYP.get(d.typ)}</p>`
             deviceData += `<tr><td>${DEVICE_TYP.get(d.typ)}<td>`;
@@ -161,8 +160,7 @@ const utils = (() => {
             }
         });
 
-        getDomElement('.device-typ').innerHTML = deviceTyp;
-        getDomElement('.model-ine').innerHTML = deviceData;
+        getDomElement('.zar_mat').innerHTML = deviceData;
     }
 
     return {
