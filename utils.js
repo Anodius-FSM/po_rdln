@@ -114,6 +114,14 @@ const utils = (() => {
             getDomElement('#dovod_neuspech').remove();
             getDomElement('#dov_neusp').remove();
         }
+
+        if (inputData.sluzba_internet === 'true') {
+            getDomElement('#sluzba_internet').checked = true;
+        }
+        
+        if (inputData.sluzba_internettv === 'true') {
+            getDomElement('#sluzba_internettv').checked = true;
+        }
     }
     /**
      * 
