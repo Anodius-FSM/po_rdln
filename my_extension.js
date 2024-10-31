@@ -29,6 +29,10 @@ const my_extension = (() => {
                     utils.initSelectOptions('#bod_final', utils.getBodSelectionData(skenData), generalData[0].bod_final, false);
                     utils.createTableBody('#sken_table', ['bod', 'kapacita', 'ssid', 'frekvencia', 'vzdialenost', 'vysledok', 'datum'], skenData);
                 }
+
+                if (deviceData) {
+                    utils.showDeviceData(deviceData); 
+                }
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)

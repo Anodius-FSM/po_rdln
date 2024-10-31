@@ -14,14 +14,27 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
+.data-content {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+.data-internet {
+    row-gap: 0.875rem; 
+}
 
+.center-align {
+    text-align: center;
+}
 .stav-div {
     display: grid;
     /* grid-auto-flow: column; */
     grid-template-columns: 1fr 1fr;
 }
-.stav-div, .save-div, .card, .content, .sken, #fotky {
+.stav-div, .save-div, .card, .sken, #fotky {
     margin: 1rem;
+}
+.content {
+    margin: 0rem 1rem;
 }
 .stav {
     border-radius: 1rem;
@@ -53,6 +66,10 @@ p.header {
     line-height: 16px;
     font-size: 14px;
     font-weight: 600;
+}
+
+.data-content>p,label, select {
+    margin: 0.5rem 0rem
 }
 
 span {

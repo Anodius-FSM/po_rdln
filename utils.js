@@ -130,12 +130,29 @@ const utils = (() => {
         });
     }
 
+    function showDeviceData(data) {
+        let deviceData = '';
+        data.forEach(d => {
+            //deviceData += d.ine ? `<p></p>` : `<p></p>`;
+            if (d.model && d.ine) {
+                deviceData += `<p>${d.model} / ${d.ine}</p>`;
+            } else if (d.model && !d.ine) {
+                deviceData += `<p>${d.model}</p>`
+            } else if (!d.model && d.ine) {
+                deviceData += `<p>${d.ine}</p>`;
+            }
+        });
+
+        getDomElement('#zar_mat').innerHTML = deviceData;
+    }
+
     return {
         setFieldValue,
         setUpModal,
         createTableBody,
         fillStaticData,
         initSelectOptions,
-        getBodSelectionData
+        getBodSelectionData,
+        showDeviceData
     }
 })();

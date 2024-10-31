@@ -28,7 +28,7 @@
                 <div class="content">
                     <p id="meno_partnera"></p>
                     <p><span id="ulica"></span><span id="cislo_domu"></span></p>
-                    <p><span id="psc"></span><span id="mesto"></span></p>
+                    <p><span id="psc"></span>&nbsp; &nbsp;<span id="mesto"></span></p>
                     <p class="datum_vytvorenia">Dátum vystavenia: <span id="datum_vytvorenia"></span></p>
                 </div>
             </div>
@@ -37,9 +37,11 @@
                 <header>
                     <p class="header">Záujem o sluzby</p>
                 </header>
-                <div class="content">
-                    <p><label for="sluzba_internet">Internet</label><input type="checkbox" name="" id="sluzba_internet"></p>
-                    <p><label for="sluzba_internettv">Internetová TV</label><input type="checkbox" name="" id="sluzba_internettv"></p>
+                <div class="content data-content data-internet">
+                    <div><label for="sluzba_internet">Internet</label></div>
+                    <div class="center-align"><input type="checkbox" name="" id="sluzba_internet"></div>
+                    <div><label for="sluzba_internettv">Internetová TV</label></div>
+                    <div class="center-align"><input type="checkbox" name="" id="sluzba_internettv"></div>
                 </div>
             </div>
         </div>
@@ -49,13 +51,13 @@
                 <header>
                     <p class="header">Výstup kontrolóra</p>
                 </header>
-                <div class="content">
+                <div class="content data-content">
                     <label for="bod_final">Finálny prístup. bod</label>
                     <select name="bod_final" id="bod_final">
                         <!-- <option value="1">1</option>
                         <option value="2">2</option> -->
                     </select>
-                    <p>Maximálna rýchlosť <span id="max_rychlost">sss</span></p>
+                    <p>Maximálna rýchlosť</p> <p class="center-align"><span id="max_rychlost">sss</span></p>
                 </div>
             </div>
 
@@ -63,18 +65,17 @@
                 <header>
                     <p class="header">Dáta z obhliadky</p>
                 </header>
-                <div class="content">
-                    <p>Technik <span id="technik"></span></p>
-                    <p>Záujem o montáž <span id="install_technik"></span></p>
-                    <p>Prístupový bod <span id="bod"></span></p>
-                    <label for="uspesna">Úspešnosť </label> <!-- <span id="uspesna"></span> -->
-                    <select name="uspesna" id="uspesna">
-                    </select>
-                    <p>Dôvod neúspechu <span id="dovod_neuspech"></span></p>
+                <div class="content data-content">
+                    <p>Technik</p><p><span id="technik"></span></p>
+                    <p>Záujem o montáž</p> <p><span id="install_technik"></span></p>
+                    <p>Prístupový bod</p> <p><span id="bod"></span></p>
+                    <label for="uspesna">Úspešnosť </label>
+                    <select name="uspesna" id="uspesna"></select>
+                    <p class="dovod_neuspech">Dôvod neúspechu</p> <p><span id="dovod_neuspech"></span></p>
                     <label for="narocnost">Náročnosť(1-5)</label>
                     <select name="narocnost" id="narocnost"></select>
-                    <p>Počet technikov <span id="pocet_technikov"></span></p>
-                    <p>Potrebný čas v hod. <span id="cas_install"></span></p>
+                    <p>Počet technikov</p> <p><span id="pocet_technikov"></span></p>
+                    <p>Potrebný čas v hod.</p> <p><span id="cas_install"></span></p>
                     <p>Typ rebríka <span id="rebrik"></span></p>
                 </div>
             </div>
@@ -86,7 +87,7 @@
                     <p class="header">Poznámka kontrolóra</p>
                 </header>
                 <div class="content">
-                    <textarea id="poznamka_kontrolora" cols="50" rows="10"></textarea>
+                    <textarea id="poznamka_kontrolora" cols="45" rows="10"></textarea>
                 </div>
             </div>
 
@@ -95,7 +96,7 @@
                     <p class="header">Poznámka technika</p>
                 </header>
                 <div class="content">
-                    <textarea id="poznamka_technika" cols="50" rows="10"></textarea>
+                    <textarea id="poznamka_technika" cols="45" rows="10"></textarea>
                 </div>
             </div>
         </div>
@@ -104,14 +105,8 @@
                 <header>
                     <p class="header">Zariadenie a materiály</p>
                 </header>
-                <div class="content">
-                    <p>typ model/ine</p>
-                    <p>typ model/ine</p>
-                    <p>typ model/ine</p>
-                    <p>typ model/ine</p>
-                    <p>typ model/ine</p>
-
-                    <p>typ model/ine</p>
+                <div id="zar_mat" class="content center-align">
+                  
                 </div>
             </div>
         </div>
