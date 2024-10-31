@@ -111,7 +111,7 @@ const utils = (() => {
             // getDomElement('.dovod_neuspech').style.visibility = 'hidden';
             // getDomElement('#dovod_neuspech').style.visibility = 'hidden';
             getDomElement('.dovod_neuspech').remove();
-            getDomElement('.dovod_neuspech').remove();
+            getDomElement('#dovod_neuspech').remove();
         }
     }
     /**
