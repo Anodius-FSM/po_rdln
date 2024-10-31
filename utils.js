@@ -134,11 +134,11 @@ const utils = (() => {
         let deviceData = '';
         data.forEach(d => {
             //deviceData += d.ine ? `<p></p>` : `<p></p>`;
-            if (d.model && d.ine) {
+            if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `<p>${d.model} / ${d.ine}</p>`;
-            } else if (d.model && !d.ine) {
+            } else if (d.model !== 'null' && d.ine === 'null')  {
                 deviceData += `<p>${d.model}</p>`
-            } else if (!d.model && d.ine) {
+            } else if (d.model === 'null' && d.ine !== 'null') {
                 deviceData += `<p>${d.ine}</p>`;
             }
         });
