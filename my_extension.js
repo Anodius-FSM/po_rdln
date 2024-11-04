@@ -18,7 +18,7 @@ const my_extension = (() => {
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
-                const photos = await common.fetchPhotosFromAttachment(serviceCallId);
+                const photos = await common.fetchPhotos(serviceCallId);
                 console.log("🚀 ~ startExtension ~ photos:", photos)
                 console.log("🚀 ~ startExtension ~ deviceData:", deviceData)
 
@@ -39,6 +39,12 @@ const my_extension = (() => {
                 if (photos) {
                     // console.warn('get photo from attachment');
                     // await common.fetchPhoto(photos[1]);
+                    const photoArray = []
+                    photos.array.forEach(photoData => {
+                        photoArray.push({description: photoData.description, blob: common.fetchPhoto(photoData) }); 
+                    });
+
+                    console.log({photoArray});
                 }
             }
         } catch (error) {

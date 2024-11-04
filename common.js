@@ -262,7 +262,7 @@ const common = (() => {
         return (await response.json()).data;
     }
 
-    async function _fetchPhotos(serviceCallId) {
+    async function fetchPhotos(serviceCallId) {
         const response = await fetch(
             'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
@@ -303,7 +303,7 @@ const common = (() => {
         // return returnData;
     }
 
-    async function _fetchPhoto(photoData) {
+    async function fetchPhoto(photoData) {
         console.log('photoDATA: ', photoData);
         const response = await fetch(
             `https://eu.fsm.cloud.sap/api/data/v4/Attachment/${photoData.id}/content?` + new URLSearchParams({
@@ -330,18 +330,18 @@ const common = (() => {
         // blobImage.src = objUrl;
     }
 
-    async function fetchPhotosFromAttachment(serviceCallId) {
-        const photoData = await _fetchPhotos(serviceCallId);
-        console.log("🚀 ~ fetchPhotosFromAttacment ~ photoData:", photoData)
+    // async function fetchPhotosFromAttachment(serviceCallId) {
+    //     const photoData = await _fetchPhotos(serviceCallId);
+    //     console.log("🚀 ~ fetchPhotosFromAttacment ~ photoData:", photoData)
 
-        const retArray = [];
-        photoData.array.forEach(photoData => {
-            returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
-        });
+    //     const retArray = [];
+    //     photoData.array.forEach(photoData => {
+    //         returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
+    //     });
 
-        return retArray;
+    //     return retArray;
 
-    }
+    // }
 
     return {
         setShellSdk,
@@ -355,7 +355,8 @@ const common = (() => {
         fetchGeneralData,
         fetchSkenData,
         fetchDeviceData,
-        fetchPhotosFromAttachment
+        fetchPhotos,
+        fetchPhoto
     }
 
 })();
