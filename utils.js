@@ -62,8 +62,8 @@ const utils = (() => {
      */
     function setUpModal(imgId) {
         // let img = getDomElement(imgId);
-        imgId.forEach(iId => {
-            getDomElement(iId).onclick = (e) => {
+        //imgId.forEach(iId => {
+            getDomElement(imgId).onclick = (e) => {
                 let modal = getDomElement('#myModal');
                 // insert the image to the modal
                 let modalImg = getDomElement('#img01');
@@ -73,7 +73,7 @@ const utils = (() => {
                 modalImg.src = e.srcElement.currentSrc;
                 captionText.innerHTML = e.srcElement.alt;
             }
-        });
+       // });
 
         // close the modal
         getDomElement('.close').onclick = () => {
@@ -82,23 +82,17 @@ const utils = (() => {
     }
 
     function displayPhotos(id, description, blob) {
-        
-        // .thumbnail
         const photoContainer = getDomElement('.photos');
-
-        
             let img = document.createElement('img');
-                    // const blobImage = document.querySelector('#blob_image');
-                    // const objUrl = URL.createObjectURL(blob);
-                    // blobImage.src = objUrl;
             img.setAttribute('id', id);
             img.classList.add('thumbnail');
             img.setAttribute('alt', description);
-            console.log('the type of photo.blob is:  ',typeof blob);
             let objUrl = URL.createObjectURL(blob);
             img.setAttribute('src', objUrl);
 
             photoContainer.appendChild(img);
+
+            setUpModal(`#${id}`);
     }
 
     function createTableBody(tableId, headerArray, data) {
