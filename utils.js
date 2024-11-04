@@ -149,13 +149,13 @@ const utils = (() => {
             option.appendChild(optionText);
             select.appendChild(option);
         }
-        if (selectedValue) {
+        if (selectedValue && useColors) {
             select.value = selectedValue;
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         }
 
         select.addEventListener('change', () => {
-            if (useColors) {
+            if (useColors && useColors) {
                 select.style.backgroundColor = COLOR_MAP.get(select.value);
             }
         });
