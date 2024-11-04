@@ -26,7 +26,9 @@ const my_extension = (() => {
                     utils.initSelectOptions('#uspesna', {'Úspešná': 'ANO','Neúspešná': 'NIE'}, generalData[0].uspesna, true);
                     utils.initSelectOptions('#install_technik', {'Áno':'ANO', 'Nie': 'NIE'}, generalData[0].install_technik, false );
 
-                    utils.getDomElement('.save-button').addEventListener('click', common.saveChanges(generalData));
+                    utils.getDomElement('.save-buttton').addEventListener('click',()=> {
+                        common.saveChanges(generalData);
+                    });
                     
                 }
                 if (skenData) {

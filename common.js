@@ -317,7 +317,10 @@ const common = (() => {
     }
 
     function saveChanges(generalData) {
-        console.log('saveChanges: ', generalData);
+       
+            console.log('saveChanges: ', generalData);
+       
+        
     }
 
     return {
