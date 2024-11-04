@@ -294,7 +294,6 @@ const common = (() => {
     }
 
     async function fetchPhoto(photoData) {
-        console.log('photoDATA: ', photoData);
         const response = await fetch(
             `https://eu.fsm.cloud.sap/api/data/v4/Attachment/${photoData.id}/content?` + new URLSearchParams({
                 ...await common.getSearchParams(),
