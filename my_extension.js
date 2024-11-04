@@ -37,10 +37,11 @@ const my_extension = (() => {
                 }
 
                 if (photos) {
+                    console.log("🚀 ~ startExtension ~ photos:", photos)
                     // console.warn('get photo from attachment');
                     // await common.fetchPhoto(photos[1]);
                     const photoArray = []
-                    photos.array.forEach(photoData => {
+                    photos.forEach(photoData => {
                         photoArray.push({description: photoData.description, blob: common.fetchPhoto(photoData) }); 
                     });
 
