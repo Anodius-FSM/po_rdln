@@ -46,12 +46,12 @@ const common = (() => {
         });
     }
 
-    async function getHeaders() {
+    async function getHeaders(contentType = 'application/json') {
         const context = await common.getContext();
         return {
             'Accept': 'application/json',
             'Authorization': `Bearer ${context.auth.access_token}`,
-            'Content-Type': 'application/json',
+            'Content-Type': contentType,
             'X-Client-ID': CLIENT_ID,
             'X-Client-Version': CLIENT_VERSION
         };
@@ -286,10 +286,30 @@ const common = (() => {
         }
         );
         if (!response.ok) {
-            console.log("🚀 ~ fetchDeviceData ~ response:", response);
-            throw new Error(`🚀🚀🚀 Failed to fetch device data, got status ${response.status}`);
+            console.log("🚀 ~ fetchPhotos ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch photo data, got status ${response.status}`);
         }
+
         return (await response.json()).data;
+    }
+
+    async function fetchPhoto(photoData) {
+        const response = await fetch(
+            `https://eu.fsm.cloud.sap/api/data/v4/Attachment/${photoData.id}/content?` + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'Attachment.19'
+            }), {
+                method: 'GET',
+                headers: await common.getHeaders(`image/${photoData.type};charset=ISO-8859-1`)
+            }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchPhoto ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch photo, got status ${response.status}`);
+        }
+
+        const photo = (await response.json()).data; 
+        console.log("🚀 ~ fetchPhoto ~ photo:", photo);
     }
 
     return {
@@ -304,7 +324,8 @@ const common = (() => {
         fetchGeneralData,
         fetchSkenData,
         fetchDeviceData,
-        fetchPhotos
+        fetchPhotos,
+        fetchPhoto
     }
 
 })();

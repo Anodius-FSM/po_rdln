@@ -35,6 +35,11 @@ const my_extension = (() => {
                 if (deviceData) {
                     utils.showDeviceData(deviceData); 
                 }
+
+                if (photos) {
+                    console.warn('get photo from attachment');
+                    await common.fetchPhoto(photos[1]);
+                }
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)
