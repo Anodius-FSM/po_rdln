@@ -309,8 +309,8 @@ const common = (() => {
             throw new Error(`🚀🚀🚀 Failed to fetch photo, got status ${response.status}`);
         }
 
-        const photo = await response(); 
-        console.log("🚀 ~ fetchPhoto ~ photo:", photo);
+        //const photo = response; 
+        console.log("🚀 ~ fetchPhoto ~ photo:", response);
     }
 
     return {
