@@ -310,6 +310,7 @@ const common = (() => {
         }
 
         const blob = await response.blob();
+        console.log("🚀 ~ fetchPhoto ~ blob:", blob);
 
         return blob;
 
