@@ -18,7 +18,7 @@ const my_extension = (() => {
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
-                const photos = await common.fetchPhotos(serviceCallId);
+                const photos = await common.fetchPhotosFromAttachment(serviceCallId);
                 console.log("🚀 ~ startExtension ~ photos:", photos)
                 console.log("🚀 ~ startExtension ~ deviceData:", deviceData)
 

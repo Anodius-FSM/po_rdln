@@ -262,7 +262,7 @@ const common = (() => {
         return (await response.json()).data;
     }
 
-    async function fetchPhotos(serviceCallId) {
+    async function _fetchPhotos(serviceCallId) {
         const response = await fetch(
             'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
                 ...await common.getSearchParams(),
@@ -290,17 +290,17 @@ const common = (() => {
             throw new Error(`🚀🚀🚀 Failed to fetch photo data, got status ${response.status}`);
         }
 
-        //return (await response.json()).data;
-        const photoData = await response.json().data;
-        console.log("🚀 ~ fetchPhotos ~ photoData:", photoData)
+        return (await response.json()).data;
+        // const photoData = await response.json().data;
+        // console.log("🚀 ~ fetchPhotos ~ photoData:", photoData)
         
-        const returnData = []
+        // const returnData = []
 
-        photoData.array.forEach(photoData => {
-            returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
-        });
+        // photoData.array.forEach(photoData => {
+        //     returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
+        // });
 
-        return returnData;
+        // return returnData;
     }
 
     async function _fetchPhoto(photoData) {
@@ -330,6 +330,19 @@ const common = (() => {
         // blobImage.src = objUrl;
     }
 
+    async function fetchPhotosFromAttachment(serviceCallId) {
+        const photoData = await _fetchPhotos(serviceCallId);
+        console.log("🚀 ~ fetchPhotosFromAttacment ~ photoData:", photoData)
+
+        const retArray = [];
+        photoData.array.forEach(photoData => {
+            returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
+        });
+
+        return retArray;
+
+    }
+
     return {
         setShellSdk,
         getShellSdk,
@@ -342,7 +355,7 @@ const common = (() => {
         fetchGeneralData,
         fetchSkenData,
         fetchDeviceData,
-        fetchPhotos
+        fetchPhotosFromAttachment
     }
 
 })();
