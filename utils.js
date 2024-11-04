@@ -178,6 +178,7 @@ const utils = (() => {
     }
 
     return {
+        getDomElement,
         setFieldValue,
         setUpModal,
         createTableBody,

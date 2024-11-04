@@ -316,6 +316,10 @@ const common = (() => {
         }
     }
 
+    function saveChanges(generalData) {
+        console.log('saveChanges: ', generalData);
+    }
+
     return {
         setShellSdk,
         getShellSdk,
@@ -329,7 +333,8 @@ const common = (() => {
         fetchSkenData,
         fetchDeviceData,
         fetchPhotos,
-        fetchPhoto
+        fetchPhoto,
+        saveChanges
     }
 
 })();
