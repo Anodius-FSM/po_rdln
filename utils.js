@@ -81,6 +81,24 @@ const utils = (() => {
         }
     }
 
+    function displayPhotos(photos) {
+        console.log("🚀 ~ displayPhotos ~ photos:", photos)
+        // .thumbnail
+        const photoContainer = getDomElement('.photos');
+
+        photos.forEach( photo => {
+            let img = document.createElement('img');
+                    // const blobImage = document.querySelector('#blob_image');
+                    // const objUrl = URL.createObjectURL(blob);
+                    // blobImage.src = objUrl;
+            img.setAttribute('id', photo.id);
+            img.classList.add('thumbnail');
+            img.setAttribute('alt', photo.description);
+            let objUrl = URL.createObjectURL(photo.blob);
+            img.setAttribute('src', objUrl);
+        });
+    }
+
     function createTableBody(tableId, headerArray, data) {
         let table = getDomElement(tableId);
 
@@ -181,6 +199,7 @@ const utils = (() => {
         fillStaticData,
         initSelectOptions,
         getBodSelectionData,
-        showDeviceData
+        showDeviceData,
+        displayPhotos
     }
 })();

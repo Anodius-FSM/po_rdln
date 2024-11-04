@@ -291,16 +291,6 @@ const common = (() => {
         }
 
         return (await response.json()).data;
-        // const photoData = await response.json().data;
-        // console.log("🚀 ~ fetchPhotos ~ photoData:", photoData)
-        
-        // const returnData = []
-
-        // photoData.array.forEach(photoData => {
-        //     returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
-        // });
-
-        // return returnData;
     }
 
     async function fetchPhoto(photoData) {
@@ -320,28 +310,12 @@ const common = (() => {
         }
 
         return await response.blob();
-        //const photo = response; 
-        // console.log("🚀 ~ fetchPhoto ~ photo:", response);
-        // const blob = await response.blob();
-        // console.log('blob blob: ', blob);
+
 
         // const blobImage = document.querySelector('#blob_image');
         // const objUrl = URL.createObjectURL(blob);
         // blobImage.src = objUrl;
     }
-
-    // async function fetchPhotosFromAttachment(serviceCallId) {
-    //     const photoData = await _fetchPhotos(serviceCallId);
-    //     console.log("🚀 ~ fetchPhotosFromAttacment ~ photoData:", photoData)
-
-    //     const retArray = [];
-    //     photoData.array.forEach(photoData => {
-    //         returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
-    //     });
-
-    //     return retArray;
-
-    // }
 
     return {
         setShellSdk,

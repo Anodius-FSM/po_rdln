@@ -143,15 +143,21 @@ td {
     display: flex;
     gap: 1rem;
 }
-
-/* modal styles start */
-#myImg {
-    border-radius: 5px;
+.thumbnail {
+    width:128px;
+    height:128px;
+    /* border-radius: 5px; */
     cursor: pointer;
     transition: 0.3s;
 }
+/* modal styles start #myImg  */
+/* #myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+} */
 
-#myImg:hover {
+.thumbnail:hover {
     opacity: 0.7;
 }
 
