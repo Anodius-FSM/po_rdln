@@ -290,10 +290,18 @@ const common = (() => {
             throw new Error(`🚀🚀🚀 Failed to fetch photo data, got status ${response.status}`);
         }
 
-        return (await response.json()).data;
+        //return (await response.json()).data;
+        const photoData = (await response.json()).data;
+        const returnData = []
+
+        photoData.array.forEach(photoData => {
+            returnData.push({description: photoData.description, blob: _fetchPhoto(photoData) })
+        });
+
+        return returnData;
     }
 
-    async function fetchPhoto(photoData) {
+    async function _fetchPhoto(photoData) {
         console.log('photoDATA: ', photoData);
         const response = await fetch(
             `https://eu.fsm.cloud.sap/api/data/v4/Attachment/${photoData.id}/content?` + new URLSearchParams({
@@ -309,14 +317,15 @@ const common = (() => {
             throw new Error(`🚀🚀🚀 Failed to fetch photo, got status ${response.status}`);
         }
 
+        return await response.blob();
         //const photo = response; 
-        console.log("🚀 ~ fetchPhoto ~ photo:", response);
-        const blob = await response.blob();
-        console.log('blob blob: ', blob);
+        // console.log("🚀 ~ fetchPhoto ~ photo:", response);
+        // const blob = await response.blob();
+        // console.log('blob blob: ', blob);
 
-        const blobImage = document.querySelector('#blob_image');
-        const objUrl = URL.createObjectURL(blob);
-        blobImage.src = objUrl;
+        // const blobImage = document.querySelector('#blob_image');
+        // const objUrl = URL.createObjectURL(blob);
+        // blobImage.src = objUrl;
     }
 
     return {
@@ -331,8 +340,7 @@ const common = (() => {
         fetchGeneralData,
         fetchSkenData,
         fetchDeviceData,
-        fetchPhotos,
-        fetchPhoto
+        fetchPhotos
     }
 
 })();

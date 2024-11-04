@@ -37,8 +37,8 @@ const my_extension = (() => {
                 }
 
                 if (photos) {
-                    console.warn('get photo from attachment');
-                    await common.fetchPhoto(photos[1]);
+                    // console.warn('get photo from attachment');
+                    // await common.fetchPhoto(photos[1]);
                 }
             }
         } catch (error) {
