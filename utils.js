@@ -63,6 +63,7 @@ const utils = (() => {
     function setUpModal(imgId) {
         // let img = getDomElement(imgId);
         //imgId.forEach(iId => {
+            console.log('modalimg ', imgId);
             getDomElement(imgId).onclick = (e) => {
                 let modal = getDomElement('#myModal');
                 // insert the image to the modal
