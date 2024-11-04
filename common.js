@@ -313,6 +313,10 @@ const common = (() => {
         console.log("🚀 ~ fetchPhoto ~ photo:", response);
         const blob = await response.blob();
         console.log('blob blob: ', blob);
+
+        const blobImage = document.querySelector('#blob_image');
+        const objUrl = URL.createObjectURL(blob);
+        blobImage.src = objUrl;
     }
 
     return {
