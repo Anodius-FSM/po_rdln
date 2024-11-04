@@ -18,10 +18,12 @@ const my_extension = (() => {
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
+                const photos = await common.fetchPhotos(serviceCallId);
+                console.log("🚀 ~ startExtension ~ photos:", photos)
                 console.log("🚀 ~ startExtension ~ deviceData:", deviceData)
 
                 if (generalData) {
-                    utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech' ]);
+                    utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet' ]);
                     utils.initSelectOptions('#narocnost', {'1':'1', '2':'2', '3':'3', '4':'4', '5':'5'}, generalData[0].narocnost , true);
                     utils.initSelectOptions('#uspesna', {'Úspešná': 'ANO','Neúspešná': 'NIE'}, generalData[0].uspesna, true);
                 }

@@ -177,6 +177,8 @@ const common = (() => {
                         uv.udf.z_f_obh_internettv AS sluzba_internettv,
                         uv.udf.z_f_obh_poznamkatech AS poznamka_technika,
                         uv.udf.z_f_obh_poznamkakontr AS poznamka_kontrolora,
+                        uv.udf.z_f_obh_gps AS gps_suradnice,
+                        uv.udf.z_f_obh_individrozpocet AS individ_rozpocet,
                         sc.udf.z_f_sc_obhliadkastav AS stav,
                         sc.createDateTime AS datum_vytvorenia,
                         up.firstName + ' ' + up.lastName AS technik,
@@ -260,6 +262,36 @@ const common = (() => {
         return (await response.json()).data;
     }
 
+    async function fetchPhotos(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27;Activity.43' //todo add all necessary dtos
+            }), {
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query:
+                    `SELECT at.description,
+                        at.id,
+                        at.type
+                    FROM Attachment at
+                        JOIN ChecklistInstanceElement cie ON at.id = cie.object.objectId
+                        JOIN ChecklistInstance ci ON cie.checklistInstance = ci.id
+                        JOIN Activity ac ON ac.id = ci.object.objectId
+                        JOIN ServiceCall sc ON sc.id = ac.object.objectId
+                    WHERE sc.id = '${serviceCallId}'
+                    AND cie.parentElementId = 'foto_obhliadka'`
+            })
+        }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchDeviceData ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch device data, got status ${response.status}`);
+        }
+        return (await response.json()).data;
+    }
+
     return {
         setShellSdk,
         getShellSdk,
@@ -271,7 +303,8 @@ const common = (() => {
         fetchServiceCallType,
         fetchGeneralData,
         fetchSkenData,
-        fetchDeviceData
+        fetchDeviceData,
+        fetchPhotos
     }
 
 })();
