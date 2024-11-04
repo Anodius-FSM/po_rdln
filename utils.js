@@ -94,6 +94,7 @@ const utils = (() => {
             img.setAttribute('id', photo.id);
             img.classList.add('thumbnail');
             img.setAttribute('alt', photo.description);
+            console.log('the type of photo.blob is:  ',typeof photo.blob);
             let objUrl = URL.createObjectURL(photo.blob);
             img.setAttribute('src', objUrl);
         });
