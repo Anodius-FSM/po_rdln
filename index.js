@@ -14,7 +14,7 @@
     bootstrap();
    // my_extension.testMyExtension();
     my_extension.startExtension();
-
+    console.log(document.querySelectorAll('.thumbnail'));
    // utils.setUpModal(['#myImg1', '#myImg2', '#myImg3', '#myImg4' ]);
 
 })();
