@@ -1,7 +1,3 @@
-/**
- * some sample util functions...
- */
-
 const utils = (() => {
 
     const COLOR_MAP = new Map([
@@ -61,8 +57,6 @@ const utils = (() => {
      * @param {[string]} imgId 
      */
     function setUpModal(imgId) {
-        // let img = getDomElement(imgId);
-        //imgId.forEach(iId => {
             console.log('modalimg ', imgId);
             getDomElement(imgId).onclick = (e) => {
                 let modal = getDomElement('#myModal');
@@ -74,7 +68,7 @@ const utils = (() => {
                 modalImg.src = e.srcElement.currentSrc;
                 captionText.innerHTML = e.srcElement.alt;
             }
-       // });
+
 
         // close the modal
         getDomElement('.close').onclick = () => {
@@ -123,8 +117,6 @@ const utils = (() => {
             }
         });
         if (inputData.dovod_neuspech === 'null') {
-            // getDomElement('.dovod_neuspech').style.visibility = 'hidden';
-            // getDomElement('#dovod_neuspech').style.visibility = 'hidden';dov_neusp
             getDomElement('.dovod_neuspech').remove();
             getDomElement('#dovod_neuspech').remove();
             getDomElement('#dov_neusp').remove();
@@ -172,17 +164,13 @@ const utils = (() => {
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            // deviceTyp += `<p>${DEVICE_TYP.get(d.typ)}</p>`
             deviceData += `<tr><td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
-                deviceData += `<td class="center-align">${d.model} / ${d.ine}</td></tr>`
-                //deviceData += `<p>${d.model} / ${d.ine}</p>`;
+                deviceData += `<td class="center-align">${d.model} / ${d.ine}</td></tr>`;
             } else if (d.model !== 'null' && d.ine === 'null')  {
-                deviceData += `<td class="center-align">${d.model}</td></tr>`
-                // deviceData += `<p>${d.model}</p>`
+                deviceData += `<td class="center-align">${d.model}</td></tr>`;
             } else if (d.model === 'null' && d.ine !== 'null') {
-                // deviceData += `<p>${d.ine}</p>`;
-                deviceData += `<td class="center-align">${d.ine}</td></tr>`
+                deviceData += `<td class="center-align">${d.ine}</td></tr>`;
             }
         });
 

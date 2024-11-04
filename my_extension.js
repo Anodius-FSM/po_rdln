@@ -19,13 +19,12 @@ const my_extension = (() => {
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
                 const photos = await common.fetchPhotos(serviceCallId);
-                console.log("🚀 ~ startExtension ~ photos:", photos)
-                console.log("🚀 ~ startExtension ~ deviceData:", deviceData)
 
                 if (generalData) {
-                    utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet' ]);
+                    utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik' ]);
                     utils.initSelectOptions('#narocnost', {'1':'1', '2':'2', '3':'3', '4':'4', '5':'5'}, generalData[0].narocnost , true);
                     utils.initSelectOptions('#uspesna', {'Úspešná': 'ANO','Neúspešná': 'NIE'}, generalData[0].uspesna, true);
+                    utils.initSelectOptions('#install_technik', {'Áno':'ANO', 'Nie': 'NIE'}, generalData[0].install_technik, false );
                 }
                 if (skenData) {
                     utils.initSelectOptions('#bod_final', utils.getBodSelectionData(skenData), generalData[0].bod_final, false);
@@ -37,21 +36,9 @@ const my_extension = (() => {
                 }
 
                 if (photos) {
-                    //console.log("🚀 ~ startExtension ~ photos:", photos)
-                    // console.warn('get photo from attachment');
-                    // await common.fetchPhoto(photos[1]);
-                    const photoArray = []
                     photos.forEach(photoData => {
-                        //photoArray.push({id: photoData.id, description: photoData.description, blob: common.fetchPhoto(photoData) }); 
                         common.fetchPhoto(photoData);
                     });
-
-                    console.log({photoArray});
-
-
-
-                   // utils.displayPhotos(photoArray);
-
                 }
             }
         } catch (error) {
