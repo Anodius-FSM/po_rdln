@@ -42,11 +42,15 @@ const my_extension = (() => {
                     // await common.fetchPhoto(photos[1]);
                     const photoArray = []
                     photos.forEach(photoData => {
-                        photoArray.push({id: photoData.id, description: photoData.description, blob: common.fetchPhoto(photoData) }); 
+                        //photoArray.push({id: photoData.id, description: photoData.description, blob: common.fetchPhoto(photoData) }); 
+                        common.fetchPhoto(photoData);
                     });
 
                     console.log({photoArray});
-                    utils.displayPhotos(photoArray);
+
+
+
+                   // utils.displayPhotos(photoArray);
 
                 }
             }

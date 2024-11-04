@@ -81,7 +81,7 @@ const utils = (() => {
         }
     }
 
-    function displayPhotos(photos) {
+    function displayPhotos(id, description, blob) {
         console.log("🚀 ~ displayPhotos ~ photos:", photos)
         // .thumbnail
         const photoContainer = getDomElement('.photos');
@@ -91,12 +91,14 @@ const utils = (() => {
                     // const blobImage = document.querySelector('#blob_image');
                     // const objUrl = URL.createObjectURL(blob);
                     // blobImage.src = objUrl;
-            img.setAttribute('id', photo.id);
+            img.setAttribute('id', id);
             img.classList.add('thumbnail');
-            img.setAttribute('alt', photo.description);
-            console.log('the type of photo.blob is:  ',typeof photo.blob);
+            img.setAttribute('alt', description);
+            console.log('the type of photo.blob is:  ',typeof blob);
             let objUrl = URL.createObjectURL(photo.blob);
             img.setAttribute('src', objUrl);
+
+            photoContainer.appendChild(img);
         });
     }
 

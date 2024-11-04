@@ -310,9 +310,15 @@ const common = (() => {
         }
 
         const blob = await response.blob();
-        console.log("🚀 ~ fetchPhoto ~ blob:", blob);
+        // console.log("🚀 ~ fetchPhoto ~ blob:", blob);
 
-        return blob;
+        if (blob) {
+            utils.displayPhotos(photoData.id, photoData.description, blob);
+        }
+
+
+
+       // return await response.blob();
 
 
         // const blobImage = document.querySelector('#blob_image');
