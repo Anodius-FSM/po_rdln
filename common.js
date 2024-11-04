@@ -311,6 +311,8 @@ const common = (() => {
 
         //const photo = response; 
         console.log("🚀 ~ fetchPhoto ~ photo:", response);
+        const blob = await response.blob();
+        console.log('blob blob: ', blob);
     }
 
     return {
