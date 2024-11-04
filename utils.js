@@ -82,7 +82,7 @@ const utils = (() => {
     }
 
     function displayPhotos(id, description, blob) {
-        console.log("🚀 ~ displayPhotos ~ photos:", photos)
+        
         // .thumbnail
         const photoContainer = getDomElement('.photos');
 
