@@ -291,7 +291,9 @@ const common = (() => {
         }
 
         //return (await response.json()).data;
-        const photoData = (await response.json()).data;
+        const photoData = await response.json().data;
+        console.log("🚀 ~ fetchPhotos ~ photoData:", photoData)
+        
         const returnData = []
 
         photoData.array.forEach(photoData => {
