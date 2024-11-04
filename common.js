@@ -272,9 +272,9 @@ const common = (() => {
             headers: await common.getHeaders(),
             body: JSON.stringify({
                 query:
-                    `SELECT at.description,
-                        at.id,
-                        at.type
+                    `SELECT at.description AS description,
+                        at.id AS id,
+                        at.type AS type
                     FROM Attachment at
                         JOIN ChecklistInstanceElement cie ON at.id = cie.object.objectId
                         JOIN ChecklistInstance ci ON cie.checklistInstance = ci.id
