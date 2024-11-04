@@ -309,7 +309,9 @@ const common = (() => {
             throw new Error(`🚀🚀🚀 Failed to fetch photo, got status ${response.status}`);
         }
 
-        return await response.blob();
+        const blob = await response.blob();
+
+        return blob;
 
 
         // const blobImage = document.querySelector('#blob_image');
