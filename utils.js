@@ -86,7 +86,7 @@ const utils = (() => {
         // .thumbnail
         const photoContainer = getDomElement('.photos');
 
-        photos.forEach( photo => {
+        
             let img = document.createElement('img');
                     // const blobImage = document.querySelector('#blob_image');
                     // const objUrl = URL.createObjectURL(blob);
@@ -95,11 +95,10 @@ const utils = (() => {
             img.classList.add('thumbnail');
             img.setAttribute('alt', description);
             console.log('the type of photo.blob is:  ',typeof blob);
-            let objUrl = URL.createObjectURL(photo.blob);
+            let objUrl = URL.createObjectURL(blob);
             img.setAttribute('src', objUrl);
 
             photoContainer.appendChild(img);
-        });
     }
 
     function createTableBody(tableId, headerArray, data) {
