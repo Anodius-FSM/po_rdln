@@ -85,7 +85,7 @@ const utils = (() => {
     function displayPhotos(id, description, blob) {
         const photoContainer = getDomElement('.photos');
             let img = document.createElement('img');
-            img.setAttribute('id', id);
+            img.setAttribute('id', `x${id}`); // add x before id => querySelector for ID :  cannot start with a digit
             img.classList.add('thumbnail');
             img.setAttribute('alt', description);
             let objUrl = URL.createObjectURL(blob);
@@ -93,7 +93,7 @@ const utils = (() => {
 
             photoContainer.appendChild(img);
 
-            setUpModal(`#${id}`);
+            setUpModal(`#x${id}`);
     }
 
     function createTableBody(tableId, headerArray, data) {
