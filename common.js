@@ -331,7 +331,7 @@ const common = (() => {
             console.log('no data to save');
             utils.getDomElement('.popup').style.display = 'block';
         } else {
-           const udfMeta = common.fetchUdfMeta(APPROVAL_UDO_META_NAME);
+           const udfMeta = common.fetchUdfMeta('Obhliadka');
            console.log("🚀 ~ saveChanges ~ udfMeta:", udfMeta);
         }
 
