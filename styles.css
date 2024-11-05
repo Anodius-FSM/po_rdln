@@ -70,6 +70,7 @@ body {
 }
 
 textarea {
+    resize: none;
     border-color: #ddd;
 }
 

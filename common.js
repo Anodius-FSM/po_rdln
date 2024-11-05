@@ -1,7 +1,7 @@
 const common = (() => {
     const CLIENT_ID = 'MyExtension';
     const CLIENT_VERSION = '1.0.0'
-    
+
     const { SHELL_EVENTS } = FSMShell;
 
     let _shellSdk = null;
@@ -299,9 +299,9 @@ const common = (() => {
                 ...await common.getSearchParams(),
                 dtos: 'Attachment.19'
             }), {
-                method: 'GET',
-                headers: await common.getHeaders(`image/${photoData.type};charset=ISO-8859-1`)
-            }
+            method: 'GET',
+            headers: await common.getHeaders(`image/${photoData.type};charset=ISO-8859-1`)
+        }
         );
         if (!response.ok) {
             console.log("🚀 ~ fetchPhoto ~ response:", response);
@@ -316,12 +316,23 @@ const common = (() => {
     }
 
     function saveChanges(generalData) {
-       //console.log('saveChanges: ', generalData);
+        let dataToSave = {};
+        let uiData = utils.getEditableFieldsValues();
+        console.log("🚀 ~ saveChanges ~ uiData:", uiData);
+        const dataKeys = Object.keys(uiData);
 
-       let uiData = utils.getEditableFieldsValues();
-       console.log("🚀 ~ saveChanges ~ uiData:", uiData);
+        dataKeys.forEach(key => {
+            if (uiData[key] !== generalData[key]) {
+                dataToSave[key] = uiData[key];
+            }
+        });
 
-        
+        if (Object.keys(dataToSave).length === 0) {
+            console.log('no data to save');
+            alert('no data to save');
+        }
+
+
     }
 
     return {
