@@ -45,6 +45,12 @@ const utils = (() => {
     function setBackgroundColor(selector, color) {
         getDomElement(selector).style.backgroundColor = color;
     }
+
+    function closePopup() {
+        getDomElement('.popup').style.display = 'none';
+    }
+
+
     function getBodSelectionData(skenData) {
         const bodSet = new Set();
         skenData.forEach(sken => bodSet.add((sken.bod).split(' ')[0]));
@@ -152,6 +158,8 @@ const utils = (() => {
         if (selectedValue && useColors) {
             select.value = selectedValue;
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
+        } else if (selectedValue && !useColors) {
+            select.value = selectedValue;
         }
 
         select.addEventListener('change', () => {
