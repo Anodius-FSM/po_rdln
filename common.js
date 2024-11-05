@@ -358,6 +358,7 @@ const common = (() => {
                 id: udfMeta[0].udoId,
                 udfValues: udfValues
             }];
+            console.log("🚀 ~ saveChanges ~ updates:", updates)
 
             const updateResponse = await fetch(
                 'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
@@ -369,10 +370,10 @@ const common = (() => {
                 headers: await common.getHeaders(),
                 body: JSON.stringify(updates)
             });
-
+            console.log('UPDATE: ', updateResponse);
             if (!updateResponse.ok) {
-                console.log("🚀 ~ update ~ response:", response);
-                throw new Error(`🚀🚀🚀 Failed to save data, got status ${response.status}`);
+                console.log("🚀 ~ update ~ response:", updateResponse);
+                throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
             }
 
         }
