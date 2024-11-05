@@ -328,7 +328,7 @@ const common = (() => {
     async function saveChanges(generalData) {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
-        console.log("🚀 ~ saveChanges ~ uiData:", uiData);
+
         const dataKeys = Object.keys(uiData);
 
         dataKeys.forEach(key => {
@@ -336,7 +336,7 @@ const common = (() => {
                 dataToSave[key] = uiData[key];
             }
         });
-        console.log(dataToSave);
+
         if (Object.keys(dataToSave).length === 0) {
             console.log('no data to save');
             utils.getDomElement('.popup').style.display = 'block';
@@ -344,7 +344,6 @@ const common = (() => {
             const keysToUpdate = Object.keys(dataToSave);
             const udfMeta = await common.fetchUdfMeta('Obhliadka');
             const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
-            console.log("🚀 ~ saveChanges ~ udfMetaByName:", udfMetaByName)
 
             const udfValues = [];
 
@@ -359,7 +358,23 @@ const common = (() => {
                 id: udfMeta[0].udoId,
                 udfValues: udfValues
             }];
-            console.log("🚀 ~ saveChanges ~ updates:", updates)
+
+            const updateResponse = await fetch(
+                'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                    ...await common.getSearchParams(),
+                    dtos: 'UdoValue.10',
+                    forceUpdate: true
+                }), {
+                method: 'PATCH',
+                headers: await common.getHeaders(),
+                body: JSON.stringify(updates)
+            });
+
+            if (!updateResponse.ok) {
+                console.log("🚀 ~ update ~ response:", response);
+                throw new Error(`🚀🚀🚀 Failed to save data, got status ${response.status}`);
+            }
+
         }
 
 
