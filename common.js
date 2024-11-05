@@ -326,7 +326,7 @@ const common = (() => {
                 dataToSave[key] = uiData[key];
             }
         });
-
+        console.log(dataToSave);
         if (Object.keys(dataToSave).length === 0) {
             console.log('no data to save');
             alert('no data to save');
