@@ -330,6 +330,9 @@ const common = (() => {
         if (Object.keys(dataToSave).length === 0) {
             console.log('no data to save');
             utils.getDomElement('.popup').style.display = 'block';
+        } else {
+           const udfMeta = common.fetchUdfMeta(APPROVAL_UDO_META_NAME);
+           console.log("🚀 ~ saveChanges ~ udfMeta:", udfMeta);
         }
 
 

@@ -298,3 +298,7 @@ td {
     background: #FFF;
     z-index: -1;
   }
+
+.popup>p {
+    padding-bottom: 1.5rem;
+}
