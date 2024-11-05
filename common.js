@@ -322,7 +322,7 @@ const common = (() => {
         const dataKeys = Object.keys(uiData);
 
         dataKeys.forEach(key => {
-            if (uiData[key] !== generalData[key]) {
+            if (uiData[key] != generalData[key]) {
                 dataToSave[key] = uiData[key];
             }
         });
