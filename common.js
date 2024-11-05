@@ -1,7 +1,7 @@
 const common = (() => {
     const CLIENT_ID = 'MyExtension';
     const CLIENT_VERSION = '1.0.0'
-
+    
     const { SHELL_EVENTS } = FSMShell;
 
     let _shellSdk = null;
@@ -316,9 +316,11 @@ const common = (() => {
     }
 
     function saveChanges(generalData) {
-       
-            console.log('saveChanges: ', generalData);
-       
+       //console.log('saveChanges: ', generalData);
+
+       let uiData = utils.getEditableFieldsValues();
+       console.log("🚀 ~ saveChanges ~ uiData:", uiData);
+
         
     }
 

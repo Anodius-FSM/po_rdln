@@ -26,6 +26,7 @@ const utils = (() => {
         ['MATERIAL', 'Materiál'],
         ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
     ]);
+    const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik', 'uspesna', 'narocnost', 'poznamka_kontrolora'];
     /**
      * Úspešná': 'ANO','Neúspešná
      * @param {string} id: DOM elements id 
@@ -175,6 +176,20 @@ const utils = (() => {
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
 
+    function getEditableFieldsValues() {
+        let returnData = {};
+        EDITABLE_FIELDS.forEach(field => {
+            let fieldTag = getDomElement(`#${field}`);
+            if (field === 'sluzba_internet' || field === 'sluzba_internettv') {
+                returnData[field] = fieldTag.checked ? 'true' : 'false';
+            } else {
+                returnData[field] = fieldTag.value;
+            }
+        });
+
+        return returnData;
+    }
+
     return {
         getDomElement,
         setFieldValue,
@@ -184,6 +199,7 @@ const utils = (() => {
         initSelectOptions,
         getBodSelectionData,
         showDeviceData,
-        displayPhotos
+        displayPhotos,
+        getEditableFieldsValues
     }
 })();
