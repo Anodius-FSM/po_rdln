@@ -2,6 +2,16 @@ const common = (() => {
     const CLIENT_ID = 'MyExtension';
     const CLIENT_VERSION = '1.0.0'
 
+    const UDO_MAP = new Map([
+        ['bod_final', 'z_f_obh_pristupbodfinal'],
+        ['uspesna', 'z_f_obh_uspech'],
+        ['install_technik', 'z_f_obh_techinstall'],
+        ['narocnost', 'z_f_obh_narocnost'],
+        ['sluzba_internet', 'z_f_obh_internet'],
+        ['sluzba_internettv', 'z_f_obh_internettv'],
+        ['poznamka_kontrolora', 'z_f_obh_poznamkakontr']
+    ])
+
     const { SHELL_EVENTS } = FSMShell;
 
     let _shellSdk = null;
@@ -331,8 +341,25 @@ const common = (() => {
             console.log('no data to save');
             utils.getDomElement('.popup').style.display = 'block';
         } else {
-           const udfMeta =  await common.fetchUdfMeta('Obhliadka');
-           console.log("🚀 ~ saveChanges ~ udfMeta:", udfMeta);
+            const keysToUpdate = Object.keys(dataToSave);
+            const udfMeta = await common.fetchUdfMeta('Obhliadka');
+            const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
+            console.log("🚀 ~ saveChanges ~ udfMetaByName:", udfMetaByName)
+
+            const udfValues = [];
+
+            keysToUpdate.forEach(key => {
+                udfValues.push({
+                    meta: { id: udfMetaByName.get(UDO_MAP.get(key)).id },
+                    value: dataToSave[key]
+                });
+            });
+
+            const updates = [{
+                id: udfMeta[0].udoId,
+                udfValues: udfValues
+            }];
+            console.log("🚀 ~ saveChanges ~ updates:", updates)
         }
 
 
