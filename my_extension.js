@@ -26,8 +26,8 @@ const my_extension = (() => {
                     utils.initSelectOptions('#uspesna', {'Úspešná': 'ANO','Neúspešná': 'NIE'}, generalData[0].uspesna, true);
                     utils.initSelectOptions('#install_technik', {'Áno':'ANO', 'Nie': 'NIE'}, generalData[0].install_technik, false );
 
-                    utils.getDomElement('.save-button').addEventListener('click',()=> {
-                        common.saveChanges(generalData[0]);
+                    utils.getDomElement('.save-button').addEventListener('click', async ()=> {
+                      await common.saveChanges(generalData[0]);
                     });
                     
                 }

@@ -315,7 +315,7 @@ const common = (() => {
         }
     }
 
-    function saveChanges(generalData) {
+    async function saveChanges(generalData) {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
         console.log("🚀 ~ saveChanges ~ uiData:", uiData);
@@ -331,7 +331,7 @@ const common = (() => {
             console.log('no data to save');
             utils.getDomElement('.popup').style.display = 'block';
         } else {
-           const udfMeta = common.fetchUdfMeta('Obhliadka');
+           const udfMeta =  await common.fetchUdfMeta('Obhliadka');
            console.log("🚀 ~ saveChanges ~ udfMeta:", udfMeta);
         }
 
