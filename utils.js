@@ -51,6 +51,7 @@ const utils = (() => {
 
         let retObj = {};
         bodSet.forEach((value1, value2) => retObj[value1] = value2);
+        console.log(retObj);
         return retObj;
     }
     /**
