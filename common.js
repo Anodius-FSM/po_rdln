@@ -18,7 +18,6 @@ const common = (() => {
     let _context = null;
     let _context_valid_until = null;
 
-
     function setShellSdk(shellSdk) {
         _shellSdk = shellSdk;
     }
@@ -375,10 +374,7 @@ const common = (() => {
                 console.log("🚀 ~ update ~ response:", updateResponse);
                 throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
             }
-
         }
-
-
     }
 
     return {
