@@ -68,8 +68,7 @@ const utils = (() => {
             let modal = getDomElement('#myModal');
             // insert the image to the modal
             let modalImg = getDomElement('#img01');
-            let captionText = getDomElement('#caption')
-            getDomElement('.backdrop').style.display = 'block';
+            let captionText = getDomElement('#caption');
             modal.style.display = 'block';
             modalImg.src = e.srcElement.currentSrc;
             captionText.innerHTML = e.srcElement.alt;
@@ -81,13 +80,9 @@ const utils = (() => {
             getDomElement('#myModal').style.display = 'none';
         }
 
-        getDomElement('#myModal').onclick = () => {
-            getDomElement('#myModal').style.display = 'none';
-        }
-    }
-
-    function closeMoodal() {
-        getDomElement('.backdrop').style.display = 'none';
+        // getDomElement('#myModal').onclick = () => {
+        //     getDomElement('#myModal').style.display = 'none';
+        // }
     }
 
     function displayPhotos(id, description, blob) {

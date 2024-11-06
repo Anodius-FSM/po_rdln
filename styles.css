@@ -184,15 +184,6 @@ td {
     /* Black w/ opacity */
 }
 
-.backdrop {
-    background-color: red; /* rgba(0, 0, 0, 0.9);*/
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-  }
-
 /* Modal Content (image) */
 .modal-content {
     margin: auto;
