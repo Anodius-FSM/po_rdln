@@ -23,10 +23,7 @@ body {
     background-color: #ddd;
 }
 
-
 .general_content {
-    /* display: flex;
-    gap: 1rem; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
@@ -57,10 +54,6 @@ body {
     border-radius: 1rem;
     text-align: center;
 }
-
-/* .col1, .col2, .col3, .col4 {
-    flex-grow: 1;
-} */
 
 .card {
     display: grid;
@@ -113,10 +106,6 @@ table {
     text-align: left;
 }
 
-/* table, thead, th {
-    border: 1px solid #32363a;
-} */
-
 .theadrow {
   
     border-bottom: 2px solid #32363a;
@@ -145,16 +134,9 @@ td {
 .thumbnail {
     width:128px;
     height:128px;
-    /* border-radius: 5px; */
     cursor: pointer;
     transition: 0.3s;
 }
-/* modal styles start #myImg  */
-/* #myImg {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-} */
 
 .thumbnail:hover {
     opacity: 0.7;
