@@ -79,10 +79,6 @@ const utils = (() => {
         getDomElement('.close').onclick = () => {
             getDomElement('#myModal').style.display = 'none';
         }
-
-        getDomElement('#myModal').onclick = () => {
-            getDomElement('#myModal').style.display = 'none';
-        }
     }
 
     function displayPhotos(id, description, blob) {
