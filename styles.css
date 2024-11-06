@@ -172,7 +172,7 @@ td {
     /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%;
+    width: 80%;
     /* Full width */
     height: 100%;
     /* Full height */
@@ -183,6 +183,15 @@ td {
     background-color: rgba(0, 0, 0, 0.9);
     /* Black w/ opacity */
 }
+
+.backdrop {
+    background-color: red; /* rgba(0, 0, 0, 0.9);*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
 
 /* Modal Content (image) */
 .modal-content {
