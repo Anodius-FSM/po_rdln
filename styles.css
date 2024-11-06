@@ -189,7 +189,8 @@ td {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width: 80%;/*700px;*/
+    z-index: 20;
 }
 
 /* Caption of Modal Image */
