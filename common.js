@@ -341,6 +341,7 @@ const common = (() => {
         } else {
             const keysToUpdate = Object.keys(dataToSave);
             const udfMeta = await common.fetchUdfMeta('Obhliadka');
+            console.log('UDFMETA', udfMeta);
             const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
 
             const udfValues = [];
