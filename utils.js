@@ -26,7 +26,8 @@ const utils = (() => {
         ['MATERIAL', 'Materiál'],
         ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
     ]);
-    const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik', 'uspesna', 'narocnost', 'poznamka_kontrolora'];
+    const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik', 
+        'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik', 'stav'];
     /**
      * Úspešná': 'ANO','Neúspešná
      * @param {string} id: DOM elements id 
@@ -171,13 +172,13 @@ const utils = (() => {
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr><td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr>`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
-                deviceData += `<td class="center-align">${d.model} / ${d.ine}</td></tr>`;
+                deviceData += `<td>${d.model} / ${d.ine}</td></tr>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {
-                deviceData += `<td class="center-align">${d.model}</td></tr>`;
+                deviceData += `<td>${d.model}</td></tr>`;
             } else if (d.model === 'null' && d.ine !== 'null') {
-                deviceData += `<td class="center-align">${d.ine}</td></tr>`;
+                deviceData += `<td>${d.ine}</td></tr>`;
             }
         });
 

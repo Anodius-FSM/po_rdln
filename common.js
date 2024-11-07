@@ -9,7 +9,9 @@ const common = (() => {
         ['narocnost', 'z_f_obh_narocnost'],
         ['sluzba_internet', 'z_f_obh_internet'],
         ['sluzba_internettv', 'z_f_obh_internettv'],
-        ['poznamka_kontrolora', 'z_f_obh_poznamkakontr']
+        ['poznamka_kontrolora', 'z_f_obh_poznamkakontr'],
+        ['rebrik', 'z_f_obh_rebrik'],
+        ['stav', 'z_f_sc_obhliadkastav']
     ])
 
     const { SHELL_EVENTS } = FSMShell;
@@ -171,7 +173,9 @@ const common = (() => {
             headers: await common.getHeaders(),
             body: JSON.stringify({
                 query:
-                    `SELECT uv.udf.z_f_obh_pristupbod AS bod,
+                    `SELECT 
+                        uv.id AS udoValueId,
+                        uv.udf.z_f_obh_pristupbod AS bod,
                         uv.udf.z_f_obh_pristupbodfinal AS bod_final,
                         uv.udf.z_f_obh_pristupbodfinal AS bod_final,
                         uv.udf.z_f_obh_uspech AS uspesna,
@@ -354,7 +358,7 @@ const common = (() => {
             });
 
             const updates = [{
-                id: udfMeta[0].udoId,
+                id: generalData.udoValueId,
                 udfValues: udfValues
             }];
             console.log("🚀 ~ saveChanges ~ updates:", updates);

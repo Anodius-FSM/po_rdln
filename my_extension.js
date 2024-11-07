@@ -21,7 +21,7 @@ const my_extension = (() => {
                 const photos = await common.fetchPhotos(serviceCallId);
 
                 if (generalData) {
-                    utils.fillStaticData(generalData[0], ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik' ]);
+                    utils.fillStaticData(generalData[0], ['udoValueId','sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik' ]);
                     utils.initSelectOptions('#narocnost', {'1':'1', '2':'2', '3':'3', '4':'4', '5':'5'}, generalData[0].narocnost , true);
                     utils.initSelectOptions('#uspesna', {'Úspešná': 'ANO','Neúspešná': 'NIE'}, generalData[0].uspesna, true);
                     utils.initSelectOptions('#install_technik', {'Áno':'ANO', 'Nie': 'NIE'}, generalData[0].install_technik, false );
