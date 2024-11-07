@@ -303,8 +303,14 @@ td {
 }
 
 /* stav dropdown styling*/
+.dropdown {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
 .dropbtn {
-    background-color: #3498DB;
+    /* background-color: #3498DB; */
+    width: 100%;
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -312,15 +318,12 @@ td {
     cursor: pointer;
 }
 
-.dropbtn:hover,
+/* .dropbtn:hover,
 .dropbtn:focus {
     background-color: #2980B9;
-}
+} */
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
+
 
 .dropdown-content {
     display: none;
