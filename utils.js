@@ -27,7 +27,7 @@ const utils = (() => {
         ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
     ]);
     const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik', 
-        'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik', 'stav'];
+        'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik'];
     /**
      * Úspešná': 'ANO','Neúspešná
      * @param {string} id: DOM elements id 

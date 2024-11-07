@@ -10,8 +10,7 @@ const common = (() => {
         ['sluzba_internet', 'z_f_obh_internet'],
         ['sluzba_internettv', 'z_f_obh_internettv'],
         ['poznamka_kontrolora', 'z_f_obh_poznamkakontr'],
-        ['rebrik', 'z_f_obh_rebrik'],
-        ['stav', 'z_f_sc_obhliadkastav']
+        ['rebrik', 'z_f_obh_rebrik']
     ])
 
     const { SHELL_EVENTS } = FSMShell;
