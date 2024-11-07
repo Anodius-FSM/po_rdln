@@ -176,7 +176,6 @@ const common = (() => {
                         uv.id AS udoValueId,
                         uv.udf.z_f_obh_pristupbod AS bod,
                         uv.udf.z_f_obh_pristupbodfinal AS bod_final,
-                        uv.udf.z_f_obh_pristupbodfinal AS bod_final,
                         uv.udf.z_f_obh_uspech AS uspesna,
                         uv.udf.z_f_obh_maxrychlost AS max_rychlost,
                         uv.udf.z_f_obh_techinstall AS install_technik,

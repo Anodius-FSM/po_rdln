@@ -28,28 +28,38 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
+
 .data-content {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
+
 .data-internet {
-    row-gap: 0.875rem; 
+    row-gap: 0.875rem;
 }
 
 .center-align {
     text-align: center;
 }
+
 .stav-div {
     display: grid;
     /* grid-auto-flow: column; */
     grid-template-columns: 1fr 1fr;
 }
-.stav-div, .save-div, .card, .sken, #fotky {
+
+.stav-div,
+.save-div,
+.card,
+.sken,
+#fotky {
     margin: 1rem;
 }
+
 .content {
     margin: 0rem 1rem;
 }
+
 .stav {
     border-radius: 1rem;
     text-align: center;
@@ -67,19 +77,23 @@ textarea {
     border-color: #ddd;
 }
 
-p, label { /* #meno_partnera, .datum_vytvorenia, .stav-div */
-    font-weight: 600; 
+p,
+label {
+    /* #meno_partnera, .datum_vytvorenia, .stav-div */
+    font-weight: 600;
 }
 
 p.header {
     text-align: center;
-    color:  #32363a;
+    color: #32363a;
     line-height: 16px;
     font-size: 14px;
     font-weight: 600;
 }
 
-.data-content>p,label, select {
+.data-content>p,
+label,
+select {
     margin: 0.5rem 0rem
 }
 
@@ -91,6 +105,7 @@ span {
     font-size: 0.775rem;
     font-weight: 500;
 }
+
 .model-ine>p {
     font-size: 0.875rem;
     font-weight: 400;
@@ -107,10 +122,11 @@ table {
 }
 
 .theadrow {
-  
+
     border-bottom: 2px solid #32363a;
     background-color: #e2e2e2;
 }
+
 th {
     padding: 0.5rem 0.25rem;
 }
@@ -131,9 +147,10 @@ td {
     display: flex;
     gap: 1rem;
 }
+
 .thumbnail {
-    width:128px;
-    height:128px;
+    width: 128px;
+    height: 128px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -171,7 +188,8 @@ td {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 80%;/*700px;*/
+    max-width: 80%;
+    /*700px;*/
     z-index: 20;
 }
 
@@ -265,7 +283,7 @@ td {
     left: 0;
     bottom: 0;
     right: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: -2;
 }
 
@@ -278,8 +296,78 @@ td {
     right: 0;
     background: #FFF;
     z-index: -1;
-  }
+}
 
 .popup>p {
     padding-bottom: 1.5rem;
+}
+
+/* stav dropdown styling*/
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+
+.PREBIEHA {
+    background-color: #FFFF00;
+}
+
+.KONTROLA {
+    background-color: #FFFF00;
+}
+
+.ZAPARKOVANE {
+    background-color: #FFA500;
+}
+
+.ZRIADITELNA {
+    background-color: #008000;
+}
+
+.ZMENA_SLUZBY {
+    background-color: #008000;
+}
+
+.NEZRIADITELNA {
+    background-color: #FF0000;
 }
