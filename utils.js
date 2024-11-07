@@ -73,7 +73,7 @@ toggle between hiding and showing the dropdown content */
     }
 
     function selectStav(event) {
-        console.log(event.currentTarget.id);
+        console.log(event);
         console.log(event.currentTarget.id);
         document.getElementById("myDropdown").classList.toggle("show");
     }
