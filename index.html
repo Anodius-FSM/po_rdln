@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSM Extension</title>
     <link rel="stylesheet" href="styles.css">
-    
+
 </head>
 
 <body>
@@ -16,30 +16,39 @@
     <div class="general_content">
         <div class="col1">
             <div class="save-div"><button class="save-button" type="button">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
-                    <path d="M11 2H9v3h2z"/>
-                    <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/>
-                  </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-floppy" viewBox="0 0 16 16">
+                        <path d="M11 2H9v3h2z" />
+                        <path
+                            d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
+                    </svg>
 
 
-                 Uložiť</button></div>
+                    Uložiť</button></div>
             <div class="stav-div">
-                <div><p>Stav obhliadky</p></div>
+                <div>
+                    <p>Stav obhliadky</p>
+                </div>
                 <div class="stav">
-                    <p id="stav"></p>
-                </div> 
-                <div class="dropdown">
-                    <button id="stavb" onclick="utils.showDropdown()" class="dropbtn">PREBIEHA</button>
-                    <div id="myDropdown" class="dropdown-content">
-                      <a href="#" id="KONTROLA" class="KONTROLA" onclick="utils.selectStav(event)">Kontrola</a>
-                      <a href="#" id="ZAPARKOVANE" class="ZAPARKOVANE" onclick="utils.selectStav(event)">Zaparkované</a>
-                      <a href="#" id="ZRIADITELNA" class="ZRIADITELNA" onclick="utils.selectStav(event)">Zriaditeľná</a>
-                      <a href="#" id="ZMENA_SLUZBY" class="ZMENA_SLUZBY" onclick="utils.selectStav(event)">Zriad. so zmenou služby</a>
-                      <a href="#" id="NEZRIADITELNA" class="NEZRIADITELNA" onclick="utils.selectStav(event)">Nezriaditeľná</a>
-                      <a href="#" id="PREBIEHA" class="PREBIEHA" onclick="utils.selectStav(event)">Prebieha</a>
+                    <!-- <p id="stav"></p> -->
+
+                    <div class="dropdown">
+                        <button id="stav" onclick="utils.showDropdown()" class="dropbtn"></button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="#" id="PREBIEHA" class="PREBIEHA" onclick="utils.selectStav(event)">Prebieha</a>
+                            <a href="#" id="KONTROLA" class="KONTROLA" onclick="utils.selectStav(event)">Kontrola</a>
+                            <a href="#" id="ZAPARKOVANE" class="ZAPARKOVANE"
+                                onclick="utils.selectStav(event)">Zaparkované</a>
+                            <a href="#" id="ZRIADITELNA" class="ZRIADITELNA"
+                                onclick="utils.selectStav(event)">Zriaditeľná</a>
+                            <a href="#" id="ZMENA_SLUZBY" class="ZMENA_SLUZBY" onclick="utils.selectStav(event)">Zriad.
+                                so zmenou služby</a>
+                            <a href="#" id="NEZRIADITELNA" class="NEZRIADITELNA"
+                                onclick="utils.selectStav(event)">Nezriaditeľná</a>
+                        </div>
                     </div>
-                  </div>
+                </div>
                 <!-- <div class="zstav">
                     https://www.w3schools.com/howto/howto_js_dropdown.asp
                     <div id="dd" class="wrappper-dropdown-1">
@@ -91,7 +100,8 @@
                         <!-- <option value="1">1</option>
                         <option value="2">2</option> -->
                     </select>
-                    <p>Maximálna rýchlosť</p> <p class="center-align"><span id="max_rychlost">sss</span></p>
+                    <p>Maximálna rýchlosť</p>
+                    <p class="center-align"><span id="max_rychlost">sss</span></p>
                 </div>
             </div>
 
@@ -100,26 +110,26 @@
                     <p class="header">Dáta z obhliadky</p>
                 </header>
                 <div class="content data-content">
-                        <p>Technik</p>
-                        <p class="center-align"><span id="technik"></span></p>
-                        <!-- <p>Záujem o montáž</p> 
+                    <p>Technik</p>
+                    <p class="center-align"><span id="technik"></span></p>
+                    <!-- <p>Záujem o montáž</p> 
                         <p class="center-align"><span id="install_technik"></span></p> -->
-                        <label for="install_technik">Záujem o montáž</label>
-                        <select name="install_technik" id="install_technik" class="center-align"></select>
-                        <p>Prístupový bod</p> 
-                        <p class="center-align"><span id="bod"></span></p>
-                        <label for="uspesna">Úspešnosť </label>
-                        <select class="center-align" name="uspesna" id="uspesna"></select>
-                        <p class="dovod_neuspech">Dôvod neúspechu</p> 
-                        <p class="center-align" id="dov_neusp"><span id="dovod_neuspech"></span></p>
-                        <label for="narocnost">Náročnosť(1-5)</label>
-                        <select class="center-align" name="narocnost" id="narocnost"></select>
-                        <p>Počet technikov</p> 
-                        <p class="center-align"><span id="pocet_technikov"></span></p>
-                        <p>Potrebný čas v hod.</p> 
-                        <p class="center-align"><span id="cas_install"></span></p>
-                        <p>Typ rebríka</p> 
-                        <p class="center-align"><textarea cols="20" rows="3" id="rebrik"></textarea></p>
+                    <label for="install_technik">Záujem o montáž</label>
+                    <select name="install_technik" id="install_technik" class="center-align"></select>
+                    <p>Prístupový bod</p>
+                    <p class="center-align"><span id="bod"></span></p>
+                    <label for="uspesna">Úspešnosť </label>
+                    <select class="center-align" name="uspesna" id="uspesna"></select>
+                    <p class="dovod_neuspech">Dôvod neúspechu</p>
+                    <p class="center-align" id="dov_neusp"><span id="dovod_neuspech"></span></p>
+                    <label for="narocnost">Náročnosť(1-5)</label>
+                    <select class="center-align" name="narocnost" id="narocnost"></select>
+                    <p>Počet technikov</p>
+                    <p class="center-align"><span id="pocet_technikov"></span></p>
+                    <p>Potrebný čas v hod.</p>
+                    <p class="center-align"><span id="cas_install"></span></p>
+                    <p>Typ rebríka</p>
+                    <p class="center-align"><textarea cols="20" rows="3" id="rebrik"></textarea></p>
                 </div>
             </div>
         </div>
@@ -143,17 +153,17 @@
                 </div>
             </div>
         </div>
-        <div class="col4"> 
+        <div class="col4">
             <div class="card">
                 <header>
                     <p class="header">Zariadenie a materiály</p>
                 </header>
-                <div  >
-                  <!-- class="content" class="content data-content" <div class="device-typ"></div>
+                <div>
+                    <!-- class="content" class="content data-content" <div class="device-typ"></div>
                   <div class="model-ine center-align"></div> -->
-                  <table>
-                    <tbody id="zar_mat"></tbody>
-                  </table>
+                    <table>
+                        <tbody id="zar_mat"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -182,7 +192,7 @@
         <h3>Fotky</h3>
         <p>Súradnice: <span id="gps_suradnice"></span></p>
         <div class="photos">
-<!-- sem pridu fotky -->           
+            <!-- sem pridu fotky -->
         </div>
         <div id="myModal" class="modal">
             <span class="close">&times;</span>

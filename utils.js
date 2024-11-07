@@ -60,6 +60,10 @@ const utils = (() => {
         getDomElement('.popup').style.display = 'none';
     }
 
+    function getMapKeys(map,val) {
+        return [...map].find(([key, value]) => val === value)[0];
+    }
+
     //TODO dropdown stuff start
     /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
@@ -88,8 +92,8 @@ toggle between hiding and showing the dropdown content */
         getDomElement('#myDropdown').classList.toggle("show");
         // get id of selected stav, get the button -> add class for color and change innerHtml to new Text
         // Button ID = STAV
-        getDomElement('#stavb').innerHTML = STAV_MAP.get(selectedId);
-        getDomElement('#stavb').style.backgroundColor = COLOR_MAP.get(selectedId);
+        getDomElement('#stav').innerHTML = STAV_MAP.get(selectedId);
+        getDomElement('#stav').style.backgroundColor = COLOR_MAP.get(selectedId);
 
     }
 
@@ -162,7 +166,7 @@ toggle between hiding and showing the dropdown content */
                 getDomElement(`#${key}`).innerHTML = moment(inputData[key]).format('DD.MM.YYYY') || 'error';
             } else if (key === 'stav') {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
-                getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
+                getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
