@@ -234,6 +234,7 @@ toggle between hiding and showing the dropdown content */
         showDeviceData,
         displayPhotos,
         getEditableFieldsValues,
-        showDropdown
+        showDropdown,
+        closePopup
     }
 })();
