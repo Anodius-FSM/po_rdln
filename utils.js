@@ -18,6 +18,15 @@ const utils = (() => {
         ['Neúspešná', '#ff6666']
     ]);
 
+    const STAV_MAP = new Map([
+        ['NEZRIADITELNA','Nezriaditeľná'],
+        ['ZAPARKOVANE','Zaparkované'],
+        ['ZMENA_SLUZBY','Zriaditeľná so zmenou služby'],
+        ['KONTROLA','Kontrola'],
+        ['PREBIEHA','Prebieha'],
+        ['ZRIADITELNA','Zriaditeľná']
+    ]);
+
     const DEVICE_TYP = new Map([
         ['KONZOLA_SAT', 'SAT konzola'],
         ['KONZOLA', 'Konzola/ Držiak'],
@@ -75,7 +84,13 @@ toggle between hiding and showing the dropdown content */
     function selectStav(event) {
         console.log(event);
         console.log(event.currentTarget.id);
-        document.getElementById("myDropdown").classList.toggle("show");
+        const selectedId = event.currentTarget.id;
+        getDomElement('#myDropdown').classList.toggle("show");
+        // get id of selected stav, get the button -> add class for color and change innerHtml to new Text
+        // Button ID = STAV
+        getDomElement('#stavb').innerHTML = STAV_MAP.get(selectedId);
+        getDomElement('#stavb').style.backgroundColor = COLOR_MAP.get(selectedId);
+
     }
 
 
