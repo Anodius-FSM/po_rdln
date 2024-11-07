@@ -166,6 +166,7 @@ toggle between hiding and showing the dropdown content */
                 getDomElement(`#${key}`).innerHTML = moment(inputData[key]).format('DD.MM.YYYY') || 'error';
             } else if (key === 'stav') {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
+                setBackgroundColor(`#${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
