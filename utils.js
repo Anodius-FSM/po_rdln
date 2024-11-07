@@ -54,7 +54,7 @@ const utils = (() => {
     //TODO dropdown stuff start
     /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-    function myFunction() {
+    function showDropdown() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
@@ -234,6 +234,6 @@ toggle between hiding and showing the dropdown content */
         showDeviceData,
         displayPhotos,
         getEditableFieldsValues,
-        myFunction
+        showDropdown
     }
 })();
