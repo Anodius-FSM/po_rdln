@@ -72,6 +72,12 @@ toggle between hiding and showing the dropdown content */
         }
     }
 
+    function selectStav(event) {
+        console.log(event.currentTarget.id);
+        console.log(event.currentTarget.id);
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
 
     //TODO dropdown stuff end
 
@@ -235,6 +241,7 @@ toggle between hiding and showing the dropdown content */
         displayPhotos,
         getEditableFieldsValues,
         showDropdown,
-        closePopup
+        closePopup,
+        selectStav
     }
 })();
