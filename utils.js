@@ -21,7 +21,7 @@ const utils = (() => {
     const STAV_MAP = new Map([
         ['NEZRIADITELNA','Nezriaditeľná'],
         ['ZAPARKOVANE','Zaparkované'],
-        ['ZMENA_SLUZBY','Zriaditeľná so zmenou služby'],
+        ['ZMENA_SLUZBY','Zriad.so zmenou služby'],
         ['KONTROLA','Kontrola'],
         ['PREBIEHA','Prebieha'],
         ['ZRIADITELNA','Zriaditeľná']
@@ -222,14 +222,15 @@ toggle between hiding and showing the dropdown content */
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr>`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr><td style="width:85%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
-                deviceData += `<td>${d.model} / ${d.ine}</td></tr>`; //  class="center-align"
+                deviceData += `${d.model} / ${d.ine}</td>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {
-                deviceData += `<td>${d.model}</td></tr>`;
+                deviceData += `${d.model}</td>`;
             } else if (d.model === 'null' && d.ine !== 'null') {
-                deviceData += `<td>${d.ine}</td></tr>`;
+                deviceData += `${d.ine}</td>`;
             }
+            deviceData += `<button class="device-button">-</button></tr>`
         });
 
         getDomElement('#zar_mat').innerHTML = deviceData;

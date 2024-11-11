@@ -374,3 +374,18 @@ td {
 .NEZRIADITELNA {
     background-color: #FF0000;
 }
+
+.device-button {
+    color: #0064d9;
+    border-color: #bcc3ca;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    border-width: 0.0625rem;
+    font-size: .875rem;
+    font-weight: 400;
+    padding: 0.5rem
+}
+
+.device-button:hover {
+    background-color: #ddd;
+}

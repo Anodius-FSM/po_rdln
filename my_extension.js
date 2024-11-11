@@ -27,7 +27,7 @@ const my_extension = (() => {
                     utils.initSelectOptions('#install_technik', {'Áno':'ANO', 'Nie': 'NIE'}, generalData[0].install_technik, false );
 
                     utils.getDomElement('.save-button').addEventListener('click', async ()=> {
-                      await common.saveChanges(generalData[0]);
+                      await common.saveChanges(generalData[0], serviceCallId);
                     });
                     
                 }

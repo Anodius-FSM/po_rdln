@@ -326,7 +326,7 @@ const common = (() => {
         }
     }
 
-    async function saveChanges(generalData) {
+    async function saveChanges(generalData, serviceCallId) {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
 
@@ -373,6 +373,10 @@ const common = (() => {
                 body: JSON.stringify(updates)
             });
             console.log('UPDATE: ', updateResponse);
+
+            const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_sc_obhliadkastav']);
+            console.log('udfMetaFieldName: ', udfMetaFieldName)
+
             
             if (!updateResponse.ok) {
                 console.log("🚀 ~ update ~ response:", updateResponse);
