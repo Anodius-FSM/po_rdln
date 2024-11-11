@@ -118,7 +118,6 @@ toggle between hiding and showing the dropdown content */
     }
 
     function selectStav(event) {
-        console.log(event);
         console.log(event.currentTarget.id);
         const selectedId = event.currentTarget.id;
         getDomElement('#myDropdown').classList.toggle("show");
@@ -262,7 +261,7 @@ toggle between hiding and showing the dropdown content */
             } else if (d.model === 'null' && d.ine !== 'null') {
                 deviceData += `${d.ine}</td>`;
             }
-            deviceData += `<td class="right-align"><button class="device-button">-</button></td></tr>`
+            deviceData += `<td class="right-align"><button onclick="utils.removeDevice(event)" class="device-button">-</button></td></tr>`
         });
         // deviceData += `<tr><td></td><td class="right-align"><button class="device-button">+</button></td></tr>`
 
@@ -296,6 +295,13 @@ toggle between hiding and showing the dropdown content */
         });
     }
 
+    function removeDevice(event) {
+        console.log(event.currentTarget);
+        let selectedRow = event.currentTarget.parentElement.parentElement;
+        console.log('SelectedRow: ', selectedRow);
+        selectedRow.remove();
+    }
+
     function getEditableFieldsValues() {
         let returnData = {};
         EDITABLE_FIELDS.forEach(field => {
@@ -325,6 +331,7 @@ toggle between hiding and showing the dropdown content */
         closePopup,
         selectStav,
         getUiStavValue,
-        addDevice
+        addDevice,
+        removeDevice
     }
 })();
