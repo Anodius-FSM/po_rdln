@@ -21,7 +21,7 @@ const utils = (() => {
     const STAV_MAP = new Map([
         ['NEZRIADITELNA','Nezriaditeľná'],
         ['ZAPARKOVANE','Zaparkované'],
-        ['ZMENA_SLUZBY','Zriad.so zmenou služby'],
+        ['ZMENA_SLUZBY','Zriad. so zmenou služby'],
         ['KONTROLA','Kontrola'],
         ['PREBIEHA','Prebieha'],
         ['ZRIADITELNA','Zriaditeľná']
@@ -69,6 +69,10 @@ const utils = (() => {
 toggle between hiding and showing the dropdown content */
     function showDropdown() {
         document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function getUiStavValue() {
+        return getMapKeys(STAV_MAP, getDomElement('#stav').innerHTML);
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -230,8 +234,9 @@ toggle between hiding and showing the dropdown content */
             } else if (d.model === 'null' && d.ine !== 'null') {
                 deviceData += `${d.ine}</td>`;
             }
-            deviceData += `<button class="device-button">-</button></tr>`
+            deviceData += `<td><button class="device-button">-</button></td></tr>`
         });
+        deviceData += `<tr><td></td><td><button class="device-button">+</button></td></tr>`
 
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
@@ -263,6 +268,7 @@ toggle between hiding and showing the dropdown content */
         getEditableFieldsValues,
         showDropdown,
         closePopup,
-        selectStav
+        selectStav,
+        getUiStavValue
     }
 })();

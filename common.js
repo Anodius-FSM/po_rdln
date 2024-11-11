@@ -338,49 +338,82 @@ const common = (() => {
             }
         });
 
-        if (Object.keys(dataToSave).length === 0) {
+        const uiStav = utils.getUiStavValue();
+
+        if (Object.keys(dataToSave).length === 0 || uiStav == generalData.stav) {
             utils.getDomElement('.popup').style.display = 'block';
         } else {
-            const keysToUpdate = Object.keys(dataToSave);
-            const udfMeta = await common.fetchUdfMeta('Obhliadka');
-            console.log('UDFMETA', udfMeta);
-            const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
+            if (Object.keys(dataToSave).length > 0) {
+                const keysToUpdate = Object.keys(dataToSave);
+                const udfMeta = await common.fetchUdfMeta('Obhliadka');
+                const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
 
-            const udfValues = [];
+                const udfValues = [];
 
-            keysToUpdate.forEach(key => {
-                udfValues.push({
-                    meta: { id: udfMetaByName.get(UDO_MAP.get(key)).id },
-                    value: dataToSave[key]
+                keysToUpdate.forEach(key => {
+                    udfValues.push({
+                        meta: { id: udfMetaByName.get(UDO_MAP.get(key)).id },
+                        value: dataToSave[key]
+                    });
                 });
-            });
 
-            const updates = [{
-                id: generalData.udoValueId,
-                udfValues: udfValues
-            }];
-            console.log("🚀 ~ saveChanges ~ updates:", updates);
-            console.log('UPDATE JSON: ,', JSON.stringify(updates));
+                const updates = [{
+                    id: generalData.udoValueId,
+                    udfValues: udfValues
+                }];
+                console.log("🚀 ~ saveChanges ~ updates:", updates);
+                console.log('UPDATE JSON: ,', JSON.stringify(updates));
 
-            const updateResponse = await fetch(
-                'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
-                    ...await common.getSearchParams(),
-                    dtos: 'UdoValue.10',
-                    forceUpdate: true
-                }), {
-                method: 'PATCH',
-                headers: await common.getHeaders(),
-                body: JSON.stringify(updates)
-            });
-            console.log('UPDATE: ', updateResponse);
+                const updateResponse = await fetch(
+                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                        ...await common.getSearchParams(),
+                        dtos: 'UdoValue.10',
+                        forceUpdate: true
+                    }), {
+                    method: 'PATCH',
+                    headers: await common.getHeaders(),
+                    body: JSON.stringify(updates)
+                });
+                console.log('UPDATE: ', updateResponse);
 
-            const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_sc_obhliadkastav']);
-            console.log('udfMetaFieldName: ', udfMetaFieldName)
+                if (!updateResponse.ok) {
+                    console.log("🚀 ~ update ~ response:", updateResponse);
+                   // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+                }
+            }
 
-            
-            if (!updateResponse.ok) {
-                console.log("🚀 ~ update ~ response:", updateResponse);
-                throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+            if (uiStav != generalData.stav) {
+                const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_sc_obhliadkastav']);
+                const udfMetaFieldByName = new Map(udfMetaFieldName.map(e => [e.name, e]));
+
+                const scUpdate = [{
+                    id: serviceCallId,
+                    udfValues:[
+                        {
+                            meta: {id: udfMetaFieldByName.get('z_f_sc_obhliadkastav').id },
+                            value: uiStav
+                        }
+                    ]
+                }];
+
+                const stavUpdateResponse = await fetch(
+                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                        ...await common.getSearchParams(),
+                        dtos: 'ServiceCall.27',
+                        forceUpdate: true
+                    }), {
+                    method: 'PATCH',
+                    headers: await common.getHeaders(),
+                    body: JSON.stringify(scUpdate)
+                });
+
+                console.log('stavUpdateResponse: ', stavUpdateResponse);
+
+                if (!stavUpdateResponse.ok) {
+                    console.log("🚀 ~ update ~ response:", stavUpdateResponse);
+                   // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+                }
+
             }
         }
     }
