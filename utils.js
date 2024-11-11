@@ -226,7 +226,7 @@ toggle between hiding and showing the dropdown content */
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr><td style="width:85%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr class="horizontal-divider"><td style="width:85%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `${d.model} / ${d.ine}</td>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {

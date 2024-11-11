@@ -397,7 +397,7 @@ const common = (() => {
                 }];
 
                 const stavUpdateResponse = await fetch(
-                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                    'https://eu.fsm.cloud.sap/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
                         ...await common.getSearchParams(),
                         dtos: 'ServiceCall.27',
                         forceUpdate: true

@@ -388,3 +388,7 @@ td {
 .device-button:hover {
     background-color: #ddd;
 }
+
+.horizontal-divider {
+    border-bottom: 1px solid #ddd;
+}
