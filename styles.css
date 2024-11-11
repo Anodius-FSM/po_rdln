@@ -396,3 +396,7 @@ td {
 .right-align {
     text-align: right;
 }
+
+.add-button-div {
+    margin: 0.5rem 0rem; 
+}

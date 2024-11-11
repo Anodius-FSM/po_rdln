@@ -271,7 +271,7 @@ toggle between hiding and showing the dropdown content */
     function addDevice() {
         const selectDevice = document.createElement('select');
         DEVICE.forEach((value, key) => {
-            let option = document.createElement(option);
+            let option = document.createElement('option');
             option.setAttribute('value', key);
             let optionText = document.createTextNode(key);
             option.appendChild(optionText);
