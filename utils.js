@@ -285,6 +285,7 @@ toggle between hiding and showing the dropdown content */
         selectDevice.addEventListener('change', () => {
             let table  = getDomElement('#device_table');
             let row = table.insertRow(-1);
+            row.classList.add('horizontal-divider')
             let cell = row.insertCell(0);
             cell.innerText = selectDevice.value;
             let removeCell = row.insertCell(1);
