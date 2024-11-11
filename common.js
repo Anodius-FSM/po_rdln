@@ -256,7 +256,8 @@ const common = (() => {
             headers: await common.getHeaders(),
             body: JSON.stringify({
                 query:
-                    `SELECT uv.udf.z_f_obz_typ AS typ,
+                    `SELECT uv.id AS udoValueId,
+                            uv.udf.z_f_obz_typ AS typ,
                             uv.udf.z_f_obz_model AS model,
                             uv.udf.z_f_obz_ine AS ine
                         FROM UdoValue uv

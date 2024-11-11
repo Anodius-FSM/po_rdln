@@ -67,7 +67,7 @@ body {
 
 .card {
     display: grid;
-    border: #eee 1px solid;
+    /* border: #eee 1px solid; */
     font-size: 0.875rem;
     /* grid-template-rows: max-content 200px 1fr; */
 }
@@ -391,4 +391,8 @@ td {
 
 .horizontal-divider {
     border-bottom: 1px solid #ddd;
+}
+
+.right-align {
+    text-align: right;
 }

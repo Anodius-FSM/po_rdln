@@ -16,9 +16,9 @@ const my_extension = (() => {
             } else {
                 // run the extension
                 const generalData = await common.fetchGeneralData(serviceCallId);
-                console.log('🚀🚀🚀🚀🚀🚀 ',generalData);
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
+                console.log('DEVICE: ', deviceData)
                 const photos = await common.fetchPhotos(serviceCallId);
 
                 if (generalData) {

@@ -226,7 +226,7 @@ toggle between hiding and showing the dropdown content */
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr class="horizontal-divider"><td style="width:85%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr class="horizontal-divider"><td style="width:90%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `${d.model} / ${d.ine}</td>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {
@@ -236,7 +236,7 @@ toggle between hiding and showing the dropdown content */
             }
             deviceData += `<td><button class="device-button">-</button></td></tr>`
         });
-        deviceData += `<tr><td></td><td><button class="device-button">+</button></td></tr>`
+        deviceData += `<tr><td></td><td class="right-align"><button class="device-button">+</button></td></tr>`
 
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
