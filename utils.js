@@ -36,6 +36,7 @@ const utils = (() => {
     //     ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
     // ]);
     const DEVICE = new Map([
+        ['',''],
         ['MikroTik nRAY 60G','ZARIADENIE'],
         ['LiteBeam 5AC - 23 dBI','ZARIADENIE'],
         ['LiteBeam 5AC Long-Range','ZARIADENIE'],
@@ -267,9 +268,11 @@ toggle between hiding and showing the dropdown content */
 
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
-
+// device_table
     function addDevice() {
         const selectDevice = document.createElement('select');
+        const id = new Date().getTime();
+        selectDevice.setAttribute('id', id);
         DEVICE.forEach((value, key) => {
             let option = document.createElement('option');
             option.setAttribute('value', key);
@@ -277,8 +280,20 @@ toggle between hiding and showing the dropdown content */
             option.appendChild(optionText);
             selectDevice.appendChild(option);
         }) ;
-        
+
         getDomElement('.select-device').appendChild(selectDevice);
+
+        selectDevice.addEventListener('change', () => {
+            let table  = getDomElement('#device_table');
+            let row = table.insertRow(-1);
+            let cell = row.insertCell(0);
+            cell.innerText = selectDevice.value;
+            let removeCell = row.insertCell(1);
+            removeCell.innerHTML = '<button class="device-button">-</button>';
+            removeCell.classList.add('right-align');
+
+            getDomElement(`#${id}`).remove();
+        });
     }
 
     function getEditableFieldsValues() {
