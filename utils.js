@@ -27,14 +27,41 @@ const utils = (() => {
         ['ZRIADITELNA','Zriaditeľná']
     ]);
 
-    const DEVICE_TYP = new Map([
-        ['KONZOLA_SAT', 'SAT konzola'],
-        ['KONZOLA', 'Konzola/ Držiak'],
-        ['ZARIADENIE', 'Zariadenie'],
-        ['DRZIAK_BALKON', 'Držiak na satelit na balkón (vodorovná tyč)'],
-        ['MATERIAL', 'Materiál'],
-        ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
+    // const DEVICE_TYP = new Map([
+    //     ['KONZOLA_SAT', 'SAT konzola'],
+    //     ['KONZOLA', 'Konzola/ Držiak'],
+    //     ['ZARIADENIE', 'Zariadenie'],
+    //     ['DRZIAK_BALKON', 'Držiak na satelit na balkón (vodorovná tyč)'],
+    //     ['MATERIAL', 'Materiál'],
+    //     ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
+    // ]);
+    const DEVICE = new Map([
+        ['MikroTik nRAY 60G','ZARIADENIE'],
+        ['LiteBeam 5AC - 23 dBI','ZARIADENIE'],
+        ['LiteBeam 5AC Long-Range','ZARIADENIE'],
+        ['NanoBeam 5AC - 16dBi','ZARIADENIE'],
+        ['Konzola KM200','MATERIAL'],
+        ['Konzola KM300','MATERIAL'],
+        ['Držiak satelitný na stenu 25cm','MATERIAL'],
+        ['Držiak satelitný na stenu 35cm','MATERIAL'],
+        ['Držiak satelitný na stenu 50cm','MATERIAL'],
+        ['Držiak na satelit na balkón 20 cm','MATERIAL'],
+        ['Držiak na satelit na balkón 30 cm','MATERIAL'],
+        ['Držiak na satelit na balkón 50 cm','MATERIAL'],
+        ['Držiak na satelit na stožiar 25cm','MATERIAL'],
+        ['Držiak na satelit na stožiar 35cm','MATERIAL'],
+        ['Držiak na satelit na stožiar 50cm','MATERIAL'],
+        ['Konzola ASTA 30T','MATERIAL'],
+        ['Konzola ASTA 30 štvorec','MATERIAL'],
+        ['Konzola ASTA 70 SN','MATERIAL'],
+        ['Anténny držiak pod škridlu 550x400 staviteľný SN','MATERIAL'],
+        ['Nadstavec stožiarový s vinklom 120cm d=2,8cm SN','MATERIAL'],
+        ['Držiak 25cm k oknu pravý SN','MATERIAL'],
+        ['Držiak 25cm k oknu ľavý SN','MATERIAL'],
+        ['Konzola na kváder','MATERIAL'],
+        ['Obruč na komín','MATERIAL'],
     ]);
+
     const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik',
         'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik'];
     /**
@@ -234,11 +261,24 @@ toggle between hiding and showing the dropdown content */
             } else if (d.model === 'null' && d.ine !== 'null') {
                 deviceData += `${d.ine}</td>`;
             }
-            deviceData += `<td><button class="device-button">-</button></td></tr>`
+            deviceData += `<td class="right-align"><button class="device-button">-</button></td></tr>`
         });
-        deviceData += `<tr><td></td><td class="right-align"><button class="device-button">+</button></td></tr>`
+        // deviceData += `<tr><td></td><td class="right-align"><button class="device-button">+</button></td></tr>`
 
         getDomElement('#zar_mat').innerHTML = deviceData;
+    }
+
+    function addDevice() {
+        const selectDevice = document.createElement('select');
+        DEVICE.forEach((value, key) => {
+            let option = document.createElement(option);
+            option.setAttribute('value', key);
+            let optionText = document.createTextNode(key);
+            option.appendChild(optionText);
+            selectDevice.appendChild(option);
+        }) ;
+        
+        getDomElement('.select-device').appendChild(selectDevice);
     }
 
     function getEditableFieldsValues() {
@@ -269,6 +309,7 @@ toggle between hiding and showing the dropdown content */
         showDropdown,
         closePopup,
         selectStav,
-        getUiStavValue
+        getUiStavValue,
+        addDevice
     }
 })();
