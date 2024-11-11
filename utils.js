@@ -285,11 +285,11 @@ toggle between hiding and showing the dropdown content */
         selectDevice.addEventListener('change', () => {
             let table  = getDomElement('#device_table');
             let row = table.insertRow(-1);
-            row.classList.add('horizontal-divider')
+            row.classList.add('horizontal-divider');
             let cell = row.insertCell(0);
             cell.innerText = selectDevice.value;
             let removeCell = row.insertCell(1);
-            removeCell.innerHTML = '<button class="device-button">-</button>';
+            removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
             removeCell.classList.add('right-align');
 
             getDomElement(`#x${id}`).remove();
@@ -297,9 +297,7 @@ toggle between hiding and showing the dropdown content */
     }
 
     function removeDevice(event) {
-        console.log(event.currentTarget);
         let selectedRow = event.currentTarget.parentElement.parentElement;
-        console.log('SelectedRow: ', selectedRow);
         selectedRow.remove();
     }
 
