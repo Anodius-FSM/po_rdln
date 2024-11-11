@@ -272,7 +272,7 @@ toggle between hiding and showing the dropdown content */
     function addDevice() {
         const selectDevice = document.createElement('select');
         const id = new Date().getTime();
-        selectDevice.setAttribute('id', id);
+        selectDevice.setAttribute('id', `x${id}`);
         DEVICE.forEach((value, key) => {
             let option = document.createElement('option');
             option.setAttribute('value', key);
@@ -292,7 +292,7 @@ toggle between hiding and showing the dropdown content */
             removeCell.innerHTML = '<button class="device-button">-</button>';
             removeCell.classList.add('right-align');
 
-            getDomElement(`#${id}`).remove();
+            getDomElement(`#x${id}`).remove();
         });
     }
 
