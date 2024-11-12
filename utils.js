@@ -63,6 +63,10 @@ const utils = (() => {
         ['Obruč na komín','MATERIAL'],
     ]);
 
+    // const DEVICE_UDO_NAMES = new Map([
+
+    // ])
+
     const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik',
         'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik'];
     /**
@@ -79,6 +83,9 @@ const utils = (() => {
      */
     function getDomElement(id) {
         return document.querySelector(id);
+    }
+    function getDomElements(className) {
+        return document.querySelectorAll(className);
     }
     function setBackgroundColor(selector, color) {
         getDomElement(selector).style.backgroundColor = color;
@@ -253,7 +260,7 @@ toggle between hiding and showing the dropdown content */
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr class="horizontal-divider"><td style="width:90%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%">`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `${d.model} / ${d.ine}</td>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {
@@ -287,6 +294,7 @@ toggle between hiding and showing the dropdown content */
             let row = table.insertRow(-1);
             row.classList.add('horizontal-divider');
             let cell = row.insertCell(0);
+            cell.classList.add('device-data-td');
             cell.innerText = selectDevice.value;
             let removeCell = row.insertCell(1);
             removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
@@ -315,6 +323,17 @@ toggle between hiding and showing the dropdown content */
         return returnData;
     }
 
+    function getDevicesFromUi() {
+//device-data-td
+        let deviceDataCells = getDomElements('.device-data-td');
+        console.log('deviceDataCells: ', deviceDataCells);
+        let deviceData = [];
+        deviceDataCells.forEach(cellData => 
+            deviceData.push({typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML}));
+
+        return deviceData;
+    }
+
     return {
         getDomElement,
         setFieldValue,
@@ -331,6 +350,7 @@ toggle between hiding and showing the dropdown content */
         selectStav,
         getUiStavValue,
         addDevice,
-        removeDevice
+        removeDevice,
+        getDevicesFromUi
     }
 })();
