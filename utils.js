@@ -98,6 +98,10 @@ const utils = (() => {
         readPopupDeviceData(id);
     }
 
+    function cancelPopup(id) {
+        getDomElement(id).style.display = 'none';
+    }
+
     function getMapKeys(map, val) {
         return [...map].find(([key, value]) => val === value)[0];
     }
@@ -322,8 +326,10 @@ toggle between hiding and showing the dropdown content */
         if (id == '#eternet_popup') {
             let dlzka = getDomElement('#eternet_dlzka').value;
             cell.innerText = `Ethernetový kábel: ${dlzka} m`;
+            getDomElement('#eternet_dlzka').value = '';
         } else if (id == '#ine_device_popup') {
             cell.innerText = getDomElement('#ine_device_text').value;
+            getDomElement('#ine_device_text').value = '';
         }
         let removeCell = row.insertCell(1);
         removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
@@ -377,6 +383,7 @@ toggle between hiding and showing the dropdown content */
         getUiStavValue,
         addDevice,
         removeDevice,
-        getDevicesFromUi
+        getDevicesFromUi,
+        cancelPopup
     }
 })();
