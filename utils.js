@@ -38,7 +38,7 @@ const utils = (() => {
     const DEVICE = new Map([
         ['', ''],
         ['MikroTik nRAY 60G', 'ZARIADENIE'],
-        ['LiteBeam 5AC - 23 dBI', 'ZARIADENIE'],
+        ['LiteBeam 5AC-23dBI', 'ZARIADENIE'],
         ['LiteBeam 5AC Long-Range', 'ZARIADENIE'],
         ['NanoBeam 5AC - 16dBi', 'ZARIADENIE'],
         ['Konzola KM200', 'MATERIAL'],
@@ -326,9 +326,12 @@ toggle between hiding and showing the dropdown content */
         if (id == '#eternet_popup') {
             let dlzka = getDomElement('#eternet_dlzka').value;
             cell.innerText = `Ethernetový kábel: ${dlzka} m`;
+            cell.setAttribute('id', 'ETERNET')
             getDomElement('#eternet_dlzka').value = '';
         } else if (id == '#ine_device_popup') {
+            //ine_device_type
             cell.innerText = getDomElement('#ine_device_text').value;
+            cell.setAttribute('id', getDomElement('#ine_device_type').value);
             getDomElement('#ine_device_text').value = '';
         }
         let removeCell = row.insertCell(1);
@@ -360,8 +363,15 @@ toggle between hiding and showing the dropdown content */
         let deviceDataCells = getDomElements('.device-data-td');
         console.log('deviceDataCells: ', deviceDataCells);
         let deviceData = [];
-        deviceDataCells.forEach(cellData =>
-            deviceData.push({ typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML }));
+        deviceDataCells.forEach(cellData => {
+            if (cellData.id == 'ETERNET') {
+                deviceData.push({ typ: 'MATERIAL' , model: cellData.innerHTML, ine: '' })
+            } else if (cellData.id == 'MATERIAL' || cellData.id == 'ZARIADENIE') {
+                deviceData.push({ typ: cellData.id, model:'', ine: cellData.innerHTML });
+            } else {
+                deviceData.push({ typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML, ine: '' });
+            }
+        });
 
         return deviceData;
     }
