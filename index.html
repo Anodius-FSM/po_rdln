@@ -208,7 +208,26 @@
 
     <div class="popup center-align" id="popup">
         <p>Neboli vykonané žiadne zmeny na uloženie</p>
-        <a href="" onclick="utils.closePopup()">Zavrieť</a>
+        <a href="" onclick="utils.closePopup('#popup')">Zavrieť</a>
+    </div>
+
+    <div class="popup center-align" id="ine_device_popup">
+        <!-- <p>Neboli vykonané žiadne zmeny na uloženie</p>
+        <a href="" onclick="utils.closePopup()">Zavrieť</a> -->
+        <label for="ine_device_type">Typ:</label>
+            <select name="ine_device_type" id="ine_device_type">
+                <option value="MATERIAL">Materiál</option>
+                <option value="ZARIADENIE">Zariadenie</option>
+            </select>
+            <p>Názov</p>
+            <textarea cols="40" rows="3" id="rebrik"></textarea>
+            <button id="ine_device_button" onclick="utils.closePopup('#ine_device_popup')">Potvrdiť</button>
+    </div>
+
+    <div class="popup center-align" id="eternet_popup">
+        <label for="eternet_dlzka">Dĺžka</label>
+        <input type="number" name="eternet_dlzka" id="eternet_dlzka">
+        <button id="eternet_button" onclick="utils.closePopup('#eternet_popup')">Potvrdiť</button>
     </div>
 
 

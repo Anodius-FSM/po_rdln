@@ -19,12 +19,12 @@ const utils = (() => {
     ]);
 
     const STAV_MAP = new Map([
-        ['NEZRIADITELNA','Nezriaditeľná'],
-        ['ZAPARKOVANE','Zaparkované'],
-        ['ZMENA_SLUZBY','Zriad. so zmenou služby'],
-        ['KONTROLA','Kontrola'],
-        ['PREBIEHA','Prebieha'],
-        ['ZRIADITELNA','Zriaditeľná']
+        ['NEZRIADITELNA', 'Nezriaditeľná'],
+        ['ZAPARKOVANE', 'Zaparkované'],
+        ['ZMENA_SLUZBY', 'Zriad. so zmenou služby'],
+        ['KONTROLA', 'Kontrola'],
+        ['PREBIEHA', 'Prebieha'],
+        ['ZRIADITELNA', 'Zriaditeľná']
     ]);
 
     // const DEVICE_TYP = new Map([
@@ -36,31 +36,33 @@ const utils = (() => {
     //     ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
     // ]);
     const DEVICE = new Map([
-        ['',''],
-        ['MikroTik nRAY 60G','ZARIADENIE'],
-        ['LiteBeam 5AC - 23 dBI','ZARIADENIE'],
-        ['LiteBeam 5AC Long-Range','ZARIADENIE'],
-        ['NanoBeam 5AC - 16dBi','ZARIADENIE'],
-        ['Konzola KM200','MATERIAL'],
-        ['Konzola KM300','MATERIAL'],
-        ['Držiak satelitný na stenu 25cm','MATERIAL'],
-        ['Držiak satelitný na stenu 35cm','MATERIAL'],
-        ['Držiak satelitný na stenu 50cm','MATERIAL'],
-        ['Držiak na satelit na balkón 20 cm','MATERIAL'],
-        ['Držiak na satelit na balkón 30 cm','MATERIAL'],
-        ['Držiak na satelit na balkón 50 cm','MATERIAL'],
-        ['Držiak na satelit na stožiar 25cm','MATERIAL'],
-        ['Držiak na satelit na stožiar 35cm','MATERIAL'],
-        ['Držiak na satelit na stožiar 50cm','MATERIAL'],
-        ['Konzola ASTA 30T','MATERIAL'],
-        ['Konzola ASTA 30 štvorec','MATERIAL'],
-        ['Konzola ASTA 70 SN','MATERIAL'],
-        ['Anténny držiak pod škridlu 550x400 staviteľný SN','MATERIAL'],
-        ['Nadstavec stožiarový s vinklom 120cm d=2,8cm SN','MATERIAL'],
-        ['Držiak 25cm k oknu pravý SN','MATERIAL'],
-        ['Držiak 25cm k oknu ľavý SN','MATERIAL'],
-        ['Konzola na kváder','MATERIAL'],
-        ['Obruč na komín','MATERIAL'],
+        ['', ''],
+        ['MikroTik nRAY 60G', 'ZARIADENIE'],
+        ['LiteBeam 5AC - 23 dBI', 'ZARIADENIE'],
+        ['LiteBeam 5AC Long-Range', 'ZARIADENIE'],
+        ['NanoBeam 5AC - 16dBi', 'ZARIADENIE'],
+        ['Konzola KM200', 'MATERIAL'],
+        ['Konzola KM300', 'MATERIAL'],
+        ['Držiak satelitný na stenu 25cm', 'MATERIAL'],
+        ['Držiak satelitný na stenu 35cm', 'MATERIAL'],
+        ['Držiak satelitný na stenu 50cm', 'MATERIAL'],
+        ['Držiak na satelit na balkón 20 cm', 'MATERIAL'],
+        ['Držiak na satelit na balkón 30 cm', 'MATERIAL'],
+        ['Držiak na satelit na balkón 50 cm', 'MATERIAL'],
+        ['Držiak na satelit na stožiar 25cm', 'MATERIAL'],
+        ['Držiak na satelit na stožiar 35cm', 'MATERIAL'],
+        ['Držiak na satelit na stožiar 50cm', 'MATERIAL'],
+        ['Konzola ASTA 30T', 'MATERIAL'],
+        ['Konzola ASTA 30 štvorec', 'MATERIAL'],
+        ['Konzola ASTA 70 SN', 'MATERIAL'],
+        ['Anténny držiak pod škridlu 550x400 staviteľný SN', 'MATERIAL'],
+        ['Nadstavec stožiarový s vinklom 120cm d=2,8cm SN', 'MATERIAL'],
+        ['Držiak 25cm k oknu pravý SN', 'MATERIAL'],
+        ['Držiak 25cm k oknu ľavý SN', 'MATERIAL'],
+        ['Konzola na kváder', 'MATERIAL'],
+        ['Obruč na komín', 'MATERIAL'],
+        ['Iné', 'INE'],
+        ['Ethernetový kábel', 'MATERIAL']
     ]);
 
     // const DEVICE_UDO_NAMES = new Map([
@@ -90,12 +92,13 @@ const utils = (() => {
     function setBackgroundColor(selector, color) {
         getDomElement(selector).style.backgroundColor = color;
     }
-
-    function closePopup() {
-        getDomElement('.popup').style.display = 'none';
+    //TODO: rozsirit o stuff pre device table ine_device_button
+    function closePopup(id) {
+        console.log('IDIDIDIDIDIDID: ', id);
+        getDomElement('id').style.display = 'none';
     }
 
-    function getMapKeys(map,val) {
+    function getMapKeys(map, val) {
         return [...map].find(([key, value]) => val === value)[0];
     }
 
@@ -125,7 +128,6 @@ toggle between hiding and showing the dropdown content */
     }
 
     function selectStav(event) {
-        console.log(event.currentTarget.id);
         const selectedId = event.currentTarget.id;
         getDomElement('#myDropdown').classList.toggle("show");
         // get id of selected stav, get the button -> add class for color and change innerHtml to new Text
@@ -274,7 +276,7 @@ toggle between hiding and showing the dropdown content */
 
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
-// device_table
+    // device_table
     function addDevice() {
         const selectDevice = document.createElement('select');
         const id = new Date().getTime();
@@ -285,21 +287,30 @@ toggle between hiding and showing the dropdown content */
             let optionText = document.createTextNode(key);
             option.appendChild(optionText);
             selectDevice.appendChild(option);
-        }) ;
+        });
 
         getDomElement('.select-device').appendChild(selectDevice);
 
         selectDevice.addEventListener('change', () => {
-            let table  = getDomElement('#device_table');
-            let row = table.insertRow(-1);
-            row.classList.add('horizontal-divider');
-            let cell = row.insertCell(0);
-            cell.classList.add('device-data-td');
-            cell.innerText = selectDevice.value;
-            let removeCell = row.insertCell(1);
-            removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
-            removeCell.classList.add('right-align');
+            if (selectDevice.value == 'Iné') {
+                //ine_device_popup
+                utils.getDomElement('#ine_device_popup').style.display = 'block';
 
+            } else if(selectDevice.value == 'Ethernetový kábel') {
+                //eternet_popup
+                utils.getDomElement('#eternet_popup').style.display = 'block';
+
+            } else {
+                let table = getDomElement('#device_table');
+                let row = table.insertRow(-1);
+                row.classList.add('horizontal-divider');
+                let cell = row.insertCell(0);
+                cell.classList.add('device-data-td');
+                cell.innerText = selectDevice.value;
+                let removeCell = row.insertCell(1);
+                removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
+                removeCell.classList.add('right-align');
+            }
             getDomElement(`#x${id}`).remove();
         });
     }
@@ -324,12 +335,12 @@ toggle between hiding and showing the dropdown content */
     }
 
     function getDevicesFromUi() {
-//device-data-td
+        //device-data-td
         let deviceDataCells = getDomElements('.device-data-td');
         console.log('deviceDataCells: ', deviceDataCells);
         let deviceData = [];
-        deviceDataCells.forEach(cellData => 
-            deviceData.push({typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML}));
+        deviceDataCells.forEach(cellData =>
+            deviceData.push({ typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML }));
 
         return deviceData;
     }
