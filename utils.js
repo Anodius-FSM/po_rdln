@@ -293,13 +293,11 @@ toggle between hiding and showing the dropdown content */
 
         selectDevice.addEventListener('change', () => {
             if (selectDevice.value == 'Iné') {
-                //ine_device_popup
+                getDomElement(`#x${id}`).remove();
                 utils.getDomElement('#ine_device_popup').style.display = 'block';
-
             } else if(selectDevice.value == 'Ethernetový kábel') {
-                //eternet_popup
+                getDomElement(`#x${id}`).remove();
                 utils.getDomElement('#eternet_popup').style.display = 'block';
-
             } else {
                 let table = getDomElement('#device_table');
                 let row = table.insertRow(-1);
@@ -310,9 +308,26 @@ toggle between hiding and showing the dropdown content */
                 let removeCell = row.insertCell(1);
                 removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
                 removeCell.classList.add('right-align');
+                getDomElement(`#x${id}`).remove();
             }
-            getDomElement(`#x${id}`).remove();
         });
+    }
+    // call this in close popup
+    function readPopupDeviceData(id) {
+        let table = getDomElement('#device_table');
+        let row = table.insertRow(-1);
+        row.classList.add('horizontal-divider');
+        let cell = row.insertCell(0);
+        cell.classList.add('device-data-td');
+        if (id = '#eternet_popup') {
+            let dlzka = getDomElement('#eternet_dlzka').value;
+            cell.innerText = `Ethernetový kábel: ${dlzka} m`;
+        } else if (id ='#ine_device_popup') {
+            cell.innerText = getDomElement('#ine_device_text').value;
+        }
+        let removeCell = row.insertCell(1);
+        removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
+        removeCell.classList.add('right-align');
     }
 
     function removeDevice(event) {

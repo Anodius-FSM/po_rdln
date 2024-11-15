@@ -220,13 +220,13 @@
                 <option value="ZARIADENIE">Zariadenie</option>
             </select>
             <p>Názov</p>
-            <textarea cols="40" rows="3" id="rebrik"></textarea>
+            <textarea cols="40" rows="3" id="ine_device_text"></textarea>
             <button id="ine_device_button" onclick="utils.closePopup('#ine_device_popup')">Potvrdiť</button>
     </div>
 
     <div class="popup center-align" id="eternet_popup">
-        <label for="eternet_dlzka">Dĺžka</label>
-        <input type="number" name="eternet_dlzka" id="eternet_dlzka">
+        <label for="eternet_dlzka">Dĺžka(m): </label>
+        <input type="number" min="0" max="999" name="eternet_dlzka" id="eternet_dlzka">
         <button id="eternet_button" onclick="utils.closePopup('#eternet_popup')">Potvrdiť</button>
     </div>
 
