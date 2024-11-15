@@ -268,7 +268,7 @@ td {
     width: 350px;
     left: 50%;
     margin-left: -200px;
-    height: 100px;
+    /* height: 100px; */
     top: 50%;
     margin-top: -100px;
     background-color: #FFF;
@@ -300,6 +300,10 @@ td {
 
 .popup>p {
     padding-bottom: 1.5rem;
+}
+
+#eternet_dlzka {
+    margin: 2rem 0rem;
 }
 
 /* stav dropdown styling*/
