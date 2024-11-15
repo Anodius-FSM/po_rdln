@@ -61,8 +61,8 @@ const utils = (() => {
         ['Držiak 25cm k oknu ľavý SN', 'MATERIAL'],
         ['Konzola na kváder', 'MATERIAL'],
         ['Obruč na komín', 'MATERIAL'],
-        ['Iné', 'INE'],
-        ['Ethernetový kábel', 'MATERIAL']
+        ['Ethernetový kábel', 'MATERIAL'],
+        ['Iné', 'INE']
     ]);
 
     // const DEVICE_UDO_NAMES = new Map([
@@ -270,7 +270,7 @@ toggle between hiding and showing the dropdown content */
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `>${d.model} / ${d.ine}</td>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {
-                deviceData += `>${d.model}</td>`;
+                deviceData += d.model.includes('Ethernet') ? `id="ETERNET">${d.model}</td>` : `>${d.model}</td>`;
             } else if (d.model === 'null' && d.ine !== 'null') {
                 deviceData += `id="${d.typ}">${d.ine}</td>`;
             }
