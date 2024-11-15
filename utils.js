@@ -319,10 +319,10 @@ toggle between hiding and showing the dropdown content */
         row.classList.add('horizontal-divider');
         let cell = row.insertCell(0);
         cell.classList.add('device-data-td');
-        if (id = '#eternet_popup') {
+        if (id == '#eternet_popup') {
             let dlzka = getDomElement('#eternet_dlzka').value;
             cell.innerText = `Ethernetový kábel: ${dlzka} m`;
-        } else if (id ='#ine_device_popup') {
+        } else if (id == '#ine_device_popup') {
             cell.innerText = getDomElement('#ine_device_text').value;
         }
         let removeCell = row.insertCell(1);
