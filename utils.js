@@ -94,8 +94,8 @@ const utils = (() => {
     }
     //TODO: rozsirit o stuff pre device table ine_device_button
     function closePopup(id) {
-        console.log('IDIDIDIDIDIDID: ', id);
         getDomElement(id).style.display = 'none';
+        readPopupDeviceData(id);
     }
 
     function getMapKeys(map, val) {
