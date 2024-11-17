@@ -266,13 +266,13 @@ toggle between hiding and showing the dropdown content */
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%"`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
             if (d.model !== 'null' && d.ine !== 'null') {
-                deviceData += `>${d.model} / ${d.ine}</td>`; //  class="center-align"
+                deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`; //  class="center-align"
             } else if (d.model !== 'null' && d.ine === 'null') {
-                deviceData += d.model.includes('Ethernet') ? `id="ETERNET">${d.model}</td>` : `>${d.model}</td>`;
+                deviceData += d.model.includes('Ethernet') ? `${d.udoValueId}" id="ETERNET">${d.model}</td>` : `${d.udoValueId}">${d.model}</td>`;
             } else if (d.model === 'null' && d.ine !== 'null') {
-                deviceData += `id="${d.typ}">${d.ine}</td>`;
+                deviceData += `${d.udoValueId}" id="${d.typ}">${d.ine}</td>`;
             }
             deviceData += `<td class="right-align"><button onclick="utils.removeDevice(event)" class="device-button">-</button></td></tr>`
         });
@@ -299,7 +299,7 @@ toggle between hiding and showing the dropdown content */
             if (selectDevice.value == 'Iné') {
                 getDomElement(`#x${id}`).remove();
                 utils.getDomElement('#ine_device_popup').style.display = 'block';
-            } else if(selectDevice.value == 'Ethernetový kábel') {
+            } else if (selectDevice.value == 'Ethernetový kábel') {
                 getDomElement(`#x${id}`).remove();
                 utils.getDomElement('#eternet_popup').style.display = 'block';
             } else {
@@ -358,22 +358,36 @@ toggle between hiding and showing the dropdown content */
         return returnData;
     }
 
-    function getDevicesFromUi() {
+    function getDevicesFromUi(data) {
+        // get udoValueId array for comparing 
+        const udoId = data.map(d => d.udoValueId);
+        const tempDelete = [];
         //device-data-td
         let deviceDataCells = getDomElements('.device-data-td');
         console.log('deviceDataCells: ', deviceDataCells);
         let deviceData = [];
         deviceDataCells.forEach(cellData => {
-            if (cellData.id == 'ETERNET') {
-                deviceData.push({ typ: 'MATERIAL' , model: cellData.innerHTML, ine: '' })
-            } else if (cellData.id == 'MATERIAL' || cellData.id == 'ZARIADENIE') {
-                deviceData.push({ typ: cellData.id, model:'', ine: cellData.innerHTML });
+            let dataId = cellData.getAttribute('data-id');
+            console.log('DATA-ID: ', dataId);
+            if (udoId.includes(dataId)) {
+                tempDelete.push(dataId);
             } else {
-                deviceData.push({ typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML, ine: '' });
+                if (cellData.id == 'ETERNET') {
+                    deviceData.push({ typ: 'MATERIAL', model: cellData.innerHTML, ine: '' })
+                } else if (cellData.id == 'MATERIAL' || cellData.id == 'ZARIADENIE') {
+                    deviceData.push({ typ: cellData.id, model: '', ine: cellData.innerHTML });
+                } else {
+                    deviceData.push({ typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML, ine: '' });
+                }
             }
         });
 
-        return deviceData;
+        // check if there is data to delete
+        let toDelete = udoId.filter(d => !tempDelete.includes(d));
+
+
+
+        return { patch: deviceData, delete: toDelete };
     }
 
     return {
