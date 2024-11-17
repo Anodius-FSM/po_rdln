@@ -330,8 +330,8 @@ const common = (() => {
     async function saveChanges(generalData, deviceData, serviceCallId) {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
-        let deviceData = utils.getDevicesFromUi();
-        console.log('deviceData: ', deviceData);
+        let devicesToSave = utils.getDevicesFromUi(devicesToSave);
+        console.log('deviceData: ', devicesToSave);
 
         const dataKeys = Object.keys(uiData);
 
