@@ -477,7 +477,7 @@ const common = (() => {
                     }), {
                     method: 'POST',
                     headers: await common.getHeaders(),
-                    body: JSON.stringify(devCreate)
+                    body: JSON.stringify(devCreate[0])
                 });
 
                 console.log("🚀 ~ create ~ response:", createResponse);
