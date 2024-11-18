@@ -471,7 +471,7 @@ const common = (() => {
                 // }
 
                 const createResponse = await fetch(
-                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/?' + new URLSearchParams({
                         ...await common.getSearchParams(),
                         dtos: 'UdoValue.10'
                     }), {
