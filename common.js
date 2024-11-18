@@ -11,9 +11,9 @@ const common = (() => {
         ['sluzba_internettv', 'z_f_obh_internettv'],
         ['poznamka_kontrolora', 'z_f_obh_poznamkakontr'],
         ['rebrik', 'z_f_obh_rebrik'],
-        ['typ','z_f_obz_typ'],
+        ['typ', 'z_f_obz_typ'],
         ['model', 'z_f_obz_model'],
-        ['ine','z_f_obz_ine']
+        ['ine', 'z_f_obz_ine']
     ])
 
     const { SHELL_EVENTS } = FSMShell;
@@ -386,7 +386,7 @@ const common = (() => {
 
                 if (!updateResponse.ok) {
                     console.log("🚀 ~ update ~ response:", updateResponse);
-                   // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+                    // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
                 }
             }
 
@@ -396,9 +396,9 @@ const common = (() => {
 
                 const scUpdate = [{
                     id: serviceCallId,
-                    udfValues:[
+                    udfValues: [
                         {
-                            meta: {id: udfMetaFieldByName.get('z_f_sc_obhliadkastav').id },
+                            meta: { id: udfMetaFieldByName.get('z_f_sc_obhliadkastav').id },
                             value: uiStav
                         }
                     ]
@@ -419,47 +419,47 @@ const common = (() => {
 
                 if (!stavUpdateResponse.ok) {
                     console.log("🚀 ~ update ~ response:", stavUpdateResponse);
-                   // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+                    // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
                 }
 
             }
 
             if (devicesToSave.delete.length > 0) {
-                devicesToSave.delete.forEach( async (d) => {
+                devicesToSave.delete.forEach(async (d) => {
 
                     const deleteDeviceResponse = await fetch(
                         `https://eu.coresuite.com/api/data/v4/UdoValue/${d}/?` + new URLSearchParams({
                             ...await common.getSearchParams(),
                             forceDelete: true
                         }), {
-                            method: 'DELETE',
-                            headers: await common.getHeaders()
-                        });
-                        console.log("🚀 ~ delete ~ response:", deleteDeviceResponse);
+                        method: 'DELETE',
+                        headers: await common.getHeaders()
+                    });
+                    console.log("🚀 ~ delete ~ response:", deleteDeviceResponse);
                 });
 
             }
 
-            if (devicesToSave.patch.length > 0 ) {
+            if (devicesToSave.patch.length > 0) {
                 // const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obz_typ','z_f_obz_model','z_f_obz_ine']);
                 // const udfMetaByName = new Map(udfMetaFieldName.map(e => [e.name, e])); 
                 const devCreate = [];
-                
+
                 devicesToSave.patch.forEach(d => {
                     devCreate.push(
                         {
-                            meta: {"externalId": "Obhliadka_zariadenie"},
+                            meta: { "externalId": "Obhliadka_zariadenie" },
                             udfValues: [
                                 {
-                                    "meta": {"externalId": "z_f_obz_activity"},
+                                    "meta": { "externalId": "z_f_obz_activity" },
                                     "value": deviceData[0].actId
                                 }, {
-                                    "meta": {"externalId": "z_f_obz_typ"},
+                                    "meta": { "externalId": "z_f_obz_typ" },
                                     "value": d.typ
                                 }, {
-                                    "meta": {"externalId": "z_f_obz_model"},
+                                    "meta": { "externalId": "z_f_obz_model" },
                                     "value": d.model
-                                } 
+                                }
                             ]
                         }
                     )
@@ -470,20 +470,20 @@ const common = (() => {
                 //     udfValues: udfValues
                 // }
 
-                const createResponse = await fetch(
-                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/?' + new URLSearchParams({
-                        ...await common.getSearchParams(),
-                        dtos: 'UdoValue.10'
-                    }), {
-                    method: 'POST',
-                    headers: await common.getHeaders(),
-                    body: JSON.stringify(devCreate[0])
+                devCreate.forEach(async d => {
+                    const createResponse = await fetch(
+                        'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/?' + new URLSearchParams({
+                            ...await common.getSearchParams(),
+                            dtos: 'UdoValue.10'
+                        }), {
+                        method: 'POST',
+                        headers: await common.getHeaders(),
+                        body: JSON.stringify(d)
+                    });
+
+                    console.log("🚀 ~ create ~ response:", createResponse);
                 });
-
-                console.log("🚀 ~ create ~ response:", createResponse);
-
             }
-
         }
     }
 
