@@ -388,6 +388,14 @@ toggle between hiding and showing the dropdown content */
         return { patch: deviceData, delete: toDelete };
     }
 
+    function disableEdit() {
+        const buttons = document.getElementsByTagName('button');
+        buttons.forEach(b => b.disabled = true);
+        const select = document.getElementsByTagName('select');
+        select.forEach(s => s.disabled = true);
+        getDomElement('#poznamka_technika').disabled = true;
+    }
+
     return {
         getDomElement,
         setFieldValue,
@@ -406,6 +414,7 @@ toggle between hiding and showing the dropdown content */
         addDevice,
         removeDevice,
         getDevicesFromUi,
-        cancelPopup
+        cancelPopup,
+        disableEdit
     }
 })();
