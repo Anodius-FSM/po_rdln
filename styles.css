@@ -401,6 +401,10 @@ td {
     text-align: right;
 }
 
+.left-align {
+    text-align: left;
+}
+
 .add-button-div {
     margin: 0.5rem 0rem; 
 }

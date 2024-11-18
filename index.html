@@ -214,15 +214,19 @@
     <div class="popup center-align" id="ine_device_popup">
         <!-- <p>Neboli vykonané žiadne zmeny na uloženie</p>
         <a href="" onclick="utils.closePopup()">Zavrieť</a> -->
-        <label for="ine_device_type">Typ:</label>
+        <div class="left-align">
+            <label for="ine_device_type">Typ:</label>
             <select name="ine_device_type" id="ine_device_type">
                 <option value="MATERIAL">Materiál</option>
                 <option value="ZARIADENIE">Zariadenie</option>
-            </select><br>
+            </select>
+        </div>
+        <div class="left-align">    
             <label for="ine_device_text">Názov:</label>
             <textarea cols="40" rows="3" id="ine_device_text"></textarea>
-            <button class="save-button" id="ine_device_button" onclick="utils.closePopup('#ine_device_popup')">Potvrdiť</button>
-            <button class="save-button" onclick="utils.cancelPopup('#ine_device_popup')">Zrušiť</button>
+        </div>
+        <button class="save-button" id="ine_device_button" onclick="utils.closePopup('#ine_device_popup')">Potvrdiť</button>
+        <button class="save-button" onclick="utils.cancelPopup('#ine_device_popup')">Zrušiť</button>
     </div>
 
     <div class="popup center-align" id="eternet_popup">
