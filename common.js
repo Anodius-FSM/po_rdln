@@ -346,8 +346,8 @@ const common = (() => {
 
         const uiStav = utils.getUiStavValue();
 
-        if (Object.keys(dataToSave).length === 0 || uiStav == generalData.stav ||
-            devicesToSave.patch.length === 0 || devicesToSave.delete.length === 0) {
+        if (Object.keys(dataToSave).length === 0 && uiStav == generalData.stav &&
+            devicesToSave.patch.length === 0 && devicesToSave.delete.length === 0) {
             utils.getDomElement('.popup').style.display = 'block';
         } else {
             if (Object.keys(dataToSave).length > 0) {
