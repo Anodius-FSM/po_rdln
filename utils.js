@@ -385,8 +385,6 @@ toggle between hiding and showing the dropdown content */
         // check if there is data to delete
         let toDelete = udoId.filter(d => !tempDelete.includes(d));
 
-
-
         return { patch: deviceData, delete: toDelete };
     }
 

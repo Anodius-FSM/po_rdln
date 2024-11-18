@@ -10,7 +10,10 @@ const common = (() => {
         ['sluzba_internet', 'z_f_obh_internet'],
         ['sluzba_internettv', 'z_f_obh_internettv'],
         ['poznamka_kontrolora', 'z_f_obh_poznamkakontr'],
-        ['rebrik', 'z_f_obh_rebrik']
+        ['rebrik', 'z_f_obh_rebrik'],
+        ['typ','z_f_obz_typ'],
+        ['model', 'z_f_obz_model'],
+        ['ine','z_f_obz_ine']
     ])
 
     const { SHELL_EVENTS } = FSMShell;
@@ -343,7 +346,8 @@ const common = (() => {
 
         const uiStav = utils.getUiStavValue();
 
-        if (Object.keys(dataToSave).length === 0 || uiStav == generalData.stav) {
+        if (Object.keys(dataToSave).length === 0 || uiStav == generalData.stav ||
+            devicesToSave.patch.length === 0 || devicesToSave.delete.length === 0) {
             utils.getDomElement('.popup').style.display = 'block';
         } else {
             if (Object.keys(dataToSave).length > 0) {
@@ -418,6 +422,45 @@ const common = (() => {
                 }
 
             }
+
+            if (devicesToSave.delete.length > 0) {
+                devicesToSave.delete.forEach( async (d) => {
+
+                    const deleteDeviceResponse = await fetch(
+                        `https://eu.coresuite.com/api/data/v4/UdoValue/${d}/?` + new URLSearchParams({
+                            ...await common.getSearchParams(),
+                            dtos: 'UdoValue.10',
+                            forceDelete: true
+                        }), {
+                            method: 'DELETE',
+                            headers: await common.getHeaders()
+                        });
+                        console.log("🚀 ~ delete ~ response:", deleteDeviceResponse);
+                });
+
+            }
+
+            if (devicesToSave.patch.length > 0 ) {
+                const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obz_typ','z_f_obz_model','z_f_obz_ine']);
+                const udfMetaByName = new Map(udfMetaFieldName.map(e => [e.name, e])); 
+                const udfValues = [];
+                devicesToSave.patch.forEach(d => {
+                    udfValues.push({
+                        meta: { id: udfMetaByName.get(UDO_MAP.get('typ')).id },
+                        value: d.typ
+                    });
+                    udfValues.push({
+                        meta: { id: udfMetaByName.get(UDO_MAP.get('ine')).id },
+                        value: d.ine
+                    });
+                    udfValues.push({
+                        meta: { id: udfMetaByName.get(UDO_MAP.get('model')).id },
+                        value: d.model
+                    });
+                });
+
+            }
+
         }
     }
 
