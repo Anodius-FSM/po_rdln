@@ -260,6 +260,7 @@ const common = (() => {
             body: JSON.stringify({
                 query:
                     `SELECT uv.id AS udoValueId,
+                            uv.udf.z_f_obz_activity as actId
                             uv.udf.z_f_obz_typ AS typ,
                             uv.udf.z_f_obz_model AS model,
                             uv.udf.z_f_obz_ine AS ine
@@ -440,23 +441,41 @@ const common = (() => {
             }
 
             if (devicesToSave.patch.length > 0 ) {
-                const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obz_typ','z_f_obz_model','z_f_obz_ine']);
-                const udfMetaByName = new Map(udfMetaFieldName.map(e => [e.name, e])); 
+                // const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obz_typ','z_f_obz_model','z_f_obz_ine']);
+                // const udfMetaByName = new Map(udfMetaFieldName.map(e => [e.name, e])); 
                 const udfValues = [];
+                
                 devicesToSave.patch.forEach(d => {
-                    udfValues.push({
-                        meta: { id: udfMetaByName.get(UDO_MAP.get('typ')).id },
-                        value: d.typ
-                    });
-                    udfValues.push({
-                        meta: { id: udfMetaByName.get(UDO_MAP.get('ine')).id },
-                        value: d.ine
-                    });
-                    udfValues.push({
-                        meta: { id: udfMetaByName.get(UDO_MAP.get('model')).id },
-                        value: d.model
-                    });
+                    udfValues.push(
+                        {
+                            "meta": {"externalId": "z_f_obz_activity"},
+                            "value": deviceData[0].actId
+                        }, {
+                            "meta": {"externalId": "z_f_obz_typ"},
+                            "value": d.typ
+                        }, {
+                            "meta": {"externalId": "z_f_obz_model"},
+                            "value": d.model
+                        } 
+                    );
                 });
+
+                const devCreate = {
+                    meta: {"externalId": "Obhliadka_zariadenie"},
+                    udfValues: udfValues
+                }
+
+                const createResponse = await fetch(
+                    'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                        ...await common.getSearchParams(),
+                        dtos: 'UdoValue.10'
+                    }), {
+                    method: 'POST',
+                    headers: await common.getHeaders(),
+                    body: JSON.stringify(devCreate)
+                });
+
+                console.log("🚀 ~ create ~ response:", createResponse);
 
             }
 
