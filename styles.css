@@ -272,7 +272,7 @@ td {
     top: 50%;
     margin-top: -100px;
     background-color: #FFF;
-    border: 3px solid #F04A49;
+    /* border: 3px solid #F04A49; */
     z-index: 20;
 }
 
@@ -283,7 +283,7 @@ td {
     left: 0;
     bottom: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: -2;
 }
 /*#popup*/
