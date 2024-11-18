@@ -390,6 +390,7 @@ toggle between hiding and showing the dropdown content */
 
     function disableEdit() {
         const buttons = document.getElementsByTagName('button');
+        console.log("🚀 ~ disableEdit ~ buttons:", buttons)
         buttons.forEach(b => b.disabled = true);
         const select = document.getElementsByTagName('select');
         select.forEach(s => s.disabled = true);
