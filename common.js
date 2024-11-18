@@ -429,7 +429,6 @@ const common = (() => {
                     const deleteDeviceResponse = await fetch(
                         `https://eu.coresuite.com/api/data/v4/UdoValue/${d}/?` + new URLSearchParams({
                             ...await common.getSearchParams(),
-                            dtos: 'UdoValue.10',
                             forceDelete: true
                         }), {
                             method: 'DELETE',
