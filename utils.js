@@ -393,7 +393,7 @@ toggle between hiding and showing the dropdown content */
         [...buttons].forEach(b => b.disabled = true);
         const select = document.getElementsByTagName('select');
         [...select].forEach(s => s.disabled = true);
-        getDomElement('#poznamka_technika').disabled = true;
+        getDomElement('#poznamka_kontrolora').disabled = true;
     }
 
     return {
