@@ -413,3 +413,11 @@ td {
 .add-button-div {
     margin: 0.5rem 0rem; 
 }
+
+select:disabled {
+    color: #32363a;
+}
+
+.dropbtn:disabled {
+    color: #32363a;
+}
