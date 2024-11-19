@@ -1,10 +1,4 @@
 const my_extension = (() => {
-    // TODO: remove this function
-    async function testMyExtension() {
-        const context = await common.getContext();
-        console.log("🚀 ~ testMyExtension ~ context:", context)
-        // utils.setFieldValue('#info', `User: ${context.user} :: ${context.account} :: ${context.company}`);
-    }
 
     async function startExtension() {
         try {
@@ -56,8 +50,5 @@ const my_extension = (() => {
         }
     }
 
-    return {
-        testMyExtension,
-        startExtension
-    }
+    return { startExtension }
 })();

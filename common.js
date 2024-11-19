@@ -335,7 +335,6 @@ const common = (() => {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
         let devicesToSave = utils.getDevicesFromUi(deviceData);
-        console.log('deviceData: ', devicesToSave);
 
         const dataKeys = Object.keys(uiData);
 
@@ -369,8 +368,6 @@ const common = (() => {
                     id: generalData.udoValueId,
                     udfValues: udfValues
                 }];
-                console.log("🚀 ~ saveChanges ~ updates:", updates);
-                console.log('UPDATE JSON: ,', JSON.stringify(updates));
 
                 const updateResponse = await fetch(
                     'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
@@ -385,8 +382,7 @@ const common = (() => {
                 console.log('UPDATE: ', updateResponse);
 
                 if (!updateResponse.ok) {
-                    console.log("🚀 ~ update ~ response:", updateResponse);
-                    // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+                    throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
                 }
             }
 
@@ -415,13 +411,9 @@ const common = (() => {
                     body: JSON.stringify(scUpdate)
                 });
 
-                console.log('stavUpdateResponse: ', stavUpdateResponse);
-
                 if (!stavUpdateResponse.ok) {
-                    console.log("🚀 ~ update ~ response:", stavUpdateResponse);
-                    // throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
+                    throw new Error(`🚀🚀🚀 Failed to save data, got status ${stavUpdateResponse.status}`);
                 }
-
             }
 
             if (devicesToSave.delete.length > 0) {
@@ -435,14 +427,14 @@ const common = (() => {
                         method: 'DELETE',
                         headers: await common.getHeaders()
                     });
-                    console.log("🚀 ~ delete ~ response:", deleteDeviceResponse);
+                    if (!deleteDeviceResponse.ok) {
+                        throw new Error(`🚀🚀🚀 Failed to save data, got status ${deleteDeviceResponse.status}`);
+                    }
                 });
 
             }
 
             if (devicesToSave.patch.length > 0) {
-                // const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obz_typ','z_f_obz_model','z_f_obz_ine']);
-                // const udfMetaByName = new Map(udfMetaFieldName.map(e => [e.name, e])); 
                 const devCreate = [];
 
                 devicesToSave.patch.forEach(d => {
@@ -465,11 +457,6 @@ const common = (() => {
                     )
                 });
 
-                // const devCreate = {
-                //     meta: {"externalId": "Obhliadka_zariadenie"},
-                //     udfValues: udfValues
-                // }
-
                 devCreate.forEach(async d => {
                     const createResponse = await fetch(
                         'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/?' + new URLSearchParams({
@@ -481,7 +468,9 @@ const common = (() => {
                         body: JSON.stringify(d)
                     });
 
-                    console.log("🚀 ~ create ~ response:", createResponse);
+                    if (!createResponse.ok) {
+                        throw new Error(`🚀🚀🚀 Failed to save data, got status ${createResponse.status}`);
+                    }
                 });
             }
         }

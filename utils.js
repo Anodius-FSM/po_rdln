@@ -27,14 +27,6 @@ const utils = (() => {
         ['ZRIADITELNA', 'Zriaditeľná']
     ]);
 
-    // const DEVICE_TYP = new Map([
-    //     ['KONZOLA_SAT', 'SAT konzola'],
-    //     ['KONZOLA', 'Konzola/ Držiak'],
-    //     ['ZARIADENIE', 'Zariadenie'],
-    //     ['DRZIAK_BALKON', 'Držiak na satelit na balkón (vodorovná tyč)'],
-    //     ['MATERIAL', 'Materiál'],
-    //     ['DRZIAK_STA', 'Držiak na STA (zvislá tyč)']
-    // ]);
     const DEVICE = new Map([
         ['', ''],
         ['MikroTik nRAY 60G', 'ZARIADENIE'],
@@ -65,10 +57,6 @@ const utils = (() => {
         ['Iné', 'INE']
     ]);
 
-    // const DEVICE_UDO_NAMES = new Map([
-
-    // ])
-
     const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik',
         'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik'];
     /**
@@ -92,7 +80,7 @@ const utils = (() => {
     function setBackgroundColor(selector, color) {
         getDomElement(selector).style.backgroundColor = color;
     }
-    //TODO: rozsirit o stuff pre device table ine_device_button
+
     function closePopup(id) {
         getDomElement(id).style.display = 'none';
         readPopupDeviceData(id);
@@ -106,9 +94,8 @@ const utils = (() => {
         return [...map].find(([key, value]) => val === value)[0];
     }
 
-    //TODO dropdown stuff start
     /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
+        toggle between hiding and showing the dropdown content */
     function showDropdown() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
@@ -140,10 +127,6 @@ toggle between hiding and showing the dropdown content */
         getDomElement('#stav').style.backgroundColor = COLOR_MAP.get(selectedId);
 
     }
-
-
-    //TODO dropdown stuff end
-
 
     function getBodSelectionData(skenData) {
         const bodSet = new Set();
@@ -266,9 +249,9 @@ toggle between hiding and showing the dropdown content */
     function showDeviceData(data) {
         let deviceData = '';
         data.forEach(d => {
-            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;//<td class="device-typ">${DEVICE_TYP.get(d.typ)}<td>`;
+            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;
             if (d.model !== 'null' && d.ine !== 'null') {
-                deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`; //  class="center-align"
+                deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`;
             } else if (d.model !== 'null' && d.ine === 'null') {
                 deviceData += d.model.includes('Ethernet') ? `${d.udoValueId}" id="ETERNET">${d.model}</td>` : `${d.udoValueId}">${d.model}</td>`;
             } else if (d.model === 'null' && d.ine !== 'null') {
@@ -276,7 +259,6 @@ toggle between hiding and showing the dropdown content */
             }
             deviceData += `<td class="right-align"><button onclick="utils.removeDevice(event)" class="device-button">-</button></td></tr>`
         });
-        // deviceData += `<tr><td></td><td class="right-align"><button class="device-button">+</button></td></tr>`
 
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
@@ -389,11 +371,8 @@ toggle between hiding and showing the dropdown content */
     }
 
     function disableEdit() {
-        const buttons = document.getElementsByTagName('button');
-        [...buttons].forEach(b => b.disabled = true);
-        const select = document.getElementsByTagName('select');
-        [...select].forEach(s => s.disabled = true);
-        // getDomElement('#poznamka_kontrolora').disabled = true;
+        [...document.getElementsByTagName('button')].forEach(b => b.disabled = true);
+        [...document.getElementsByTagName('select')].forEach(s => s.disabled = true);
         [...document.getElementsByTagName('textarea')].forEach(t => t.disabled = true);
     }
 
