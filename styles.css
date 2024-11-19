@@ -73,6 +73,7 @@ body {
 
 textarea {
     resize: none;
+    width: 100%;
     border-color: #ddd;
 }
 
