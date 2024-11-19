@@ -40,9 +40,9 @@ const my_extension = (() => {
                     });
                 }
 
-                // if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {
-                //     utils.disableEdit();
-                // }
+                if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {
+                    utils.disableEdit();
+                }
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)
