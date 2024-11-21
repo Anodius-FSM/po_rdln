@@ -278,8 +278,16 @@ const utils = (() => {
         //   }
         //itemsArray.sort(sortFunc);
         const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
+        zariadenie.forEach(z => {
+            z.model === 'null' ? z.model = null : z.model = z.model;
+            z.ine === 'null' ? z.ine = null : z.ine = z.ine
+        } );
         console.log("🚀 ~ showDeviceData ~ data:", data)
-        const materialy = data.filter(d => s.typ = 'MATERIAL');
+        const materialy = data.filter(d => d.typ = 'MATERIAL');
+        materialy.forEach(m => {
+            m.model === 'null' ? m.model = null : m.model = m.model;
+            m.ine === 'null' ? m.ine = null : m.ine = m.ine
+        });
         zariadenie.sort((a, b) => a.model - b.model);
         console.log("🚀 ~ showDeviceData ~ zariadenie:", zariadenie)
         materialy.sort((a, b) => a.model - b.model); 
@@ -290,11 +298,11 @@ const utils = (() => {
         let deviceData = '';
         all.forEach(d => {
             deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;
-            if (d.model !== 'null' && d.ine !== 'null') {
+            if (d.model !== null && d.ine !== null) {
                 deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`;
-            } else if (d.model !== 'null' && d.ine === 'null') {
+            } else if (d.model !== null && d.ine === null) {
                 deviceData += d.model.includes('Ethernet') ? `${d.udoValueId}" id="ETERNET">${d.model}</td>` : `${d.udoValueId}">${d.model}</td>`;
-            } else if (d.model === 'null' && d.ine !== 'null') {
+            } else if (d.model === null && d.ine !== null) {
                 deviceData += `${d.udoValueId}" id="${d.typ}">${d.ine}</td>`;
             }
             deviceData += `<td class="right-align"><button onclick="utils.removeDevice(event)" class="device-button">-</button></td></tr>`
