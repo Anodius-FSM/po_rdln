@@ -83,7 +83,10 @@
                     <select name="bod_final" id="bod_final">
                     </select>
                     <p>Maximálna rýchlosť</p>
-                    <p class="center-align"><span id="max_rychlost">sss</span></p>
+                    <p class="center-align">
+                        <!-- <span id="max_rychlost">sss</span> -->
+                        <input type="number" min="0" max="2000" name="max_rychlost" id="max_rychlost">
+                    </p>
                 </div>
             </div>
 
@@ -131,7 +134,7 @@
                     <p class="header">Poznámka technika</p>
                 </header>
                 <div class="content">
-                    <textarea id="poznamka_technika" cols="45" rows="10" readonly></textarea>
+                    <textarea id="poznamka_technika" cols="45" rows="10"></textarea>
                 </div>
             </div>
         </div>
