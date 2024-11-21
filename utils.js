@@ -347,7 +347,13 @@ const utils = (() => {
 
     function readNewBodPopupData(id) {
         let newBod = getDomElement('#new_final_bod').value;
-        getDomElement('#bod_final').value = newBod; 
+        let select = getDomElement('#bod_final');
+        let option = document.createElement('option');
+        option.setAttribute('value',newBod);
+        let optionText = document.createTextNode(newBod);
+        option.appendChild(optionText);
+        select.appendChild(option);
+        select.value = newBod; 
     }
 
     function removeDevice(event) {
