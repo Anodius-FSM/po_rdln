@@ -277,6 +277,12 @@ const utils = (() => {
         //     return sortingArr.indexOf(a.type) - sortingArr.indexOf(b.type);
         //   }
         //itemsArray.sort(sortFunc);
+
+        // let sorting = (a,b) => {
+        //     if
+        // }
+
+
         console.log("🚀 ~ showDeviceData ~ data:", data)
         const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
         zariadenie.forEach(z => {
@@ -289,9 +295,9 @@ const utils = (() => {
             m.model === 'null' ? m.model = null : m.model = m.model;
             m.ine === 'null' ? m.ine = null : m.ine = m.ine
         });
-        zariadenie.sort((a, b) => a.model.localeCompare(b.model));
+        zariadenie.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
         console.log("🚀 ~ showDeviceData ~ zariadenie:", zariadenie)
-        materialy.sort((a, b) => a.model.localeCompare(b.model)); 
+        materialy.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1); 
         console.log("🚀 ~ showDeviceData ~ materialy:", materialy)
         const all = [...zariadenie, ...materialy];
         console.log("🚀 ~ showDeviceData ~ all:", all)
