@@ -271,8 +271,24 @@ const utils = (() => {
     }
 
     function showDeviceData(data) {
+                //data.sort((a, b) => a.city.localeCompare(b.city) || b.price - a.price);
+        // function sortFunc(a, b) {
+        //     var sortingArr = ["A", "B", "C"];
+        //     return sortingArr.indexOf(a.type) - sortingArr.indexOf(b.type);
+        //   }
+        //itemsArray.sort(sortFunc);
+        const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
+        console.log("🚀 ~ showDeviceData ~ data:", data)
+        const materialy = data.filter(d => s.typ = 'MATERIAL');
+        zariadenie.sort((a, b) => a.model - b.model);
+        console.log("🚀 ~ showDeviceData ~ zariadenie:", zariadenie)
+        materialy.sort((a, b) => a.model - b.model); 
+        console.log("🚀 ~ showDeviceData ~ materialy:", materialy)
+        const all = [...zariadenie, ...materialy];
+        console.log("🚀 ~ showDeviceData ~ all:", all)
+
         let deviceData = '';
-        data.forEach(d => {
+        all.forEach(d => {
             deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;
             if (d.model !== 'null' && d.ine !== 'null') {
                 deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`;
