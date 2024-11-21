@@ -252,6 +252,8 @@ td {
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+    height: 300px;
+    border: 1px white solid;
 }
 
 .left {
