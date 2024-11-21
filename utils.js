@@ -277,13 +277,14 @@ const utils = (() => {
         //     return sortingArr.indexOf(a.type) - sortingArr.indexOf(b.type);
         //   }
         //itemsArray.sort(sortFunc);
+        console.log("🚀 ~ showDeviceData ~ data:", data)
         const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
         zariadenie.forEach(z => {
             z.model === 'null' ? z.model = null : z.model = z.model;
             z.ine === 'null' ? z.ine = null : z.ine = z.ine
         } );
-        console.log("🚀 ~ showDeviceData ~ data:", data)
-        const materialy = data.filter(d => d.typ = 'MATERIAL');
+       
+        const materialy = data.filter(d => d.typ === 'MATERIAL');
         materialy.forEach(m => {
             m.model === 'null' ? m.model = null : m.model = m.model;
             m.ine === 'null' ? m.ine = null : m.ine = m.ine
