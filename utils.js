@@ -187,6 +187,7 @@ const utils = (() => {
     function fillStaticData(inputData, toIgnore) {
         const inputKeys = Object.keys(inputData);
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
+        const numInputs = ['max_rychlost', 'pocet_technikov', 'cas_install'];
 
         dataKeys.forEach(key => {
             if (key === 'datum_vytvorenia') {
@@ -195,6 +196,8 @@ const utils = (() => {
                 setBackgroundColor(`.${key}`, COLOR_MAP.get(inputData[key]));
                 setBackgroundColor(`#${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
+            } else if (numInputs.includes(key)) {
+                getDomElement(`#${key}`).value = inputData[key];
             } else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
