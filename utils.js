@@ -289,9 +289,9 @@ const utils = (() => {
             m.model === 'null' ? m.model = null : m.model = m.model;
             m.ine === 'null' ? m.ine = null : m.ine = m.ine
         });
-        zariadenie.sort((a, b) => a.model - b.model);
+        zariadenie.sort((a, b) => a.model.localeCompare(b.model));
         console.log("🚀 ~ showDeviceData ~ zariadenie:", zariadenie)
-        materialy.sort((a, b) => a.model - b.model); 
+        materialy.sort((a, b) => a.model.localeCompare(b.model)); 
         console.log("🚀 ~ showDeviceData ~ materialy:", materialy)
         const all = [...zariadenie, ...materialy];
         console.log("🚀 ~ showDeviceData ~ all:", all)
