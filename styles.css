@@ -246,14 +246,16 @@ td {
 
 .right {
     position: absolute;
-    top: 400px;
+    top: 200px;
     right: 35px;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
-    height: 300px;
-    border: 1px white solid;
+    line-height: 300px;
+    width: 75px;
+    text-align: center;
+    
 }
 
 .left {
@@ -269,7 +271,13 @@ td {
 .close:hover,
 .close:focus,
 .left:hover,
-.left:focus,
+.left:focus{
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px #444 solid;
+}
+
 .right:hover,
 .right:focus {
     color: #bbb;
