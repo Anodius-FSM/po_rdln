@@ -83,7 +83,11 @@ const utils = (() => {
 
     function closePopup(id) {
         getDomElement(id).style.display = 'none';
-        readPopupDeviceData(id);
+        if (id === '#final_bod_popup') {
+            readNewBodPopupData(id);
+        } else {
+            readPopupDeviceData(id);
+        }
     }
 
     function cancelPopup(id) {
@@ -214,6 +218,10 @@ const utils = (() => {
 
         if (inputData.sluzba_internettv === 'true') {
             getDomElement('#sluzba_internettv').checked = true;
+        } 
+
+        if (inputData.individ_rozpocet === 'true') {
+            getDomElement('#individ_rozpocet').checked = true;
         }
     }
     /**
@@ -241,12 +249,25 @@ const utils = (() => {
         } else if (selectedValue && !useColors) {
             select.value = selectedValue;
         }
+        
+        if (domId === '#bod_final') {
+            let option = document.createElement('option');
+            option.setAttribute('value', 'iny_bod');
+            let optionText = document.createTextNode('Iné');
+            option.appendChild(optionText);
+            select.appendChild(option);
+        }
 
         select.addEventListener('change', () => {
             if (useColors && useColors) {
                 select.style.backgroundColor = COLOR_MAP.get(select.value);
             }
+
+            if (domId === '#bod_final' && select.value == 'iny_bod') {
+                utils.getDomElement('#final_bod_popup').style.display = 'block';
+            }
         });
+
     }
 
     function showDeviceData(data) {
@@ -322,6 +343,11 @@ const utils = (() => {
         let removeCell = row.insertCell(1);
         removeCell.innerHTML = '<button onclick="utils.removeDevice(event)" class="device-button">-</button>';
         removeCell.classList.add('right-align');
+    }
+
+    function readNewBodPopupData(id) {
+        let newBod = getDomElement('#new_final_bod').value;
+        getDomElement('#bod_final').value = newBod; 
     }
 
     function removeDevice(event) {

@@ -118,7 +118,7 @@
                         <input type="number" min="0" max="100" name="cas_install" id="cas_install">
                     </p>
                     <p>Individuálny rozpočet</p>
-                    <p class="center-align"><span id="individ_rozpocet"></span></p>   
+                    <p class="center-align"><input type="checkbox" name="" id="individ_rozpocet"></p>   
                     <p>Typ rebríka</p>
                     <p class="center-align"><textarea cols="20" rows="3" id="rebrik"></textarea></p>
                 </div>
@@ -220,6 +220,12 @@
         <input type="number" min="0" max="999" name="eternet_dlzka" id="eternet_dlzka">
         <button class="save-button" id="eternet_button" onclick="utils.closePopup('#eternet_popup')">Potvrdiť</button>
         <button class="save-button" onclick="utils.cancelPopup('#eternet_popup')">Zrušiť</button>
+    </div>
+
+    <div class="popup center-align" id="final_bod_popup">
+        <textarea cols="45" rows="2" id="new_final_bod"></textarea>
+        <button class="save-button" id="ine_device_button" onclick="utils.closePopup('#final_bod_popup')">Potvrdiť</button>
+        <button class="save-button" onclick="utils.cancelPopup('#final_bod_popup')">Zrušiť</button>
     </div>
 
 
