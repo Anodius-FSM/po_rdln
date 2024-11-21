@@ -285,7 +285,7 @@ td {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
-    border: 1px #444 solid;
+    
 }
 
 .right:hover,
@@ -293,6 +293,7 @@ td {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+    border: 1px #444 solid;
 }
 
 
