@@ -1,7 +1,5 @@
 const utils = (() => {
 
-    const PHOTOS = [];
-
     const COLOR_MAP = new Map([
         ['PREBIEHA', '#FFFF00'],
         ['KONTROLA', '#FFFF00'],
@@ -147,7 +145,7 @@ const utils = (() => {
      * 
      * @param {[string]} imgId 
      */
-    function setUpModal(imgId) {
+    function setUpModal(imgId, navId) {
         getDomElement(imgId).onclick = (e) => {
             let modal = getDomElement('#myModal');
             // insert the image to the modal
@@ -168,42 +166,47 @@ const utils = (() => {
         }
 
         getDomElement('.nav-right').onclick = ()  => {
-            console.log(imgId);
-            console.log(PHOTOS);
+            let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+            let imgToNavigate = [];
+            imgTagsToNavigate.forEach( i => {
+                imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+            });
+            console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+
+            let lastIndex = imgToNavigate.length - 1;
+            let currentIndex = imgToNavigate.map(e => e.id).indexOf(navId);
+
+            let nextIndex = currentIndex != lastIndex ? currentIndex + 1 : 0;
+
+            let modalImg = getDomElement('#img01');
+            let captionText = getDomElement('#caption');
+
+            modalImg.src = imgToNavigate[nextIndex].src;
+            captionText.innerHTML = imgToNavigate[nextIndex].description;
         }
 
         getDomElement('.nav-left').onclick = ()  => {
-            console.log(imgId);
-            console.log(PHOTOS);
+
         }
 
     }
 
-    async function displayPhotos(data) {  //id, description, blob
-        console.log("🚀 ~ displayPhotos ~ data:", data)
-        console.log("🚀 ~ displayPhotos ~ data is Array: ", Array.isArray(data));
-        console.log("🚀 ~ displayPhotos ~ data: obj key ", Object.keys(data));
-        console.log("🚀 ~ displayPhotos ~ data: obj.value ", Object.values(data));
-        PHOTOS.push(data);
-        
-        data.sort((a,b) => a.index - b.index);
-        console.log("🚀 ~ displayPhotos ~ data- sorted:", data)
-        data.forEach(async d => {
-            console.log("🚀 ~ displayPhotos ~ d:", d);
+    async function displayPhotos(id, description, blob) {  //id, description, blob
             const photoContainer = getDomElement('.photos');
             let img = document.createElement('img');
-            img.setAttribute('id', `x${d.id}`); // add x before id => querySelector for ID :  cannot start with a digit
-            img.setAttribute('data-id',`${d.id}`);
-            img.setAttribute('data-index', `${d.index}`)
+            img.setAttribute('class', 'navigate_img');
+            img.setAttribute('id', `x${id}`); // add x before id => querySelector for ID :  cannot start with a digit
+            img.setAttribute('data-id',`${id}`);
+            img.setAttribute('data-description', `${description}`);
+
             img.classList.add('thumbnail');
-            img.setAttribute('alt', d.description);
-            let objUrl = URL.createObjectURL(d.blob);
+            img.setAttribute('alt', description);
+            let objUrl = URL.createObjectURL(blob);
             img.setAttribute('src', objUrl);
     
             photoContainer.appendChild(img);
     
-            setUpModal(`#x${d.id}`);
-        });
+            setUpModal(`#x${id}`, id);
     }
 
     function createTableBody(tableId, headerArray, data) {

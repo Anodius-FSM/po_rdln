@@ -12,7 +12,7 @@ const my_extension = (() => {
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
-                //const photos = await common.fetchPhotos(serviceCallId);
+                const photos = await common.fetchPhotos(serviceCallId);
                 // const photosV2 = await common.fetchPhotosV2(serviceCallId);
                 // console.log("🚀 ~ startExtension ~ photosV2:", photosV2)
 
@@ -36,13 +36,11 @@ const my_extension = (() => {
                     utils.showDeviceData(deviceData); 
                 }
 
-                //if (photosV2) {
-                    // photos.forEach(photoData => {
-                    //     common.fetchPhoto(photoData);
-                    // });
-
-                    await utils.displayPhotos(await common.fetchPhotosV2(serviceCallId));
-              //  }
+                if (photos) {
+                    photos.forEach(photoData => {
+                        common.fetchPhoto(photoData);
+                    });
+                }
 
                 if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {
                     utils.disableEdit();
