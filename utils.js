@@ -167,18 +167,22 @@ const utils = (() => {
 
     }
 
-    function displayPhotos(id, description, blob) {
-        const photoContainer = getDomElement('.photos');
-        let img = document.createElement('img');
-        img.setAttribute('id', `x${id}`); // add x before id => querySelector for ID :  cannot start with a digit
-        img.classList.add('thumbnail');
-        img.setAttribute('alt', description);
-        let objUrl = URL.createObjectURL(blob);
-        img.setAttribute('src', objUrl);
-
-        photoContainer.appendChild(img);
-
-        setUpModal(`#x${id}`);
+    function displayPhotos(data) {  //id, description, blob
+        data.forEach(d => {
+            const photoContainer = getDomElement('.photos');
+            let img = document.createElement('img');
+            img.setAttribute('id', `x${data.id}`); // add x before id => querySelector for ID :  cannot start with a digit
+            img.setAttribute('data-id',`${data.id}`);
+            img.setAttribute('data-index', `${data.index}`)
+            img.classList.add('thumbnail');
+            img.setAttribute('alt', data.description);
+            let objUrl = URL.createObjectURL(data.blob);
+            img.setAttribute('src', objUrl);
+    
+            photoContainer.appendChild(img);
+    
+            setUpModal(`#x${id}`);
+        });
     }
 
     function createTableBody(tableId, headerArray, data) {

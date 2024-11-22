@@ -370,7 +370,7 @@ const common = (() => {
         const returnPhotos = [];
 
         photoDataV2.forEach( async (data, index) => {
-            returnPhotos.push({ index, id: data.id, photo: await fetchPhotoV2(data) });
+            returnPhotos.push({ index, id: data.id, description: data.description  ,blob: await fetchPhotoV2(data) });
         });
 
         return returnPhotos;
