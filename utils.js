@@ -161,6 +161,11 @@ const utils = (() => {
         getDomElement('.close').onclick = () => {
             getDomElement('#myModal').style.display = 'none';
         }
+
+        getDomElement('.deleteImg').onclick = () => {
+            utils.getDomElement('#delete_photo_popup').style.display = 'block';
+        }
+
     }
 
     function displayPhotos(id, description, blob) {
