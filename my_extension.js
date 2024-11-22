@@ -41,6 +41,7 @@ const my_extension = (() => {
                     //     common.fetchPhoto(photoData);
                     // });
                     utils.displayPhotos(photosV2);
+                    utils.PHOTOS = photosV2;
                 }
 
                 if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {

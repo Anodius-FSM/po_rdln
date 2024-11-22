@@ -244,7 +244,7 @@ td {
     transition: 0.3s;
 }
 
-.right {
+.nav-right {
     position: absolute;
     top: 300px;
     right: 35px;
@@ -254,7 +254,7 @@ td {
     transition: 0.3s;    
 }
 
-.left {
+.nav-left {
     position: absolute;
     top: 300px;
     left: 35px;
@@ -278,18 +278,17 @@ td {
 }
 .close:hover,
 .close:focus,
-.left:hover,
-.left:focus, 
 .deleteImg:hover,
 .deleteImg:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
-    
 }
 
-.right:hover,
-.right:focus {
+.nav-left:hover,
+.nav-left:focus, 
+.nav-right:hover,
+.nav-right:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;

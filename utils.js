@@ -1,5 +1,7 @@
 const utils = (() => {
 
+    const PHOTOS = null;
+
     const COLOR_MAP = new Map([
         ['PREBIEHA', '#FFFF00'],
         ['KONTROLA', '#FFFF00'],
@@ -163,6 +165,14 @@ const utils = (() => {
 
         getDomElement('.deleteImg').onclick = () => {
             utils.getDomElement('#delete_photo_popup').style.display = 'block';
+        }
+
+        getDomElement('.nav-right').onclick = ()  => {
+            console.log(imgId);
+        }
+
+        getDomElement('.nav-left').onclick = ()  => {
+            console.log(imgId);
         }
 
     }
@@ -467,6 +477,7 @@ const utils = (() => {
         removeDevice,
         getDevicesFromUi,
         cancelPopup,
-        disableEdit
+        disableEdit,
+        PHOTOS
     }
 })();
