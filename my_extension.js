@@ -40,6 +40,12 @@ const my_extension = (() => {
                     // photos.forEach(photoData => {
                     //     common.fetchPhoto(photoData);
                     // });
+
+                    Promise.resolve(photosV2).then(data => {
+                        console.log('This is a promice, the data is: ', data);
+                    });
+
+
                     utils.displayPhotos(photosV2);
                     utils.PHOTOS = photosV2;
                 }
