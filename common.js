@@ -405,7 +405,7 @@ const common = (() => {
                ...await common.getSearchParams(),
                forceDelete: true 
             }), {
-                method: 'POST',
+                method: 'DELETE',
                 headers: await common.getHeaders()
             }
         );
