@@ -283,7 +283,6 @@ const utils = (() => {
         //   }
         //itemsArray.sort(sortFunc);
 
-        console.log("🚀 ~ showDeviceData ~ data:", data)
         const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
         zariadenie.forEach(z => {
             z.model === 'null' ? z.model = null : z.model = z.model;
@@ -296,9 +295,7 @@ const utils = (() => {
             m.ine === 'null' ? m.ine = null : m.ine = m.ine
         });
         zariadenie.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
-        console.log("🚀 ~ showDeviceData ~ zariadenie:", zariadenie)
         materialy.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1); 
-        console.log("🚀 ~ showDeviceData ~ materialy:", materialy)
 
         const zariadenieModel = zariadenie.filter(d => d.model !== null);
         const zariadenieNull = zariadenie.filter(d => d.model === null);
@@ -306,7 +303,6 @@ const utils = (() => {
         const materialModel = materialy.filter(d => d.model !== null);
         const materialNull = materialy.filter(d => d.model === null);
         const all = [...zariadenieModel, ...zariadenieNull, ...materialModel, ...materialNull];
-        console.log("🚀 ~ showDeviceData ~ all:", all)
 
         let deviceData = '';
         all.forEach(d => {
