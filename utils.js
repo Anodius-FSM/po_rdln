@@ -141,21 +141,27 @@ const utils = (() => {
         bodSet.forEach((value1, value2) => retObj[value1] = value2);
         return retObj;
     }
-    function goForward() {
-        let imgTagsToNavigate = [...getDomElements('.navigate_img')];
-        let imgToNavigate = [];
-        imgTagsToNavigate.forEach( i => {
-            imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
-        });
-        console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+    function goForward(next = 0) {
+        let nextIndex = 0;
+        if (next != 0 ) {
+            nextIndex = next;
+        } else {
 
-        let actualImg = getDomElement('#img01');
-        let actualId = actualImg.getAttribute('data-id')
-
-        let lastIndex = imgToNavigate.length - 1;
-        let currentIndex = imgToNavigate.map(e => e.id).indexOf(actualId);
-
-        let nextIndex = currentIndex != lastIndex ? currentIndex + 1 : 0;
+            let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+            let imgToNavigate = [];
+            imgTagsToNavigate.forEach( i => {
+                imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+            });
+            console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+    
+            let actualImg = getDomElement('#img01');
+            let actualId = actualImg.getAttribute('data-id')
+    
+            let lastIndex = imgToNavigate.length - 1;
+            let currentIndex = imgToNavigate.map(e => e.id).indexOf(actualId);
+    
+            nextIndex = currentIndex != lastIndex ? currentIndex + 1 : 0;
+        }    
 
         let captionText = getDomElement('#caption');
 
@@ -185,6 +191,29 @@ const utils = (() => {
         actualImg.src = imgToNavigate[nextIndex].src;
         actualImg.setAttribute('data-id', imgToNavigate[nextIndex].id);
         captionText.innerHTML = imgToNavigate[nextIndex].description;
+    }
+
+    async function deletePhoto() {
+        //deletePhoto
+        let photoToDelete = getDomElement('#img01')
+        let idToDelete = photoToDelete.getAttribute('data-id')
+        let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+        let imgToNavigate = [];
+        imgTagsToNavigate.forEach( i => {
+            imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+        });
+        let lastIndex = imgToNavigate.length - 1;
+        let currentIndex = imgToNavigate.map(e => e.id).indexOf(idToDelete);
+        let imgToLoadAfterDelete = currentIndex != lastIndex ? currentIndex + 1 : 0;
+        closePopup('#delete_photo_popup');
+        const deleted = await common.deletePhoto(idToDelete);
+
+        if (deleted) {
+            photoToDelete.remove();
+            goForward(imgToLoadAfterDelete);
+        }
+
+
     }
     /**
      * 
@@ -515,6 +544,7 @@ const utils = (() => {
         cancelPopup,
         disableEdit,
         goForward,
-        goBackward
+        goBackward,
+        deletePhoto
     }
 })();

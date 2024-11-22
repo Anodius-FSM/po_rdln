@@ -397,11 +397,26 @@ const common = (() => {
 
     /**
      * 
-     * @param {
-     * } generalData 
-     * @param {*} deviceData 
-     * @param {*} serviceCallId 
+     ********************************************************************************************* forceDelete=true
      */
+    async function deletePhoto(photoId) {
+        const response = await fetch(
+            `https://eu.fsm.cloud.sap/api/data/v4/Attachment/${photoId}/?` + new URLSearchParams({
+               ...await common.getSearchParams(),
+               forceDelete: true 
+            }), {
+                method: 'POST',
+                headers: await common.getHeaders()
+            }
+        );
+
+        if (!response.ok) {
+            console.log("🚀 ~ deletePhoto ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to delete photo, got status ${response.status}`);
+        }
+        return response.status;
+    }
+
 
     async function saveChanges(generalData, deviceData, serviceCallId) {
         let dataToSave = {};
@@ -563,7 +578,7 @@ const common = (() => {
         fetchPhotos,
         fetchPhoto,
         saveChanges,
-        fetchPhotosV2
+        deletePhoto
     }
 
 })();
