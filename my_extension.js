@@ -36,18 +36,13 @@ const my_extension = (() => {
                     utils.showDeviceData(deviceData); 
                 }
 
-                if (photosV2) {
+                //if (photosV2) {
                     // photos.forEach(photoData => {
                     //     common.fetchPhoto(photoData);
                     // });
 
-                    // Promise.resolve(photosV2).then(data => {
-                    //     console.log('This is a promice, the data is: ', data);
-                    //     console.log('This is a promice, the data length: ', data.length);
-                    // });
-
                     await utils.displayPhotos(await common.fetchPhotosV2(serviceCallId));
-                }
+              //  }
 
                 if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {
                     utils.disableEdit();
