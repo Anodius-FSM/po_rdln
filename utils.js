@@ -169,16 +169,23 @@ const utils = (() => {
 
         getDomElement('.nav-right').onclick = ()  => {
             console.log(imgId);
+            console.log(PHOTOS);
         }
 
         getDomElement('.nav-left').onclick = ()  => {
             console.log(imgId);
+            console.log(PHOTOS);
         }
 
     }
 
     function displayPhotos(data) {  //id, description, blob
+        console.log("🚀 ~ displayPhotos ~ data:", data)
+        
+        data.sort((a,b) => a.index - b.index);
+        console.log("🚀 ~ displayPhotos ~ data- sorted:", data)
         data.forEach(d => {
+            console.log("🚀 ~ displayPhotos ~ d:", d)
             const photoContainer = getDomElement('.photos');
             let img = document.createElement('img');
             img.setAttribute('id', `x${d.id}`); // add x before id => querySelector for ID :  cannot start with a digit
@@ -191,7 +198,7 @@ const utils = (() => {
     
             photoContainer.appendChild(img);
     
-            setUpModal(`#x${id}`);
+            setUpModal(`#x${d.id}`);
         });
     }
 
