@@ -141,6 +141,51 @@ const utils = (() => {
         bodSet.forEach((value1, value2) => retObj[value1] = value2);
         return retObj;
     }
+    function goForward() {
+        let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+        let imgToNavigate = [];
+        imgTagsToNavigate.forEach( i => {
+            imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+        });
+        console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+
+        let actualImg = getDomElement('#img01');
+        let actualId = actualImg.getAttribute('data-id')
+
+        let lastIndex = imgToNavigate.length - 1;
+        let currentIndex = imgToNavigate.map(e => e.id).indexOf(actualId);
+
+        let nextIndex = currentIndex != lastIndex ? currentIndex + 1 : 0;
+
+        let captionText = getDomElement('#caption');
+
+        actualImg.src = imgToNavigate[nextIndex].src;
+        actualImg.setAttribute('data-id', imgToNavigate[nextIndex].id);
+        captionText.innerHTML = imgToNavigate[nextIndex].description;
+    }
+//let nextIndex = currentIndex != 0 ? currentIndex - 1 : lastIndex;
+    function goBackward() {
+        let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+        let imgToNavigate = [];
+        imgTagsToNavigate.forEach( i => {
+            imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+        });
+        console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+
+        let actualImg = getDomElement('#img01');
+        let actualId = actualImg.getAttribute('data-id')
+
+        let lastIndex = imgToNavigate.length - 1;
+        let currentIndex = imgToNavigate.map(e => e.id).indexOf(actualId);
+
+        let nextIndex = currentIndex != 0 ? currentIndex - 1 : lastIndex;
+
+        let captionText = getDomElement('#caption');
+
+        actualImg.src = imgToNavigate[nextIndex].src;
+        actualImg.setAttribute('data-id', imgToNavigate[nextIndex].id);
+        captionText.innerHTML = imgToNavigate[nextIndex].description;
+    }
     /**
      * 
      * @param {[string]} imgId 
@@ -153,6 +198,7 @@ const utils = (() => {
             let captionText = getDomElement('#caption');
             modal.style.display = 'block';
             modalImg.src = e.srcElement.currentSrc;
+            modalImg.setAttribute('data-id', `${navId}`);
             captionText.innerHTML = e.srcElement.alt;
         }
 
@@ -163,48 +209,6 @@ const utils = (() => {
 
         getDomElement('.deleteImg').onclick = () => {
             utils.getDomElement('#delete_photo_popup').style.display = 'block';
-        }
-
-        getDomElement('.nav-right').onclick = ()  => {
-            let imgTagsToNavigate = [...getDomElements('.navigate_img')];
-            let imgToNavigate = [];
-            imgTagsToNavigate.forEach( i => {
-                imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
-            });
-            console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
-
-            let lastIndex = imgToNavigate.length - 1;
-            let currentIndex = imgToNavigate.map(e => e.id).indexOf(navId);
-
-            let nextIndex = currentIndex != lastIndex ? currentIndex + 1 : 0;
-
-            let modalImg = getDomElement('#img01');
-            let captionText = getDomElement('#caption');
-
-            modalImg.src = imgToNavigate[nextIndex].src;
-            captionText.innerHTML = imgToNavigate[nextIndex].description;
-        }
-
-        getDomElement('.nav-left').onclick = ()  => {
-
-            let imgTagsToNavigate = [...getDomElements('.navigate_img')];
-            let imgToNavigate = [];
-            imgTagsToNavigate.forEach( i => {
-                imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
-            });
-            console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
-
-            let lastIndex = imgToNavigate.length - 1;
-            let currentIndex = imgToNavigate.map(e => e.id).indexOf(navId);
-
-            let nextIndex = currentIndex != 0 ? currentIndex - 1 : lastIndex;
-
-            let modalImg = getDomElement('#img01');
-            let captionText = getDomElement('#caption');
-
-            modalImg.src = imgToNavigate[nextIndex].src;
-            captionText.innerHTML = imgToNavigate[nextIndex].description;
-
         }
 
     }
@@ -224,7 +228,7 @@ const utils = (() => {
     
             photoContainer.appendChild(img);
     
-            setUpModal(`#x${id}`, id);
+            setUpModal(`#x${id}`, `${id}`);
     }
 
     function createTableBody(tableId, headerArray, data) {
@@ -509,6 +513,8 @@ const utils = (() => {
         removeDevice,
         getDevicesFromUi,
         cancelPopup,
-        disableEdit
+        disableEdit,
+        goForward,
+        goBackward
     }
 })();
