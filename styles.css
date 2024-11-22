@@ -246,13 +246,13 @@ td {
 
 .right {
     position: absolute;
-    top: 200px;
+    top: 300px;
     right: 35px;
     color: #f1f1f1;
-    font-size: 40px;
+    font-size: 70px;
     font-weight: bold;
     transition: 0.3s;
-    line-height: 300px;
+    line-height: 200vh;
     width: 75px;
     text-align: center;
     

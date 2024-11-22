@@ -58,7 +58,8 @@ const utils = (() => {
     ]);
 
     const EDITABLE_FIELDS = ['sluzba_internet', 'sluzba_internettv', 'bod_final', 'install_technik',
-        'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik'];
+        'uspesna', 'narocnost', 'poznamka_kontrolora', 'rebrik', 'max_rychlost', 'pocet_technikov', 'cas_install',
+        'poznamka_technika', 'individ_rozpocet'];
     /**
      * Úspešná': 'ANO','Neúspešná
      * @param {string} id: DOM elements id 
@@ -397,7 +398,7 @@ const utils = (() => {
         let returnData = {};
         EDITABLE_FIELDS.forEach(field => {
             let fieldTag = getDomElement(`#${field}`);
-            if (field === 'sluzba_internet' || field === 'sluzba_internettv') {
+            if (field === 'sluzba_internet' || field === 'sluzba_internettv' || field === 'individ_rozpocet') {
                 returnData[field] = fieldTag.checked ? 'true' : 'false';
             } else {
                 returnData[field] = fieldTag.value;
