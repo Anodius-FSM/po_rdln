@@ -181,8 +181,10 @@ const utils = (() => {
 
     function displayPhotos(data) {  //id, description, blob
         console.log("🚀 ~ displayPhotos ~ data:", data)
-        console.log("🚀 ~ displayPhotos ~ data:", typeof data)
-        console.log([...data]);
+        console.log("🚀 ~ displayPhotos ~ data is Array: ", Array.isArray(data));
+        console.log("🚀 ~ displayPhotos ~ data: obj key ", Object.keys(data));
+        console.log("🚀 ~ displayPhotos ~ data: obj.value ", Object.values(data));
+        
         data.sort((a,b) => a.index - b.index);
         console.log("🚀 ~ displayPhotos ~ data- sorted:", data)
         data.forEach(d => {
