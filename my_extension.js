@@ -13,8 +13,8 @@ const my_extension = (() => {
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
                 //const photos = await common.fetchPhotos(serviceCallId);
-                const photosV2 = await common.fetchPhotosV2(serviceCallId);
-                console.log("🚀 ~ startExtension ~ photosV2:", photosV2)
+                // const photosV2 = await common.fetchPhotosV2(serviceCallId);
+                // console.log("🚀 ~ startExtension ~ photosV2:", photosV2)
 
                 if (generalData) {
                     utils.fillStaticData(generalData[0], ['udoValueId','sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik' ]);
@@ -41,12 +41,12 @@ const my_extension = (() => {
                     //     common.fetchPhoto(photoData);
                     // });
 
-                    Promise.resolve(photosV2).then(data => {
-                        console.log('This is a promice, the data is: ', data);
-                        console.log('This is a promice, the data length: ', data.length);
-                    });
+                    // Promise.resolve(photosV2).then(data => {
+                    //     console.log('This is a promice, the data is: ', data);
+                    //     console.log('This is a promice, the data length: ', data.length);
+                    // });
 
-                    await utils.displayPhotos(photosV2);
+                    await utils.displayPhotos(await common.fetchPhotosV2(serviceCallId));
                 }
 
                 if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {
