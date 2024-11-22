@@ -44,7 +44,6 @@ const my_extension = (() => {
                     Promise.resolve(photosV2).then(data => {
                         console.log('This is a promice, the data is: ', data);
                         console.log('This is a promice, the data length: ', data.length);
-                        data.forEach(d => console.log(d));
                     });
 
 

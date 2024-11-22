@@ -187,7 +187,7 @@ const utils = (() => {
         
         data.sort((a,b) => a.index - b.index);
         console.log("🚀 ~ displayPhotos ~ data- sorted:", data)
-        data.forEach(d => {
+        data.forEach(async d => {
             console.log("🚀 ~ displayPhotos ~ d:", d);
             const photoContainer = getDomElement('.photos');
             let img = document.createElement('img');
