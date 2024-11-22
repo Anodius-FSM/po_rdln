@@ -46,9 +46,7 @@ const my_extension = (() => {
                         console.log('This is a promice, the data length: ', data.length);
                     });
 
-
-                    utils.displayPhotos(photosV2);
-                    utils.PHOTOS = photosV2;
+                    await utils.displayPhotos(photosV2);
                 }
 
                 if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {

@@ -179,11 +179,12 @@ const utils = (() => {
 
     }
 
-    function displayPhotos(data) {  //id, description, blob
+    async function displayPhotos(data) {  //id, description, blob
         console.log("🚀 ~ displayPhotos ~ data:", data)
         console.log("🚀 ~ displayPhotos ~ data is Array: ", Array.isArray(data));
         console.log("🚀 ~ displayPhotos ~ data: obj key ", Object.keys(data));
         console.log("🚀 ~ displayPhotos ~ data: obj.value ", Object.values(data));
+        PHOTOS = data;
         
         data.sort((a,b) => a.index - b.index);
         console.log("🚀 ~ displayPhotos ~ data- sorted:", data)
