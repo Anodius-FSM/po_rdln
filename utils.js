@@ -143,25 +143,23 @@ const utils = (() => {
     }
     function goForward(next = 0) {
         let nextIndex = 0;
-        if (next != 0 ) {
+        let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+        let imgToNavigate = [];
+        imgTagsToNavigate.forEach(i => {
+            imgToNavigate.push({ id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src })
+        });
+        console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+
+        let actualImg = getDomElement('#img01');
+        let actualId = actualImg.getAttribute('data-id')
+
+        let lastIndex = imgToNavigate.length - 1;
+        let currentIndex = imgToNavigate.map(e => e.id).indexOf(actualId);
+        if (next != 0) {
             nextIndex = next;
         } else {
-
-            let imgTagsToNavigate = [...getDomElements('.navigate_img')];
-            let imgToNavigate = [];
-            imgTagsToNavigate.forEach( i => {
-                imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
-            });
-            console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
-    
-            let actualImg = getDomElement('#img01');
-            let actualId = actualImg.getAttribute('data-id')
-    
-            let lastIndex = imgToNavigate.length - 1;
-            let currentIndex = imgToNavigate.map(e => e.id).indexOf(actualId);
-    
             nextIndex = currentIndex != lastIndex ? currentIndex + 1 : 0;
-        }    
+        }
 
         let captionText = getDomElement('#caption');
 
@@ -169,12 +167,12 @@ const utils = (() => {
         actualImg.setAttribute('data-id', imgToNavigate[nextIndex].id);
         captionText.innerHTML = imgToNavigate[nextIndex].description;
     }
-//let nextIndex = currentIndex != 0 ? currentIndex - 1 : lastIndex;
+    //let nextIndex = currentIndex != 0 ? currentIndex - 1 : lastIndex;
     function goBackward() {
         let imgTagsToNavigate = [...getDomElements('.navigate_img')];
         let imgToNavigate = [];
-        imgTagsToNavigate.forEach( i => {
-            imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+        imgTagsToNavigate.forEach(i => {
+            imgToNavigate.push({ id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src })
         });
         console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
 
@@ -199,8 +197,8 @@ const utils = (() => {
         let idToDelete = photoToDelete.getAttribute('data-id')
         let imgTagsToNavigate = [...getDomElements('.navigate_img')];
         let imgToNavigate = [];
-        imgTagsToNavigate.forEach( i => {
-            imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+        imgTagsToNavigate.forEach(i => {
+            imgToNavigate.push({ id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src })
         });
         let lastIndex = imgToNavigate.length - 1;
         let currentIndex = imgToNavigate.map(e => e.id).indexOf(idToDelete);
@@ -243,21 +241,21 @@ const utils = (() => {
     }
 
     async function displayPhotos(id, description, blob) {  //id, description, blob
-            const photoContainer = getDomElement('.photos');
-            let img = document.createElement('img');
-            img.setAttribute('class', 'navigate_img');
-            img.setAttribute('id', `x${id}`); // add x before id => querySelector for ID :  cannot start with a digit
-            img.setAttribute('data-id',`${id}`);
-            img.setAttribute('data-description', `${description}`);
+        const photoContainer = getDomElement('.photos');
+        let img = document.createElement('img');
+        img.setAttribute('class', 'navigate_img');
+        img.setAttribute('id', `x${id}`); // add x before id => querySelector for ID :  cannot start with a digit
+        img.setAttribute('data-id', `${id}`);
+        img.setAttribute('data-description', `${description}`);
 
-            img.classList.add('thumbnail');
-            img.setAttribute('alt', description);
-            let objUrl = URL.createObjectURL(blob);
-            img.setAttribute('src', objUrl);
-    
-            photoContainer.appendChild(img);
-    
-            setUpModal(`#x${id}`, `${id}`);
+        img.classList.add('thumbnail');
+        img.setAttribute('alt', description);
+        let objUrl = URL.createObjectURL(blob);
+        img.setAttribute('src', objUrl);
+
+        photoContainer.appendChild(img);
+
+        setUpModal(`#x${id}`, `${id}`);
     }
 
     function createTableBody(tableId, headerArray, data) {
@@ -302,7 +300,7 @@ const utils = (() => {
 
         if (inputData.sluzba_internettv === 'true') {
             getDomElement('#sluzba_internettv').checked = true;
-        } 
+        }
 
         if (inputData.individ_rozpocet === 'true') {
             getDomElement('#individ_rozpocet').checked = true;
@@ -333,7 +331,7 @@ const utils = (() => {
         } else if (selectedValue && !useColors) {
             select.value = selectedValue;
         }
-        
+
         if (domId === '#bod_final') {
             let option = document.createElement('option');
             option.setAttribute('value', 'iny_bod');
@@ -355,7 +353,7 @@ const utils = (() => {
     }
 
     function showDeviceData(data) {
-                //data.sort((a, b) => a.city.localeCompare(b.city) || b.price - a.price);
+        //data.sort((a, b) => a.city.localeCompare(b.city) || b.price - a.price);
         // function sortFunc(a, b) {
         //     var sortingArr = ["A", "B", "C"];
         //     return sortingArr.indexOf(a.type) - sortingArr.indexOf(b.type);
@@ -366,19 +364,19 @@ const utils = (() => {
         zariadenie.forEach(z => {
             z.model === 'null' ? z.model = null : z.model = z.model;
             z.ine === 'null' ? z.ine = null : z.ine = z.ine
-        } );
-       
+        });
+
         const materialy = data.filter(d => d.typ === 'MATERIAL');
         materialy.forEach(m => {
             m.model === 'null' ? m.model = null : m.model = m.model;
             m.ine === 'null' ? m.ine = null : m.ine = m.ine
         });
         zariadenie.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
-        materialy.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1); 
+        materialy.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
 
         const zariadenieModel = zariadenie.filter(d => d.model !== null);
         const zariadenieNull = zariadenie.filter(d => d.model === null);
-        
+
         const materialModel = materialy.filter(d => d.model !== null);
         const materialNull = materialy.filter(d => d.model === null);
         const all = [...zariadenieModel, ...zariadenieNull, ...materialModel, ...materialNull];
@@ -461,11 +459,11 @@ const utils = (() => {
         let newBod = getDomElement('#new_final_bod').value;
         let select = getDomElement('#bod_final');
         let option = document.createElement('option');
-        option.setAttribute('value',newBod);
+        option.setAttribute('value', newBod);
         let optionText = document.createTextNode(newBod);
         option.appendChild(optionText);
         select.appendChild(option);
-        select.value = newBod; 
+        select.value = newBod;
     }
 
     function removeDevice(event) {
