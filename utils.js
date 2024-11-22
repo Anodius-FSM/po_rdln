@@ -150,11 +150,11 @@ const utils = (() => {
         });
         console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
 
+        let actualImg = getDomElement('#img01');
 
         if (next != 0) {
             nextIndex = next;
         } else {
-            let actualImg = getDomElement('#img01');
             let actualId = actualImg.getAttribute('data-id')
 
             let lastIndex = imgToNavigate.length - 1;
