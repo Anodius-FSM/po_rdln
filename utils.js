@@ -181,11 +181,12 @@ const utils = (() => {
 
     function displayPhotos(data) {  //id, description, blob
         console.log("🚀 ~ displayPhotos ~ data:", data)
-        
+        console.log("🚀 ~ displayPhotos ~ data:", typeof data)
+        console.log([...data]);
         data.sort((a,b) => a.index - b.index);
         console.log("🚀 ~ displayPhotos ~ data- sorted:", data)
         data.forEach(d => {
-            console.log("🚀 ~ displayPhotos ~ d:", d)
+            console.log("🚀 ~ displayPhotos ~ d:", d);
             const photoContainer = getDomElement('.photos');
             let img = document.createElement('img');
             img.setAttribute('id', `x${d.id}`); // add x before id => querySelector for ID :  cannot start with a digit
