@@ -186,7 +186,7 @@ td {
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
+    width: 60%;
     max-width: 80%;
     /*700px;*/
     z-index: 20;
@@ -249,24 +249,22 @@ td {
     top: 300px;
     right: 35px;
     color: #f1f1f1;
-    font-size: 70px;
+    font-size: 60px;
     font-weight: bold;
-    transition: 0.3s;
-    line-height: 200vh;
-    width: 75px;
-    text-align: center;
-    
+    transition: 0.3s;    
 }
 
 .left {
     position: absolute;
-    top: 400px;
+    top: 300px;
     left: 35px;
     color: #f1f1f1;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
     transition: 0.3s;
-
+    line-height: 100vh;
+    width: 65px;
+    text-align: center;
 }
 
 .deleteImg {

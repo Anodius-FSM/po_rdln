@@ -171,12 +171,12 @@ const utils = (() => {
         data.forEach(d => {
             const photoContainer = getDomElement('.photos');
             let img = document.createElement('img');
-            img.setAttribute('id', `x${data.id}`); // add x before id => querySelector for ID :  cannot start with a digit
-            img.setAttribute('data-id',`${data.id}`);
-            img.setAttribute('data-index', `${data.index}`)
+            img.setAttribute('id', `x${d.id}`); // add x before id => querySelector for ID :  cannot start with a digit
+            img.setAttribute('data-id',`${d.id}`);
+            img.setAttribute('data-index', `${d.index}`)
             img.classList.add('thumbnail');
-            img.setAttribute('alt', data.description);
-            let objUrl = URL.createObjectURL(data.blob);
+            img.setAttribute('alt', d.description);
+            let objUrl = URL.createObjectURL(d.blob);
             img.setAttribute('src', objUrl);
     
             photoContainer.appendChild(img);
