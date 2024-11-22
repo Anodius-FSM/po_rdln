@@ -331,6 +331,78 @@ const common = (() => {
         }
     }
 
+    /**
+     * 
+     * @param {
+     * } photoData 
+     * @returns 
+     */
+
+    async function fetchPhotosV2(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27;Activity.43;Attachment.19;ChecklistInstance.20;ChecklistInstanceElement.24'
+            }), {
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query:
+                    `SELECT at.description AS description,
+                        at.id AS id,
+                        at.type AS type
+                    FROM Attachment at
+                        JOIN ChecklistInstanceElement cie ON at.id = cie.object.objectId
+                        JOIN ChecklistInstance ci ON cie.checklistInstance = ci.id
+                        JOIN Activity ac ON ac.id = ci.object.objectId
+                        JOIN ServiceCall sc ON sc.id = ac.object.objectId
+                    WHERE sc.id = '${serviceCallId}'
+                    AND cie.parentElementId = 'foto_obhliadka'`
+            })
+        }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchPhotos ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch photo data, got status ${response.status}`);
+        }
+
+        const photoDataV2 = (await response.json()).data;
+        const returnPhotos = [];
+
+        photoDataV2.forEach( async (data, index) => {
+            returnPhotos.push({ index, id: data.id, photo: await fetchPhotoV2(data) });
+        });
+
+        return returnPhotos;
+        
+    }
+
+    async function fetchPhotoV2(photoData) {
+        const response = await fetch(
+            `https://eu.fsm.cloud.sap/api/data/v4/Attachment/${photoData.id}/content?` + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'Attachment.19'
+            }), {
+            method: 'GET',
+            headers: await common.getHeaders(`image/${photoData.type};charset=ISO-8859-1`)
+        }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchPhoto ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch photo, got status ${response.status}`);
+        }
+
+        return await response.blob();
+    }
+
+    /**
+     * 
+     * @param {
+     * } generalData 
+     * @param {*} deviceData 
+     * @param {*} serviceCallId 
+     */
+
     async function saveChanges(generalData, deviceData, serviceCallId) {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
@@ -490,7 +562,8 @@ const common = (() => {
         fetchDeviceData,
         fetchPhotos,
         fetchPhoto,
-        saveChanges
+        saveChanges,
+        fetchPhotosV2
     }
 
 })();

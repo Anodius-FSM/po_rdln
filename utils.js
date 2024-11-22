@@ -154,7 +154,6 @@ const utils = (() => {
             modal.style.display = 'block';
             modalImg.src = e.srcElement.currentSrc;
             captionText.innerHTML = e.srcElement.alt;
-
         }
 
         // close the modal

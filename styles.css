@@ -281,7 +281,9 @@ td {
 .close:hover,
 .close:focus,
 .left:hover,
-.left:focus{
+.left:focus, 
+.deleteImg:hover,
+.deleteImg:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;

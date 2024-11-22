@@ -13,6 +13,7 @@ const my_extension = (() => {
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
                 const photos = await common.fetchPhotos(serviceCallId);
+                const photosV2 = await common.fetchPhotosV2(serviceCallId);
 
                 if (generalData) {
                     utils.fillStaticData(generalData[0], ['udoValueId','sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik' ]);
