@@ -187,6 +187,24 @@ const utils = (() => {
 
         getDomElement('.nav-left').onclick = ()  => {
 
+            let imgTagsToNavigate = [...getDomElements('.navigate_img')];
+            let imgToNavigate = [];
+            imgTagsToNavigate.forEach( i => {
+                imgToNavigate.push({id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src})
+            });
+            console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
+
+            let lastIndex = imgToNavigate.length - 1;
+            let currentIndex = imgToNavigate.map(e => e.id).indexOf(navId);
+
+            let nextIndex = currentIndex != 0 ? currentIndex - 1 : lastIndex;
+
+            let modalImg = getDomElement('#img01');
+            let captionText = getDomElement('#caption');
+
+            modalImg.src = imgToNavigate[nextIndex].src;
+            captionText.innerHTML = imgToNavigate[nextIndex].description;
+
         }
 
     }
@@ -491,7 +509,6 @@ const utils = (() => {
         removeDevice,
         getDevicesFromUi,
         cancelPopup,
-        disableEdit,
-        PHOTOS
+        disableEdit
     }
 })();
