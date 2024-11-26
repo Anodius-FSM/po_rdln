@@ -20,7 +20,7 @@ const gps_extractor = (() => {
         reader.onloadend = () => {
             const base64Data = reader.result;
             console.log("🚀 ~ testGPS ~ base64Data:", base64Data);   
-            EXIF.getData(img, function() {
+            EXIF.getData(base64Data, function() {
                         var allMetaData = EXIF.getAllTags(this);
                         
                         let latitude = EXIF.getTag(this, 'GPSLatitude');
@@ -40,7 +40,7 @@ const gps_extractor = (() => {
 
 
 
-        
+        //https://thewebdev.info/2021/10/12/how-to-convert-a-blob-to-a-base64-string-with-javascript/
         // let longitude = null;
         // let latitude = null;
 
