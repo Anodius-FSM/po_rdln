@@ -21,9 +21,12 @@ const gps_extractor = (() => {
         // let latitude = null;
 
         EXIF.getData(photo, function() {
+            var allMetaData = EXIF.getAllTags(this);
+            
             let latitude = EXIF.getTag(this, 'GPSLatitude');
             let longitude =  EXIF.getTag(this, 'GPSLongitude');
             
+            console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
             console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
             console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
         });
