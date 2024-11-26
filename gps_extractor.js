@@ -9,7 +9,7 @@ const gps_extractor = (() => {
 2
 : 
 {description: '33DFD97B4BC20DA35A2BC55E2EBED0A5', id: '33DFD97B4BC20DA35A2BC55E2EBED0A5', type: 'JPEG'}
- * 
+ *  https://getaround.tech/exif-data-manipulation-javascript/
  * 
  */
 
