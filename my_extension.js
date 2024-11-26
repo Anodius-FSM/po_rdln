@@ -47,6 +47,11 @@ const my_extension = (() => {
                 if (generalData[0].stav == 'ZRIADITELNA' || generalData[0].stav == 'ZMENA_SLUZBY' || generalData[0].stav == 'NEZRIADITELNA') {
                     utils.disableEdit();
                 }
+
+                /***
+                 * testing gps extraction
+                 */
+                await gps_extractor.testGPS();
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)

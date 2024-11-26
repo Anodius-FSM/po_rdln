@@ -577,6 +577,7 @@ const common = (() => {
         fetchDeviceData,
         fetchPhotos,
         fetchPhoto,
+        fetchPhotoV2,
         saveChanges,
         deletePhoto
     }
