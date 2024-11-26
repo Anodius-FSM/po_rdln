@@ -15,7 +15,7 @@ const gps_extractor = (() => {
 
     async function testGPS() {
         const photo = await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'})
-        console.log("🚀 ~ testGPS ~ photo:", photo);
+        console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀 ~ testGPS ~ photo:");
         
         // let longitude = null;
         // let latitude = null;
@@ -30,7 +30,14 @@ const gps_extractor = (() => {
             let base64string = reader.result;
             console.log("🚀 ~ testGPS ~ base64string:", base64string);
             let image = new Image();
+
+            image.onload = function() {
+               EXIF.getData(image, function() {
+                    alert(EXIF.pretty(this))
+               }); 
+            };
             image.src = base64string;
+            
             EXIF.getData(image, function() {
                 var allMetaData = EXIF.getAllTags(this);
                 
@@ -42,9 +49,6 @@ const gps_extractor = (() => {
                 console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
             });
         }
-
-
-        
     }
 
     return {
