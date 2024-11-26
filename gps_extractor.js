@@ -16,12 +16,14 @@ const gps_extractor = (() => {
     async function testGPS() {
         const photo = await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'})
         console.log("🚀 ~ testGPS ~ photo:", photo);
-        let objUrl = URL.createObjectURL(photo);
-        console.log("🚀 ~ testGPS ~ objUrl:", objUrl);
+        
         // let longitude = null;
         // let latitude = null;
 
-        EXIF.getData(objUrl, function() {
+        let image = new Image();
+        image.src = URL.createObjectURL(photo);
+
+        EXIF.getData(image, function() {
             var allMetaData = EXIF.getAllTags(this);
             
             let latitude = EXIF.getTag(this, 'GPSLatitude');
