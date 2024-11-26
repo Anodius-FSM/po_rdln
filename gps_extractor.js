@@ -20,16 +20,18 @@ const gps_extractor = (() => {
         // let longitude = null;
         // let latitude = null;
 
-        let image = new Image();
-        image.src = URL.createObjectURL(photo);
-        console.log("🚀 ~ testGPS ~ image:", image);
+        // let image = new Image();
+        // image.src = URL.createObjectURL(photo);
+        // console.log("🚀 ~ testGPS ~ image:", image);
 
         let reader = new FileReader();
         reader.readAsDataURL(photo);
         reader.onloadend = () => {
             let base64string = reader.result;
             console.log("🚀 ~ testGPS ~ base64string:", base64string);
-            EXIF.getData(base64string, function() {
+            let image = new Image();
+            image.src = base64string;
+            EXIF.getData(image, function() {
                 var allMetaData = EXIF.getAllTags(this);
                 
                 let latitude = EXIF.getTag(this, 'GPSLatitude');
