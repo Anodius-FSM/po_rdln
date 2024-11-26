@@ -22,22 +22,26 @@ const gps_extractor = (() => {
 
         let image = new Image();
         image.src = URL.createObjectURL(photo);
-        console.log("🚀 ~ testGPS ~ image:", image)
+        console.log("🚀 ~ testGPS ~ image:", image);
 
-        EXIF.getData(photo, function() {
-            console.log(EXIF.pretty(this));
-        })
+        let reader = new FileReader();
+        reader.readAsDataURL(photo);
+        reader.onloadend = () => {
+            let base64string = reader.result;
+            console.log("🚀 ~ testGPS ~ base64string:", base64string);
+            EXIF.getData(base64string, function() {
+                var allMetaData = EXIF.getAllTags(this);
+                
+                let latitude = EXIF.getTag(this, 'GPSLatitude');
+                let longitude =  EXIF.getTag(this, 'GPSLongitude');
+                
+                console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
+                console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
+                console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
+            });
+        }
 
-        EXIF.getData(image, function() {
-            var allMetaData = EXIF.getAllTags(this);
-            
-            let latitude = EXIF.getTag(this, 'GPSLatitude');
-            let longitude =  EXIF.getTag(this, 'GPSLongitude');
-            
-            console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
-            console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
-            console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
-        });
+
         
     }
 
@@ -46,3 +50,4 @@ const gps_extractor = (() => {
     }
 
 })();
+            
