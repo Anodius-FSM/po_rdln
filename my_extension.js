@@ -51,7 +51,7 @@ const my_extension = (() => {
                 /***
                  * testing gps extraction
                  */
-                await gps_extractor.testGPS();
+                gps_extractor.testGPS();
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)
