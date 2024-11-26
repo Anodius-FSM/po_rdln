@@ -22,6 +22,11 @@ const gps_extractor = (() => {
 
         let image = new Image();
         image.src = URL.createObjectURL(photo);
+        console.log("🚀 ~ testGPS ~ image:", image)
+
+        EXIF.getData(photo, function() {
+            console.log(EXIF.pretty(this));
+        })
 
         EXIF.getData(image, function() {
             var allMetaData = EXIF.getAllTags(this);
