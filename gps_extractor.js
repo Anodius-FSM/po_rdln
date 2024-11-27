@@ -68,7 +68,7 @@ const gps_extractor = (() => {
             
             
             img.onload = () => {
-                setTimeout(() => {
+                
                     EXIF.getData(base64Data, function() {
                         console.log('toto je v exifjs');
                         var allMetaData = EXIF.getAllTags(this);
@@ -80,7 +80,7 @@ const gps_extractor = (() => {
                         console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
                         console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
                     });
-                }, 15_000);
+              
                 
             }
 
@@ -91,7 +91,10 @@ const gps_extractor = (() => {
 
         (async () => {
             const imageBlob =  await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'});
-            reader.readAsDataURL(imageBlob);  
+            setTimeout(()=>{
+                reader.readAsDataURL(imageBlob);
+            }, 15_000);
+              
         })()
 
 
