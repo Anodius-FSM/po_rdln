@@ -1,6 +1,16 @@
 const gps_extractor = (() => {
 
 /** 
+ * https://github.com/exif-js/exif-js/tree/master
+ * https://github.com/exif-js/exif-js/blob/master/exif.js
+ * https://dev.exiv2.org/boards/3/topics/2993
+ * https://stackoverflow.com/questions/tagged/exif-js
+ * https://code.flickr.net/2012/06/01/parsing-exif-client-side-using-javascript-2/
+ * https://www.google.com/search?q=EXIF.readFromBinaryFile&sca_esv=6dc47f100a9e83c4&source=hp&ei=nsVGZ_ecJdy5i-gP-Iel8AY&iflsig=AL9hbdgAAAAAZ0bTrn7lb0im7CR1BClpPCAk7wGpzt-Y&ved=0ahUKEwj3472n-vuJAxXc3AIHHfhDCW4Q4dUDCA4&oq=EXIF.readFromBinaryFile&gs_lp=Egdnd3Mtd2l6IhdFWElGLnJlYWRGcm9tQmluYXJ5RmlsZTIEEAAYHkjPI1CaB1iaB3ABeACQAQCYATigATiqAQExuAEMyAEA-AEC-AEBmAICoAI_qAIKwgIKEAAYAxjqAhiPAcICChAuGAMY6gIYjwGYAwWSBwEyoAfoAQ&sclient=gws-wiz
+ * https://stackoverflow.com/questions/24010310/using-exif-and-binaryfile-get-an-error
+ * https://stackblitz.com/edit/exif?file=app%2Fapp.component.ts
+ * 
+ * 
  * 
 {description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'}
 1
@@ -12,6 +22,24 @@ const gps_extractor = (() => {
  *  https://getaround.tech/exif-data-manipulation-javascript/
  * 
  */
+    function getGPS() {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const data = EXIF.readFromBinaryFile(reader.result);
+            if (data) {
+                console.log(data);
+            } else {
+                console.log(`this isn't working`);
+            }
+        }
+
+        (async () => {
+            const imageBlob =  await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'});
+            reader.readAsArrayBuffer(imageBlob);  
+        })()
+    }
+
+
 
     function testGPS() {
         //const photo = await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'})
@@ -82,7 +110,8 @@ const gps_extractor = (() => {
     }
 
     return {
-        testGPS
+        testGPS,
+        getGPS
     }
 
 })();
