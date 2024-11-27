@@ -25,7 +25,22 @@ const gps_extractor = (() => {
     function getGPS() {
         const reader = new FileReader();
         reader.onloadend = () => {
-            console.log(reader.result);
+            //console.log(reader.result);
+            const img = document.createElement('img');
+            img.setAttribute('src', reader.result);
+
+
+            EXIF.getData(img, function() {
+                var allMetaData = EXIF.getAllTags(this);
+                
+                let latitude = EXIF.getTag(this, 'GPSLatitude');
+                let longitude =  EXIF.getTag(this, 'GPSLongitude');
+                
+                console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
+                console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
+                console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
+            });
+
             const data = EXIF.readFromBinaryFile(reader.result);
             if (data) {
                 console.log(data);
