@@ -382,10 +382,8 @@ const utils = (() => {
         // const materialNull = materialy.filter(d => d.model === null);
         // const all = [...zariadenieModel, ...zariadenieNull, ...materialModel, ...materialNull];
 
-        const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
-        zariadenie.sort((a,b) => {a.model.localeCompare(b.model)});
-        const zariadenieIne = data.filter(d => d.typ === 'ZARIADENIE_INE');
-        zariadenieIne.sort((a,b) => {a.model.localeCompare(b.model)});
+        const zariadenie = data.filter(d => d.typ === 'ZARIADENIE').sort((a,b) => {a.model.localeCompare(b.model)});
+        const zariadenieIne = data.filter(d => d.typ === 'ZARIADENIE_INE').sort((a,b) => {a.model.localeCompare(b.model)});
         const material = data.filter(d => d.typ === 'MATERIAL').sort((a,b) => {a.model.localeCompare(b.model)});
         const materialIne = data.filter(d => d.typ === 'MATERIAL_INE').sort((a,b) => {a.model.localeCompare(b.model)});
         const all = [...zariadenie, ...zariadenieIne, ...material, ...materialIne];
