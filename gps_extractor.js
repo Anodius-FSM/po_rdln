@@ -41,7 +41,7 @@ const gps_extractor = (() => {
     }
 
    function gpsButton() {
-        const img = document.getElementById('#x29EBF883B53158BA6AFF91A06EB02285');
+        const img = document.getElementById('x29EBF883B53158BA6AFF91A06EB02285');
         console.log("🚀 ~ gpsButton ~ img:", img)
         EXIF.getData(img, function() {
                     var allMetaData = EXIF.getAllTags(this);
@@ -68,17 +68,20 @@ const gps_extractor = (() => {
             
             
             img.onload = () => {
-                EXIF.getData(base64Data, function() {
-                    console.log('toto je v exifjs');
-                    var allMetaData = EXIF.getAllTags(this);
-                    
-                    let latitude = EXIF.getTag(this, 'GPSLatitude');
-                    let longitude =  EXIF.getTag(this, 'GPSLongitude');
-                    
-                    console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
-                    console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
-                    console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
-                });
+                setTimeout(() => {
+                    EXIF.getData(base64Data, function() {
+                        console.log('toto je v exifjs');
+                        var allMetaData = EXIF.getAllTags(this);
+                        
+                        let latitude = EXIF.getTag(this, 'GPSLatitude');
+                        let longitude =  EXIF.getTag(this, 'GPSLongitude');
+                        
+                        console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
+                        console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
+                        console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
+                    });
+                }, 15_000);
+                
             }
 
             img.src = base64Data;

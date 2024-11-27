@@ -361,39 +361,51 @@ const utils = (() => {
         //   }
         //itemsArray.sort(sortFunc);
 
+        // const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
+        // zariadenie.forEach(z => {
+        //     z.model === 'null' ? z.model = null : z.model = z.model;
+        //     z.ine === 'null' ? z.ine = null : z.ine = z.ine
+        // });
+
+        // const materialy = data.filter(d => d.typ === 'MATERIAL');
+        // materialy.forEach(m => {
+        //     m.model === 'null' ? m.model = null : m.model = m.model;
+        //     m.ine === 'null' ? m.ine = null : m.ine = m.ine
+        // });
+        // zariadenie.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
+        // materialy.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
+
+        // const zariadenieModel = zariadenie.filter(d => d.model !== null);
+        // const zariadenieNull = zariadenie.filter(d => d.model === null);
+
+        // const materialModel = materialy.filter(d => d.model !== null);
+        // const materialNull = materialy.filter(d => d.model === null);
+        // const all = [...zariadenieModel, ...zariadenieNull, ...materialModel, ...materialNull];
+
         const zariadenie = data.filter(d => d.typ === 'ZARIADENIE');
-        zariadenie.forEach(z => {
-            z.model === 'null' ? z.model = null : z.model = z.model;
-            z.ine === 'null' ? z.ine = null : z.ine = z.ine
-        });
-
-        const materialy = data.filter(d => d.typ === 'MATERIAL');
-        materialy.forEach(m => {
-            m.model === 'null' ? m.model = null : m.model = m.model;
-            m.ine === 'null' ? m.ine = null : m.ine = m.ine
-        });
-        zariadenie.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
-        materialy.sort((a, b) => a.model ? a.model.localeCompare(b.model) : 1);
-
-        const zariadenieModel = zariadenie.filter(d => d.model !== null);
-        const zariadenieNull = zariadenie.filter(d => d.model === null);
-
-        const materialModel = materialy.filter(d => d.model !== null);
-        const materialNull = materialy.filter(d => d.model === null);
-        const all = [...zariadenieModel, ...zariadenieNull, ...materialModel, ...materialNull];
+        const zariadenieIne = data.filter(d => d.typ === 'ZARIADENIE_INE');
+        const material = data.filter(d => d.typ === 'MATERIAL');
+        const materialIne = data.filter(d => d.typ === 'MATERIAL_INE');
+        const all = [...zariadenie, ...zariadenieIne, ...material, ...materialIne];
 
         let deviceData = '';
         all.forEach(d => {
-            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;
-            if (d.model !== null && d.ine !== null) {
-                deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`;
-            } else if (d.model !== null && d.ine === null) {
-                deviceData += d.model.includes('Ethernet') ? `${d.udoValueId}" id="ETERNET">${d.model}</td>` : `${d.udoValueId}">${d.model}</td>`;
-            } else if (d.model === null && d.ine !== null) {
-                deviceData += `${d.udoValueId}" id="${d.typ}">${d.ine}</td>`;
-            }
+            deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="${d.udoValueId}">${d.model}</td>`;
             deviceData += `<td class="right-align"><button onclick="utils.removeDevice(event)" class="device-button">-</button></td></tr>`
-        });
+        })   
+
+
+        // all.forEach(d => {
+        //     deviceData += `<tr class="horizontal-divider"><td class="device-data-td" style="width:90%" data-id="`;
+        //     if (d.model !== null && d.ine !== null) {
+        //         deviceData += `${d.udoValueId}">${d.model} / ${d.ine}</td>`;
+        //     } else if (d.model !== null && d.ine === null) {
+        //         deviceData += d.model.includes('Ethernet') ? `${d.udoValueId}" id="ETERNET">${d.model}</td>` : `${d.udoValueId}">${d.model}</td>`;
+        //     } else if (d.model === null && d.ine !== null) {
+        //         deviceData += `${d.udoValueId}" id="${d.typ}">${d.ine}</td>`;
+        //     }
+        //     deviceData += `<td class="right-align"><button onclick="utils.removeDevice(event)" class="device-button">-</button></td></tr>`
+        // });
 
         getDomElement('#zar_mat').innerHTML = deviceData;
     }
