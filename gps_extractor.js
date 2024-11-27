@@ -42,6 +42,7 @@ const gps_extractor = (() => {
 
    function gpsButton() {
         const img = document.getElementById('#x29EBF883B53158BA6AFF91A06EB02285');
+        console.log("🚀 ~ gpsButton ~ img:", img)
         EXIF.getData(img, function() {
                     var allMetaData = EXIF.getAllTags(this);
                     
