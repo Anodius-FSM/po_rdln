@@ -28,7 +28,7 @@ const gps_extractor = (() => {
             //console.log(reader.result);
             const img = document.createElement('img');
             img.setAttribute('src', reader.result);
-
+            console.log("🚀 ~ getGPS ~ img:", img);
 
             EXIF.getData(img, function() {
                 var allMetaData = EXIF.getAllTags(this);
@@ -48,6 +48,7 @@ const gps_extractor = (() => {
                 console.log(`this isn't working`);
             }
         }
+            
 
         (async () => {
             const imageBlob =  await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'});
