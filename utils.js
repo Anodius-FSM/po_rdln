@@ -382,10 +382,10 @@ const utils = (() => {
         // const materialNull = materialy.filter(d => d.model === null);
         // const all = [...zariadenieModel, ...zariadenieNull, ...materialModel, ...materialNull];
 
-        const zariadenie = data.filter(d => d.typ === 'ZARIADENIE').sort((a,b) => {a.model.localeCompare(b.model)});
-        const zariadenieIne = data.filter(d => d.typ === 'ZARIADENIE_INE').sort((a,b) => {a.model.localeCompare(b.model)});
-        const material = data.filter(d => d.typ === 'MATERIAL').sort((a,b) => {a.model.localeCompare(b.model)});
-        const materialIne = data.filter(d => d.typ === 'MATERIAL_INE').sort((a,b) => {a.model.localeCompare(b.model)});
+        const zariadenie = data.filter(d => d.typ === 'ZARIADENIE').sort((a,b) => a.model.localeCompare(b.model));
+        const zariadenieIne = data.filter(d => d.typ === 'ZARIADENIE_INE').sort((a,b) => a.model.localeCompare(b.model));
+        const material = data.filter(d => d.typ === 'MATERIAL').sort((a,b) => a.model.localeCompare(b.model));
+        const materialIne = data.filter(d => d.typ === 'MATERIAL_INE').sort((a,b) => a.model.localeCompare(b.model));
         const all = [...zariadenie, ...zariadenieIne, ...material, ...materialIne];
 
         let deviceData = '';
@@ -456,6 +456,7 @@ const utils = (() => {
             let dlzka = getDomElement('#eternet_dlzka').value;
             cell.innerText = `Ethernetový kábel: ${dlzka} m`;
             cell.setAttribute('id', 'ETERNET')
+            // cell.setAttribute('id', 'ETERNET')
             getDomElement('#eternet_dlzka').value = '';
         } else if (id == '#ine_device_popup') {
             //ine_device_type
@@ -515,7 +516,7 @@ const utils = (() => {
                 if (cellData.id == 'ETERNET') {
                     deviceData.push({ typ: 'MATERIAL', model: cellData.innerHTML, ine: '' })
                 } else if (cellData.id == 'MATERIAL' || cellData.id == 'ZARIADENIE') {
-                    deviceData.push({ typ: cellData.id, model: '', ine: cellData.innerHTML });
+                    deviceData.push({ typ: `${cellData.id}_INE`, model: cellData.innerHTML, ine: '' });
                 } else {
                     deviceData.push({ typ: DEVICE.get(cellData.innerHTML), model: cellData.innerHTML, ine: '' });
                 }
