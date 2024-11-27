@@ -19,18 +19,26 @@ const gps_extractor = (() => {
         const reader = new FileReader();
         reader.onloadend = () => {
             const base64Data = reader.result;
-            console.log("🚀 ~ testGPS ~ base64Data:", base64Data);   
-            EXIF.getData(base64Data, function() {
-                        console.log('toto je v exifjs');
-                        var allMetaData = EXIF.getAllTags(this);
-                        
-                        let latitude = EXIF.getTag(this, 'GPSLatitude');
-                        let longitude =  EXIF.getTag(this, 'GPSLongitude');
-                        
-                        console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
-                        console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
-                        console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
-                    });
+            console.log("🚀 ~ testGPS ~ base64Data:");   
+            let img = new Image();
+            
+            
+            img.onload = () => {
+                EXIF.getData(base64Data, function() {
+                    console.log('toto je v exifjs');
+                    var allMetaData = EXIF.getAllTags(this);
+                    
+                    let latitude = EXIF.getTag(this, 'GPSLatitude');
+                    let longitude =  EXIF.getTag(this, 'GPSLongitude');
+                    
+                    console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
+                    console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
+                    console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
+                });
+            }
+
+            img.src = base64Data;
+            
             
         }
 
