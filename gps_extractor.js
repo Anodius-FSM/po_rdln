@@ -21,6 +21,7 @@ const gps_extractor = (() => {
             const base64Data = reader.result;
             console.log("🚀 ~ testGPS ~ base64Data:", base64Data);   
             EXIF.getData(base64Data, function() {
+                        console.log('toto je v exifjs');
                         var allMetaData = EXIF.getAllTags(this);
                         
                         let latitude = EXIF.getTag(this, 'GPSLatitude');
