@@ -38,8 +38,11 @@ const gps_extractor = (() => {
             const data = EXIF.readFromBinaryFile(reader.result);
             if (data) {
                 console.log(data);
-                let coord = getCoordinates(data)
+                let coordinates = getCoordinates(data)
                 console.log("🚀 ~ getGPS ~ coord:", coord)
+                if (coordinates.latitude && coordinates.longitude) {
+                    utils.getDomElement('#gps_suradnice').innerHTML = `${coordinates.latitude}, ${coordinates.longitude}`;
+                }
             } else {
                 console.log(`this isn't working`);
             }
@@ -55,15 +58,10 @@ const gps_extractor = (() => {
         const latiData = [...exifData['GPSLatitude']]; // north - south
         const longData = [...exifData['GPSLongitude']]; // west - east
 
-        //let latitude = latitudeData.reduce((acc, data) => { return acc += data.numerator / data.denominator }, 0);
-        //let longitude = latitudeData.reduce((acc, data) => { return acc += data.numerator / data.denominator }, 0);
-
         let latitude = latiData[0].numerator / latiData[0].denominator + latiData[1].numerator / latiData[1].denominator / 60 + latiData[2].numerator / latiData[2].denominator / 3600;
         let longitude = longData[0].numerator / longData[0].denominator + longData[1].numerator / longData[1].denominator / 60 + longData[2].numerator / longData[2].denominator / 3600;
 
-        console.log("🚀 ~ getCoordinates ~ longitude:", longitude)
-        console.log("🚀 ~ getCoordinates ~ latitude:", latitude)
-        return { latitude, longitude }
+        return { latitude, longitude };
     }
 
     return {
