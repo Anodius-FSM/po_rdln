@@ -55,6 +55,7 @@ const my_extension = (() => {
                 console.log("🚀 ~ startExtension ~ photoGPS:", photoGPS)
                 let i = 0;
                 if (photoGPS) {
+                    console.log(utils.getDomElement('#gps_suradnice').innerHTML);
                     if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' ) {
                         photoGPS.forEach(p => {
                             gps_extractor.getGPS(p);
