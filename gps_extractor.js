@@ -1,27 +1,37 @@
 const gps_extractor = (() => {
 
-    function getGPS() {
-        // const reader = new FileReader();
-        // reader.onloadend = () => {
-        //     //console.log(reader.result);
-        //     const img = document.createElement('img');
-        //     img.setAttribute('src', reader.result);
-        //     console.log("🚀 ~ getGPS ~ img:", img);
+    async function fetchPhotoIds(serviceCallId) {
+        const response = await fetch(
+            'https://eu.fsm.cloud.sap/api/query/v1?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'ServiceCall.27;Activity.43;Attachment.19;ChecklistInstance.20;ChecklistInstanceElement.24'
+            }), {
+            method: 'POST',
+            headers: await common.getHeaders(),
+            body: JSON.stringify({
+                query: `SELECT at.id AS id,
+                               at.type AS type 
+	                        FROM ChecklistInstanceElement cie 
+	                        JOIN Attachment at ON cie.object = at.id 
+                            JOIN ChecklistInstance ci ON cie.checklistInstance = ci.id 
+                            JOIN Activity ac ON ci.object = ac.id 
+                        WHERE cie.parentElementId = 'foto_obhliadka' AND 
+	                        ac.object.objectId = '${serviceCallId}' AND 
+	                        cie.value <> '' AND 
+                            cie.value IS NOT NULL AND 
+                            at.type IN ('JPG', 'JPEG') 
+                            ORDER BY cie.index DESC LIMIT 3`})
+        }
+        );
+        if (!response.ok) {
+            console.log("🚀 ~ fetchPhotos ~ response:", response);
+            throw new Error(`🚀🚀🚀 Failed to fetch photo data, got status ${response.status}`);
+        }
 
-        //     EXIF.getData(img, function() {
-        //         var allMetaData = EXIF.getAllTags(this);
-                
-        //         let latitude = EXIF.getTag(this, 'GPSLatitude');
-        //         let longitude =  EXIF.getTag(this, 'GPSLongitude');
-                
-        //         console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
-        //         console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
-        //         console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
-        //     });
+        return (await response.json()).data;
+    }
 
-            
-        // }
-
+    function getGPS(photoData) {
         const reader = new FileReader();
         reader.onloadend = () => {
             console.log(reader.result);
@@ -32,60 +42,18 @@ const gps_extractor = (() => {
                 console.log(`this isn't working`);
             }
         }
-            
+
         (async () => {
-            const imageBlob =  await common.fetchPhotoV2({description: '776A32D9CDB43AE36D5F9D009AE0E699', id: '776A32D9CDB43AE36D5F9D009AE0E699', type: 'JPEG'});
-            //reader.readAsDataURL(imageBlob);  /** readAsArrayBuffer(imageBlob); */   
+            const imageBlob = await common.fetchPhotoV2(photoData);
             reader.readAsArrayBuffer(imageBlob);
         })()
     }
 
-
-    // function testGPS() {
-    //     //const photo = await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'})
-    //     //console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀 ~ img tag:");
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         const base64Data = reader.result;
-    //         console.log("🚀 ~ testGPS ~ base64Data:");   
-    //         let img = new Image();
-            
-            
-    //         img.onload = () => {
-                
-    //                 EXIF.getData(base64Data, function() {
-    //                     console.log('toto je v exifjs');
-    //                     var allMetaData = EXIF.getAllTags(this);
-                        
-    //                     let latitude = EXIF.getTag(this, 'GPSLatitude');
-    //                     let longitude =  EXIF.getTag(this, 'GPSLongitude');
-                        
-    //                     console.log("🚀 ~ EXIF.getData ~ allMetaData:", allMetaData)
-    //                     console.log("🚀 ~ EXIF.getData ~ latitude:", latitude)
-    //                     console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
-    //                 });
-              
-                
-    //         }
-
-    //         img.src = base64Data;
-            
-            
-    //     }
-
-    //     (async () => {
-    //         const imageBlob =  await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'});
-    //         setTimeout(()=>{
-    //             reader.readAsDataURL(imageBlob);
-    //         }, 15_000);
-              
-    //     })()
-    // }
-
     return {
+        fetchPhotoIds,
         getGPS
     }
 
 })();
-            
-            
+
+

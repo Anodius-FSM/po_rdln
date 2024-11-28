@@ -51,8 +51,13 @@ const my_extension = (() => {
                 /***
                  * testing gps extraction
                  */
-                
-                gps_extractor.getGPS();
+                const photoGPS = await gps_extractor.fetchPhotoIds(serviceCallId);
+                console.log("🚀 ~ startExtension ~ photoGPS:", photoGPS)
+                if (photoGPS) {
+                    photoGPS.forEach(p => {
+                        gps_extractor.getGPS(p);
+                    })
+                }
             }
         } catch (error) {
             console.log("🚀 ~ startExtension ~ error:", error)
