@@ -48,7 +48,7 @@ const gps_extractor = (() => {
         const reader2 = new FileReader();
         reader2.onloadend = () => {
             console.log(reader2.result);
-            const data = EXIF.readFromBinaryFile(reader.result);
+            const data = EXIF.readFromBinaryFile(reader2.result);
             if (data) {
                 console.log(data);
             } else {
