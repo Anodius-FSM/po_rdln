@@ -10,7 +10,8 @@ const gps_extractor = (() => {
  * https://stackoverflow.com/questions/24010310/using-exif-and-binaryfile-get-an-error
  * https://stackblitz.com/edit/exif?file=app%2Fapp.component.ts
  * 
- * 
+ *  * moja fotka: 2F558590C1D4B549A9AA7B6F7C0DDC53
+ * FZ fotka: 776A32D9CDB43AE36D5F9D009AE0E699
  * 
 {description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'}
 1
@@ -41,6 +42,12 @@ const gps_extractor = (() => {
                 console.log("🚀 ~ EXIF.getData ~ longitude:", longitude)
             });
 
+            
+        }
+
+        const reader2 = new FileReader();
+        reader2.onloadend = () => {
+            console.log(reader2.result);
             const data = EXIF.readFromBinaryFile(reader.result);
             if (data) {
                 console.log(data);
@@ -51,8 +58,9 @@ const gps_extractor = (() => {
             
 
         (async () => {
-            const imageBlob =  await common.fetchPhotoV2({description: '29EBF883B53158BA6AFF91A06EB02285', id: '29EBF883B53158BA6AFF91A06EB02285', type: 'JPEG'});
+            const imageBlob =  await common.fetchPhotoV2({description: '2F558590C1D4B549A9AA7B6F7C0DDC53', id: '2F558590C1D4B549A9AA7B6F7C0DDC53', type: 'JPEG'});
             reader.readAsDataURL(imageBlob);  /** readAsArrayBuffer(imageBlob); */   
+            reader2.readAsArrayBuffer(imageBlob);
         })()
     }
 
