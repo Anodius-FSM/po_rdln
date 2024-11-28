@@ -58,7 +58,7 @@ const gps_extractor = (() => {
             
 
         (async () => {
-            const imageBlob =  await common.fetchPhotoV2({description: '2F558590C1D4B549A9AA7B6F7C0DDC53', id: '2F558590C1D4B549A9AA7B6F7C0DDC53', type: 'JPEG'});
+            const imageBlob =  await common.fetchPhotoV2({description: '776A32D9CDB43AE36D5F9D009AE0E699', id: '776A32D9CDB43AE36D5F9D009AE0E699', type: 'JPEG'});
             reader.readAsDataURL(imageBlob);  /** readAsArrayBuffer(imageBlob); */   
             reader2.readAsArrayBuffer(imageBlob);
         })()
