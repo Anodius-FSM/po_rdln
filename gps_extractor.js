@@ -31,7 +31,7 @@ const gps_extractor = (() => {
         return (await response.json()).data;
     }
 
-    function getGPS(photoData) {
+    async function getGPS(photoData) {
         const reader = new FileReader();
         reader.onloadend = () => {
             console.log(reader.result);
