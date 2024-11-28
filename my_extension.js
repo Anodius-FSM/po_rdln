@@ -57,9 +57,16 @@ const my_extension = (() => {
                 if (photoGPS) {
                     console.log(utils.getDomElement('#gps_suradnice').innerHTML);
                     if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' ) {
-                        photoGPS.forEach(p => {
+                        // photoGPS.forEach(p => {
+                        //     gps_extractor.getGPS(p);
+                        // });
+                        photoGPS.some(p => {
+                            if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
+                                return true;
+                            }
                             gps_extractor.getGPS(p);
-                        });
+                        })
+
                     }
 
                 }
