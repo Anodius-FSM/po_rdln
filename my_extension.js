@@ -53,10 +53,16 @@ const my_extension = (() => {
                  */
                 const photoGPS = await gps_extractor.fetchPhotoIds(serviceCallId);
                 console.log("🚀 ~ startExtension ~ photoGPS:", photoGPS)
+                let i = 0;
                 if (photoGPS) {
-                    photoGPS.forEach(p => {
-                        gps_extractor.getGPS(p);
-                    })
+                    while (utils.getDomElement('#gps_suradnice').innerHTML == 'null' ) {
+                        photoGPS.forEach(p => {
+                            gps_extractor.getGPS(p);
+                        });
+                        i++;
+                        console.log('iteration ', i );
+                    }
+
                 }
             }
         } catch (error) {

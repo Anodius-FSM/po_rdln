@@ -39,7 +39,7 @@ const gps_extractor = (() => {
             if (data) {
                 console.log(data);
                 let coordinates = getCoordinates(data)
-                console.log("🚀 ~ getGPS ~ coord:", coord)
+                console.log("🚀 ~ getGPS ~ coord:", coordinates)
                 if (coordinates.latitude && coordinates.longitude) {
                     utils.getDomElement('#gps_suradnice').innerHTML = `${coordinates.latitude}, ${coordinates.longitude}`;
                 }
