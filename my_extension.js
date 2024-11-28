@@ -62,6 +62,7 @@ const my_extension = (() => {
                         // });
                         photoGPS.some(p => {
                             if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
+                                console.log('SOMEsomeSOMEsomeSOMEsomeSOME');
                                 return true;
                             }
                             gps_extractor.getGPS(p);
