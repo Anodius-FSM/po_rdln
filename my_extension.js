@@ -61,11 +61,16 @@ const my_extension = (() => {
                         //     gps_extractor.getGPS(p);
                         // });
                         photoGPS.some(p => {
-                            if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
-                                console.log('SOMEsomeSOMEsomeSOMEsomeSOME');
-                                return true;
-                            }
-                            gps_extractor.getGPS(p);
+
+                            setTimeout(()=> {
+                                if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
+                                    console.log('SOMEsomeSOMEsomeSOMEsomeSOME');
+                                    return true;
+                                }
+                                gps_extractor.getGPS(p);
+
+                            },1750)
+
                         })
 
                     }
