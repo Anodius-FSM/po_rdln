@@ -31,9 +31,9 @@ const gps_extractor = (() => {
         return (await response.json()).data;
     }
 
-    async function getGPS(photoData) {
+    async function getGPS(photoData, uvId) {
         const reader = new FileReader();
-        reader.onloadend = () => {
+        reader.onloadend = async () => {
             console.log(reader.result);
             const data = EXIF.readFromBinaryFile(reader.result);
             if (data) {
@@ -41,7 +41,10 @@ const gps_extractor = (() => {
                 let coordinates = getCoordinates(data)
                 console.log("🚀 ~ getGPS ~ coord:", coordinates)
                 if (coordinates.latitude && coordinates.longitude) {
-                    utils.getDomElement('#gps_suradnice').innerHTML = `${coordinates.latitude}, ${coordinates.longitude}`;
+                    const gpsResponse = await updateGPS( uvId, coordinates);
+                    if (gpsResponse) {
+                        utils.getDomElement('#gps_suradnice').innerHTML = `${coordinates.latitude}, ${coordinates.longitude}`;
+                    }
                 }
             } else {
                 console.log(`this isn't working`);
@@ -62,6 +65,37 @@ const gps_extractor = (() => {
         let longitude = longData[0].numerator / longData[0].denominator + longData[1].numerator / longData[1].denominator / 60 + longData[2].numerator / longData[2].denominator / 3600;
 
         return { latitude, longitude };
+    }
+
+    async function updateGPS(udoValueId, coordinates) {
+        const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obh_gps']);
+        console.log("🚀 ~ updateGPS ~ udfMetaFieldName:", udfMetaFieldName)
+
+        const updates = [{
+            id: udoValueId,
+            udfValues: [{
+                meta: { id: udfMetaFieldName[0].id },
+                value: `${coordinates.latitude}, ${coordinates.longitude}`
+            }]
+        }];
+
+        const updateResponse = await fetch(
+            'https://eu.fsm.cloud.sap/api/data/v4/UdoValue/bulk?' + new URLSearchParams({
+                ...await common.getSearchParams(),
+                dtos: 'UdoValue.10',
+                forceUpdate: true
+            }), {
+            method: 'PATCH',
+            headers: await common.getHeaders(),
+            body: JSON.stringify(updates)
+        });
+
+        if (!updateResponse.ok) {
+            return null;
+        } else {
+            return 1;
+        }
+
     }
 
     return {

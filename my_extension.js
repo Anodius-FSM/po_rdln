@@ -65,7 +65,7 @@ const my_extension = (() => {
                                     console.log('SOMEsomeSOMEsomeSOMEsomeSOME');
                                     return true;
                                 }
-                                await gps_extractor.getGPS(p);
+                                await gps_extractor.getGPS(p, generalData[0].udoValueId);
                         })
                     }
                 }
