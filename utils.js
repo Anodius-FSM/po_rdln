@@ -209,7 +209,8 @@ const utils = (() => {
         const deleted = await common.deletePhoto(idToDelete);
 
         if (deleted) {
-            photoToDelete.remove();
+            //photoToDelete.remove();
+            getDomElement(`#x${idToDelete}`).remove();
             goForward(imgToLoadAfterDelete);
         }
 
