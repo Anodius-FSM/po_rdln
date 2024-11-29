@@ -49,24 +49,22 @@ const my_extension = (() => {
                 }
 
                 /***
-                 * testing gps extraction
+                 * get GPS coordinates
                  */
-                const photoGPS = await gps_extractor.fetchPhotoIds(serviceCallId);
-                console.log("🚀 ~ startExtension ~ photoGPS:", photoGPS)
-                let i = 0;
-                if (photoGPS) {
-                    console.log(utils.getDomElement('#gps_suradnice').innerHTML);
-                    if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' ) {
-                        // photoGPS.forEach(p => {
-                        //     gps_extractor.getGPS(p);
-                        // });
-                        photoGPS.some(async p => {
-                                if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
-                                    console.log('SOMEsomeSOMEsomeSOMEsomeSOME');
-                                    return true;
-                                }
-                                await gps_extractor.getGPS(p, generalData[0].udoValueId);
-                        })
+                if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' ) {
+                    const photoGPS = await gps_extractor.fetchPhotoIds(serviceCallId);
+                    console.log("🚀 ~ startExtension ~ photoGPS:", photoGPS)
+                    if (photoGPS) {
+                        console.log(utils.getDomElement('#gps_suradnice').innerHTML);
+                        if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' ) {
+                            photoGPS.some(async p => {
+                                    if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
+                                        console.log('SOMEsomeSOMEsomeSOMEsomeSOME');
+                                        return true;
+                                    }
+                                    await gps_extractor.getGPS(p, generalData[0].udoValueId);
+                            })
+                        }
                     }
                 }
             }

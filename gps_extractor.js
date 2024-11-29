@@ -34,12 +34,9 @@ const gps_extractor = (() => {
     async function getGPS(photoData, uvId) {
         const reader = new FileReader();
         reader.onloadend = async () => {
-            console.log(reader.result);
             const data = EXIF.readFromBinaryFile(reader.result);
             if (data) {
-                console.log(data);
                 let coordinates = getCoordinates(data)
-                console.log("🚀 ~ getGPS ~ coord:", coordinates)
                 if (coordinates.latitude && coordinates.longitude) {
                     const gpsResponse = await updateGPS( uvId, coordinates);
                     if (gpsResponse) {
@@ -69,7 +66,6 @@ const gps_extractor = (() => {
 
     async function updateGPS(udoValueId, coordinates) {
         const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_obh_gps']);
-        console.log("🚀 ~ updateGPS ~ udfMetaFieldName:", udfMetaFieldName)
 
         const updates = [{
             id: udoValueId,
