@@ -142,6 +142,7 @@ const utils = (() => {
         return retObj;
     }
     function goForward(next = 0) {
+        console.log(next);
         let nextIndex = 0;
         let imgTagsToNavigate = [...getDomElements('.navigate_img')];
         let imgToNavigate = [];
@@ -163,7 +164,7 @@ const utils = (() => {
         }
 
         let captionText = getDomElement('#caption');
-
+        console.warn(imgToNavigate);
         actualImg.src = imgToNavigate[nextIndex].src;
         actualImg.setAttribute('data-id', imgToNavigate[nextIndex].id);
         captionText.innerHTML = imgToNavigate[nextIndex].description;
