@@ -211,10 +211,8 @@ const utils = (() => {
         if (deleted) {
             //photoToDelete.remove();
             getDomElement(`#x${idToDelete}`).remove();
-            goForward(imgToLoadAfterDelete);
+            goForward(imgToLoadAfterDelete - 1); // the photo from the array is now gone, so the next photos index is 1 less   
         }
-
-
     }
     /**
      * 
