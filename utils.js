@@ -1,21 +1,21 @@
 const utils = (() => {
 
     const COLOR_MAP = new Map([
-        ['PREBIEHA', '#FFFF00'],
-        ['KONTROLA', '#FFFF00'],
-        ['ZAPARKOVANE', '#FFA500'],
-        ['ZRIADITELNA', '#008000'],
-        ['ZMENA_SLUZBY ', '#008000'],
-        ['NEZRIADITELNA', '#FF0000'],
-        ['1', '#008000'],
-        ['2', '#FFFF00'],
-        ['3', '#FFA500'],
-        ['4', '#ff8000'],
-        ['5', '#FF0000'],
+        ['PREBIEHA', '#f5ef7a'],
+        ['KONTROLA', '#f5ef7a'],
+        ['ZAPARKOVANE', '#f5a77a'],
+        ['ZRIADITELNA', '#A9DFBF'],
+        ['ZMENA_SLUZBY ', '#A9DFBF'],
+        ['NEZRIADITELNA', '#F57A7A'],
+        ['1', '#A9DFBF'],
+        ['2', '#f5ef7a'],
+        ['3', '#f5a77a'],
+        ['4', '#F5957A'],
+        ['5', '#F57A7A'],
         ['ANO', '#66b266'],
         ['NIE', '#ff6666'],
-        ['Úspešná', '#66b266'],
-        ['Neúspešná', '#ff6666']
+        ['Úspešná', '#A9DFBF'],
+        ['Neúspešná', '#F57A7A']
     ]);
 
     const STAV_MAP = new Map([

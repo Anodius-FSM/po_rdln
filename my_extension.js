@@ -10,6 +10,7 @@ const my_extension = (() => {
             } else {
                 // run the extension
                 const generalData = await common.fetchGeneralData(serviceCallId);
+                console.log("🚀 ~ startExtension ~ generalData:", generalData)
                 const skenData = await common.fetchSkenData(serviceCallId);
                 const deviceData = await common.fetchDeviceData(serviceCallId);
                 const photos = await common.fetchPhotos(serviceCallId);
