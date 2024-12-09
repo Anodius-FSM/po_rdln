@@ -291,11 +291,9 @@ const utils = (() => {
                 setBackgroundColor(`#${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else if (numInputs.includes(key)) {
-                console.log('numinputs: ', key);
-                console.log(inputData)
                 getDomElement(`#${key}`).value = inputData[key] || '';
             } else {
-                getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
+                getDomElement(`#${key}`).innerHTML = key == 'null' ? '' : inputData[key]; // inputData[key] || 'error';
             }
         });
         if (inputData.dovod_neuspech === 'null') {
@@ -328,7 +326,6 @@ const utils = (() => {
             let option = document.createElement('option');
             option.setAttribute('value', data[key]);
             if (useColors) {
-                console.log(key);
                 option.style.backgroundColor = COLOR_MAP.get(key);
             }
 
@@ -337,7 +334,6 @@ const utils = (() => {
             select.appendChild(option);
         }
         if (selectedValue && useColors) {
-            console.log(selectedValue);
             select.value = selectedValue;
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         } else if (selectedValue && !useColors) {
