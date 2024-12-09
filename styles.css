@@ -393,27 +393,27 @@ td {
 }
 
 .PREBIEHA {
-    background-color: #FFFF00;
+    background-color: #f5ef7a;
 }
 
 .KONTROLA {
-    background-color: #FFFF00;
+    background-color: #f5ef7a;
 }
 
 .ZAPARKOVANE {
-    background-color: #FFA500;
+    background-color: #f5a77a;
 }
 
 .ZRIADITELNA {
-    background-color: #008000;
+    background-color: #A9DFBF;
 }
 
 .ZMENA_SLUZBY {
-    background-color: #008000;
+    background-color: #A9DFBF;
 }
 
 .NEZRIADITELNA {
-    background-color: #FF0000;
+    background-color: #F57A7A;
 }
 
 .device-button {

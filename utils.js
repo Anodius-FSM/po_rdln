@@ -12,8 +12,15 @@ const utils = (() => {
         ['3', '#f5a77a'],
         ['4', '#F5957A'],
         ['5', '#F57A7A'],
+        ['1 - Nenáročné', '#A9DFBF'],
+        ['2 - Málo náročné', '#f5ef7a'],
+        ['3 - Stredne náročné', '#f5a77a'],
+        ['4 - Náročné', '#F5957A'],
+        ['5 - Veľmi náročné', '#F57A7A'],
         ['Áno', '#66b266'],
         ['Nie', '#ff6666'],
+        ['ANO', '#66b266'],
+        ['NIE', '#ff6666'],
         ['Úspešná', '#A9DFBF'],
         ['Neúspešná', '#F57A7A']
     ]);
@@ -284,7 +291,7 @@ const utils = (() => {
                 setBackgroundColor(`#${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else if (numInputs.includes(key)) {
-                getDomElement(`#${key}`).value = key == 'null' ? '' : inputData[key];
+                getDomElement(`#${key}`).value = inputData[key] || '';
             } else {
                 getDomElement(`#${key}`).innerHTML = inputData[key] || 'error';
             }
