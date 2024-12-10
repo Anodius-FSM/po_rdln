@@ -11,7 +11,7 @@ const my_extension = (() => {
                 // run the extension
                 const generalData = await common.fetchGeneralData(serviceCallId);
                 console.log("🚀 ~ startExtension ~ generalData:", generalData);
-                if (!generalData) {
+                if (generalData.legth == 0) {
                     utils.setFieldValue('#info', 'Obhliadka ešte nebola vykonaná, neexistujú žiadne dáta na zobrazenie');
                 } else {
 
