@@ -10,17 +10,16 @@ const my_extension = (() => {
             } else {
                 // run the extension
                 const generalData = await common.fetchGeneralData(serviceCallId);
-                console.log("🚀 ~ startExtension ~ generalData:", generalData.length);
                 if (generalData.length === 0) {
                     utils.setFieldValue('#info', 'Obhliadka ešte nebola vykonaná, neexistujú žiadne dáta na zobrazenie');
+                    utils.getDomElement('.general_content').remove();
+                    utils.getDomElement('.sken').remove();
+                    utils.getDomElement('#fotky').remove();
                 } else {
 
                     const skenData = await common.fetchSkenData(serviceCallId);
                     const deviceData = await common.fetchDeviceData(serviceCallId);
                     const photos = await common.fetchPhotos(serviceCallId);
-                    console.log("🚀 ~ startExtension ~ photos:", photos);
-                    // const photosV2 = await common.fetchPhotosV2(serviceCallId);
-                    // console.log("🚀 ~ startExtension ~ photosV2:", photosV2)
 
                     if (generalData) {
                         utils.fillStaticData(generalData[0], ['udoValueId', 'sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik']);
@@ -63,9 +62,7 @@ const my_extension = (() => {
                      */
                     if (utils.getDomElement('#gps_suradnice').innerHTML == 'null') {
                         const photoGPS = await gps_extractor.fetchPhotoIds(serviceCallId);
-                        console.log("🚀 ~ startExtension ~ photoGPS:", photoGPS)
                         if (photoGPS) {
-                            console.log(utils.getDomElement('#gps_suradnice').innerHTML);
                             if (utils.getDomElement('#gps_suradnice').innerHTML == 'null') {
                                 photoGPS.some(async p => {
                                     if (utils.getDomElement('#gps_suradnice').innerHTML != 'null') {
