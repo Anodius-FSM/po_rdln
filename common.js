@@ -430,6 +430,7 @@ const common = (() => {
                 dataToSave[key] = uiData[key];
             }
         });
+        console.log(dataToSave);
 
         const uiStav = utils.getUiStavValue();
 
@@ -443,7 +444,7 @@ const common = (() => {
                 const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
 
                 const udfValues = [];
-
+                console.log(keysToUpdate);
                 keysToUpdate.forEach(key => {
                     udfValues.push({
                         meta: { id: udfMetaByName.get(UDO_MAP.get(key)).id },
