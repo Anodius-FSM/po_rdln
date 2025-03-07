@@ -447,7 +447,7 @@ const common = (() => {
                 console.log(keysToUpdate);
                 keysToUpdate.forEach(key => {
                     udfValues.push({
-                        meta: { id: udfMetaByName.get(UDO_MAP.get(key)).id },
+                        meta: { id: udfMetaByName.get(UDO_MAP.get(key))?.id },
                         value: dataToSave[key]
                     });
                 });
