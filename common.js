@@ -422,7 +422,7 @@ const common = (() => {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
         let devicesToSave = utils.getDevicesFromUi(deviceData);
-
+        console.log(generalData);
         const dataKeys = Object.keys(uiData);
 
         dataKeys.forEach(key => {
