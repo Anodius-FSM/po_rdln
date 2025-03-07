@@ -13,7 +13,10 @@ const common = (() => {
         ['rebrik', 'z_f_obh_rebrik'],
         ['typ', 'z_f_obz_typ'],
         ['model', 'z_f_obz_model'],
-        ['ine', 'z_f_obz_ine']
+        ['ine', 'z_f_obz_ine'],
+        ['max_rychlost', 'z_f_obh_maxrychlost'],
+        ['pocet_technikov', 'z_f_obh_pocettech'],
+        ['cas_install' , 'z_f_obh_casinstall']
     ])
 
     const { SHELL_EVENTS } = FSMShell;

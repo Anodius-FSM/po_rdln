@@ -25,11 +25,11 @@ const my_extension = (() => {
                     if (generalData) {
                         utils.fillStaticData(generalData[0], ['udoValueId', 'sluzba_internet', 'sluzba_internettv', 'bod_final', 'uspesna', 'narocnost', 'dovod_neuspech', 'individ_rozpocet', 'install_technik']);
                         utils.initSelectOptions('#narocnost', {
-                            '1': '1 - Nenáročné',
-                            '2': '2 - Málo náročné',
-                            '3': '3 - Stredne náročné',
-                            '4': '4 - Náročné',
-                            '5': '5 - Veľmi náročné'
+                            '1 - Nenáročné': '1 - Nenáročné',
+                            '2 - Málo náročné': '2 - Málo náročné',
+                            '3 - Stredne náročné': '3 - Stredne náročné',
+                            '4 - Náročné': '4 - Náročné',
+                            '5 - Veľmi náročné': '5 - Veľmi náročné'
                         }, generalData[0].narocnost, true);
                         utils.initSelectOptions('#uspesna', { 'Úspešná': 'Úspešná', 'Neúspešná': 'Neúspešná' }, generalData[0].uspesna, true);
                         utils.initSelectOptions('#install_technik', { 'Áno': 'Áno', 'Nie': 'Nie' }, generalData[0].install_technik, false);
