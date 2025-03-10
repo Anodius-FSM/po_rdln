@@ -499,6 +499,7 @@ const utils = (() => {
         [...document.getElementsByTagName('button')].forEach(b => b.disabled = true);
         [...document.getElementsByTagName('select')].forEach(s => s.disabled = true);
         [...document.getElementsByTagName('textarea')].forEach(t => t.disabled = true);
+        [...document.getElementsByTagName('input')].forEach(i => i.disabled = true);
     }
 
     return {
