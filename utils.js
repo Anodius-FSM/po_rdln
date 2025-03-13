@@ -502,6 +502,15 @@ const utils = (() => {
         [...document.getElementsByTagName('input')].forEach(i => i.disabled = true);
     }
 
+    /**
+     * 
+     * @param {string} message 
+     */
+    function showSavePopup(message) {
+        getDomElement('#save_popup').style.display = 'block';
+        getDomElement('#save_popup_text').innerHTML = message;
+    }
+
     return {
         getDomElement,
         setFieldValue,
@@ -524,6 +533,7 @@ const utils = (() => {
         disableEdit,
         goForward,
         goBackward,
-        deletePhoto
+        deletePhoto,
+        showSavePopup
     }
 })();

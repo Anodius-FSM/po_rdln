@@ -422,6 +422,8 @@ const common = (() => {
 
 
     async function saveChanges(generalData, deviceData, serviceCallId) {
+        let saveFailed = false;
+        let saveMessage = '';
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
         let devicesToSave = utils.getDevicesFromUi(deviceData);
@@ -439,8 +441,10 @@ const common = (() => {
 
         if (Object.keys(dataToSave).length === 0 && uiStav == generalData.stav &&
             devicesToSave.patch.length === 0 && devicesToSave.delete.length === 0) {
-            utils.getDomElement('.popup').style.display = 'block';
+            //utils.getDomElement('.popup').style.display = 'block';
+            utils.showSavePopup('Neboli vykonané žiadne zmeny na uloženie');
         } else {
+            utils.showSavePopup('Ukladám zmeny...');
             if (Object.keys(dataToSave).length > 0) {
                 const keysToUpdate = Object.keys(dataToSave);
                 const udfMeta = await common.fetchUdfMeta('Obhliadka');
@@ -473,6 +477,8 @@ const common = (() => {
                 console.log('UPDATE: ', updateResponse);
 
                 if (!updateResponse.ok) {
+                    saveFailed = true;
+                    saveMessage = `Zmeny neboli uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
                     throw new Error(`🚀🚀🚀 Failed to save data, got status ${updateResponse.status}`);
                 }
             }
@@ -503,6 +509,8 @@ const common = (() => {
                 });
 
                 if (!stavUpdateResponse.ok) {
+                    saveFailed = true;
+                    saveMessage = `Zmena stavu nebola uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
                     throw new Error(`🚀🚀🚀 Failed to save data, got status ${stavUpdateResponse.status}`);
                 }
             }
@@ -519,6 +527,8 @@ const common = (() => {
                         headers: await common.getHeaders()
                     });
                     if (!deleteDeviceResponse.ok) {
+                        saveFailed = true;
+                        saveMessage = `Zariadenie/Materiál neboli vymazané, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
                         throw new Error(`🚀🚀🚀 Failed to save data, got status ${deleteDeviceResponse.status}`);
                     }
                 });
@@ -560,10 +570,17 @@ const common = (() => {
                     });
 
                     if (!createResponse.ok) {
+                        saveFailed = true;
+                        saveMessage = `Zariadenie/Materiál neboli uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
                         throw new Error(`🚀🚀🚀 Failed to save data, got status ${createResponse.status}`);
                     }
                 });
             }
+        }
+        if (!saveFailed) {
+            utils.showSavePopup('Zmeny boli úspešne uložené');
+        } else {
+            utils.showSavePopup(saveMessage);
         }
     }
 

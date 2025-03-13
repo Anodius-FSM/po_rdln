@@ -44,7 +44,7 @@ const gps_extractor = (() => {
                     }
                 }
             } else {
-                console.log(`this isn't working`);
+                console.log(`🚀🚀🚀 ~ getGPS ~ Can't read data from binary file.`);
             }
         }
 
