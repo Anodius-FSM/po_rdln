@@ -10,6 +10,7 @@ const common = (() => {
         ['sluzba_internet', 'z_f_obh_internet'],
         ['sluzba_internettv', 'z_f_obh_internettv'],
         ['poznamka_kontrolora', 'z_f_obh_poznamkakontr'],
+        ['poznamka_technika', 'z_f_obh_poznamkatech'],
         ['rebrik', 'z_f_obh_rebrik'],
         ['typ', 'z_f_obz_typ'],
         ['model', 'z_f_obz_model'],
