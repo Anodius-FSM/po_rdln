@@ -475,8 +475,7 @@ const common = (() => {
                     headers: await common.getHeaders(),
                     body: JSON.stringify(updates)
                 });
-                console.log('UPDATE: ', updateResponse);
-
+                
                 if (!updateResponse.ok) {
                     saveFailed = true;
                     saveMessage = `Zmeny neboli uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;

@@ -149,14 +149,12 @@ const utils = (() => {
         return retObj;
     }
     function goForward(next = 0) {
-        console.log(next);
         let nextIndex = 0;
         let imgTagsToNavigate = [...getDomElements('.navigate_img')];
         let imgToNavigate = [];
         imgTagsToNavigate.forEach(i => {
             imgToNavigate.push({ id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src })
         });
-        console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
 
         let actualImg = getDomElement('#img01');
 
@@ -183,8 +181,7 @@ const utils = (() => {
         imgTagsToNavigate.forEach(i => {
             imgToNavigate.push({ id: i.getAttribute('data-id'), description: i.getAttribute('data-description'), src: i.src })
         });
-        console.log("🚀 ~ getDomElement ~ imgToNavigate:", imgToNavigate)
-
+        
         let actualImg = getDomElement('#img01');
         let actualId = actualImg.getAttribute('data-id')
 
@@ -291,7 +288,7 @@ const utils = (() => {
                 setBackgroundColor(`#${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else if (numInputs.includes(key)) {
-                getDomElement(`#${key}`).value = inputData[key] || '';
+                getDomElement(`#${key}`).value = inputData[key] !== 'null' ? inputData[key] : '';
             } else {
                 getDomElement(`#${key}`).innerHTML = key == 'null' ? '' : inputData[key]; // inputData[key] || 'error';
             }
@@ -471,11 +468,9 @@ const utils = (() => {
         const tempDelete = [];
         //device-data-td
         let deviceDataCells = getDomElements('.device-data-td');
-        console.log('deviceDataCells: ', deviceDataCells);
         let deviceData = [];
         deviceDataCells.forEach(cellData => {
             let dataId = cellData.getAttribute('data-id');
-            console.log('DATA-ID: ', dataId);
             if (udoId.includes(dataId)) {
                 tempDelete.push(dataId);
             } else {
