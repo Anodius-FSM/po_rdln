@@ -288,7 +288,7 @@ const utils = (() => {
                 setBackgroundColor(`#${key}`, COLOR_MAP.get(inputData[key]));
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else if (numInputs.includes(key)) {
-                getDomElement(`#${key}`).value = inputData[key] !== 'null' ? inputData[key] : '';
+                getDomElement(`#${key}`).value = inputData[key] != 'null' ? inputData[key] : '';
             } else {
                 getDomElement(`#${key}`).innerHTML = key == 'null' ? '' : inputData[key]; // inputData[key] || 'error';
             }
