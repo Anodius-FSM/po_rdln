@@ -290,10 +290,8 @@ const utils = (() => {
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else if (numInputs.includes(key)) {
                 getDomElement(`#${key}`).value = inputData[key] != 'null' ? inputData[key] : '';
-                console.warn({ key, inputData: inputData[key] });
             } else {
-                getDomElement(`#${key}`).innerHTML = key == 'null' ? '' : inputData[key]; // inputData[key] || 'error';
-                console.log({ key, inputData: inputData[key] });
+                getDomElement(`#${key}`).innerHTML = inputData[key] != 'null' ? inputData[key] : '';//key == 'null' ? '' : inputData[key]; // inputData[key] || 'error';
             }
         });
         if (inputData.dovod_neuspech === 'null') {
@@ -342,6 +340,13 @@ const utils = (() => {
         }
 
         if (domId === '#bod_final') {
+            if (!data) {
+                let empty = document.createElement('option'); 
+                empty.setAttribute('value', '');
+                let emptyText = document.createTextNode('');
+                empty.appendChild(emptyText);
+                select.appendChild(empty);    
+            }
             let option = document.createElement('option');
             option.setAttribute('value', 'iny_bod');
             let optionText = document.createTextNode('Iné');
