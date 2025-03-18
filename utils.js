@@ -276,6 +276,7 @@ const utils = (() => {
     }
 
     function fillStaticData(inputData, toIgnore) {
+        console.log("🚀 ~ fillStaticData ~ inputData:", inputData);
         const inputKeys = Object.keys(inputData);
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
         const numInputs = ['max_rychlost', 'pocet_technikov', 'cas_install'];
@@ -289,16 +290,19 @@ const utils = (() => {
                 getDomElement(`#${key}`).innerHTML = STAV_MAP.get(inputData[key]) || 'error';
             } else if (numInputs.includes(key)) {
                 getDomElement(`#${key}`).value = inputData[key] != 'null' ? inputData[key] : '';
+                console.warn({ key, inputData: inputData[key] });
             } else {
                 getDomElement(`#${key}`).innerHTML = key == 'null' ? '' : inputData[key]; // inputData[key] || 'error';
+                console.log({ key, inputData: inputData[key] });
             }
         });
         if (inputData.dovod_neuspech === 'null') {
             getDomElement('.dovod_neuspech').remove();
             getDomElement('#dovod_neuspech').remove();
             getDomElement('#dov_neusp').remove();
+        } else if (inputData.dovod_neuspech != 'null' && inputData.dovod_neuspech.length > 0) {
+            getDomElement('#dovod_neuspech_span').innerHTML = inputData.dovod_neuspech;
         }
-
         if (inputData.sluzba_internet === 'true') {
             getDomElement('#sluzba_internet').checked = true;
         }
