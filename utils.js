@@ -242,7 +242,6 @@ const utils = (() => {
         getDomElement('.deleteImg').onclick = () => {
             utils.getDomElement('#delete_photo_popup').style.display = 'block';
         }
-
     }
 
     async function displayPhotos(id, description, blob) {  //id, description, blob
@@ -340,7 +339,9 @@ const utils = (() => {
         }
 
         if (domId === '#bod_final') {
+            console.warn('🚀 ~ initSelectOptions ~ data:', data);
             if (!data) {
+                console.warn('🚀 ~ initSelectOptions ~ !!!!data:', data);
                 let empty = document.createElement('option'); 
                 empty.setAttribute('value', '');
                 let emptyText = document.createTextNode('');
