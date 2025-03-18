@@ -301,7 +301,7 @@ const utils = (() => {
             getDomElement('#dovod_neuspech').remove();
             getDomElement('#dov_neusp').remove();
         } else if (inputData.dovod_neuspech != 'null' && inputData.dovod_neuspech.length > 0) {
-            getDomElement('#dovod_neuspech_span').innerHTML = inputData.dovod_neuspech;
+            getDomElement('#dovod_neuspech').innerHTML = inputData.dovod_neuspech;
         }
         if (inputData.sluzba_internet === 'true') {
             getDomElement('#sluzba_internet').checked = true;
