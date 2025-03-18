@@ -275,7 +275,6 @@ const utils = (() => {
     }
 
     function fillStaticData(inputData, toIgnore) {
-        console.log("🚀 ~ fillStaticData ~ inputData:", inputData);
         const inputKeys = Object.keys(inputData);
         const dataKeys = inputKeys.filter(k => !toIgnore.includes(k));
         const numInputs = ['max_rychlost', 'pocet_technikov', 'cas_install'];
@@ -339,9 +338,7 @@ const utils = (() => {
         }
 
         if (domId === '#bod_final') {
-            console.warn('🚀 ~ initSelectOptions ~ data:', data);
-            if (!data) {
-                console.warn('🚀 ~ initSelectOptions ~ !!!!data:', data);
+            if (Object.keys(data).length === 0) {
                 let empty = document.createElement('option'); 
                 empty.setAttribute('value', '');
                 let emptyText = document.createTextNode('');
