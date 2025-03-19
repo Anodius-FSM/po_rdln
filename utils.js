@@ -138,6 +138,10 @@ const utils = (() => {
         getDomElement('#stav').innerHTML = STAV_MAP.get(selectedId);
         getDomElement('#stav').style.backgroundColor = COLOR_MAP.get(selectedId);
 
+        if (selectedId === 'KONTROLA') {
+            let saveButton = getDomElement('#save_button');
+            if (saveButton.disabled) { saveButton.disabled = false; }
+        }
     }
 
     function getBodSelectionData(skenData) {
