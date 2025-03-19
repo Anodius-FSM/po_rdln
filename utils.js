@@ -498,7 +498,11 @@ const utils = (() => {
     }
 
     function disableEdit() {
-        [...document.getElementsByTagName('button')].forEach(b => b.disabled = true);
+        [...document.getElementsByTagName('button')].forEach(b => {
+            if (b.id != 'stav') {
+                b.disabled = true;
+            }
+        });
         [...document.getElementsByTagName('select')].forEach(s => s.disabled = true);
         [...document.getElementsByTagName('textarea')].forEach(t => t.disabled = true);
         [...document.getElementsByTagName('input')].forEach(i => i.disabled = true);
