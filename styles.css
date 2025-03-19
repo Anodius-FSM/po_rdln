@@ -78,7 +78,8 @@ textarea {
 }
 
 p,
-label {
+label,
+.span600 {
     font-weight: 600;
 }
 
