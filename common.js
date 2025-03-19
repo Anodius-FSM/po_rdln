@@ -191,7 +191,7 @@ const common = (() => {
                         uv.udf.z_f_obh_pocettech AS pocet_technikov,
                         uv.udf.z_f_obh_casinstall AS cas_install,
                         uv.udf.z_f_obh_rebrik AS rebrik,
-                        uv.udf.z_f_ac_sluzba AS sluzba_nazov,
+                        ac.udf.z_f_ac_sluzba AS sluzba_nazov,
                         uv.udf.z_f_obh_internet AS sluzba_internet,
                         uv.udf.z_f_obh_internettv AS sluzba_internettv,
                         uv.udf.z_f_obh_poznamkatech AS poznamka_technika,
