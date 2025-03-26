@@ -62,17 +62,12 @@ const my_extension = (() => {
                      */
                     if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' || utils.getDomElement('#gps_suradnice').innerHTML == ''  ) {
                         const photoGPS = await gps_extractor.fetchPhotoIds(serviceCallId);
-                        console.warn("🚀 ~ startExtension ~ photoGPS --- 111");
                         if (photoGPS) {
-                            console.warn("🚀 ~ startExtension ~ photoGPS --- 112 if fotoGPS");
                             if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' || utils.getDomElement('#gps_suradnice').innerHTML == '') {
-                                console.warn("🚀 ~ startExtension ~ photoGPS --- 222");
                                 photoGPS.some(async p => {
                                     if (utils.getDomElement('#gps_suradnice').innerHTML != 'null' && utils.getDomElement('#gps_suradnice').innerHTML != '') {
-                                        console.warn("🚀 ~ startExtension ~ photoGPS --- 333");
                                         return true;
                                     }
-                                    console.warn("🚀 ~ startExtension ~ photoGPS --- 444");
                                     await gps_extractor.getGPS(p, generalData[0].udoValueId);
                                 })
                             }
