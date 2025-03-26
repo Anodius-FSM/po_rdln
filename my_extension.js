@@ -68,7 +68,7 @@ const my_extension = (() => {
                             if (utils.getDomElement('#gps_suradnice').innerHTML == 'null' || utils.getDomElement('#gps_suradnice').innerHTML == '') {
                                 console.warn("🚀 ~ startExtension ~ photoGPS --- 222");
                                 photoGPS.some(async p => {
-                                    if (utils.getDomElement('#gps_suradnice').innerHTML != 'null' || utils.getDomElement('#gps_suradnice').innerHTML != '') {
+                                    if (utils.getDomElement('#gps_suradnice').innerHTML != 'null' && utils.getDomElement('#gps_suradnice').innerHTML != '') {
                                         console.warn("🚀 ~ startExtension ~ photoGPS --- 333");
                                         return true;
                                     }
