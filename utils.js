@@ -144,12 +144,15 @@ const utils = (() => {
         }
     }
 
-    function getBodSelectionData(skenData) {
+    function getBodSelectionData(skenData, finalBod) {
         const bodSet = new Set();
         skenData.forEach(sken => bodSet.add((sken.bod).split(' ')[0]));
 
         let retObj = {};
         bodSet.forEach((value1, value2) => retObj[value1] = value2);
+        if (finalBod && finalBod != 'null') {
+            retObj[finalBod] = finalBod;
+        }
         return retObj;
     }
     function goForward(next = 0) {

@@ -39,7 +39,7 @@ const my_extension = (() => {
 
                     }
                     if (skenData) {
-                        utils.initSelectOptions('#bod_final', utils.getBodSelectionData(skenData), generalData[0].bod_final, false);
+                        utils.initSelectOptions('#bod_final', utils.getBodSelectionData(skenData, generalData[0].bod_final), generalData[0].bod_final, false);
                         utils.createTableBody('#sken_table', ['bod', 'kapacita', 'ssid', 'frekvencia', 'vzdialenost', 'vysledok', 'datum'], skenData);
                     }
 
