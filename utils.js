@@ -322,6 +322,8 @@ const utils = (() => {
      * @param {boolean} useColors 
      */
     function initSelectOptions(domId, data, selectedValue, useColors) {
+        console.log("🚀 ~ initSelectOptions ~ data:", data)
+        
         const select = getDomElement(domId);
         for (let key in data) {
             let option = document.createElement('option');
@@ -338,6 +340,7 @@ const utils = (() => {
             select.value = selectedValue;
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         } else if (selectedValue && !useColors) {
+            console.log("🚀 ~ initSelectOptions ~ selectedValue:", selectedValue)
             select.value = selectedValue;
         }
 
