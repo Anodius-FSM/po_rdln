@@ -162,7 +162,6 @@ const common = (() => {
         );
 
         if (!response.ok) {
-            console.log("🚀 ~ fetchServiceCallType ~ response:", response);
             throw new Error(`🚀🚀🚀 Failed to fetch Service Call type, got status ${response.status}`);
         }
 
@@ -217,7 +216,6 @@ const common = (() => {
         }
         );
         if (!response.ok) {
-            console.log("🚀 ~ fetchGeneralData ~ response:", response);
             throw new Error(`🚀🚀🚀 Failed to fetch general data, got status ${response.status}`);
         }
         return (await response.json()).data;
@@ -429,7 +427,7 @@ const common = (() => {
         let dataToSave = {};
         let uiData = utils.getEditableFieldsValues();
         let devicesToSave = utils.getDevicesFromUi(deviceData);
-        console.log(generalData);
+
         const dataKeys = Object.keys(uiData);
 
         dataKeys.forEach(key => {
@@ -453,7 +451,6 @@ const common = (() => {
                 const udfMetaByName = new Map(udfMeta.map(e => [e.name, e]));
 
                 const udfValues = [];
-                console.log(keysToUpdate);
                 keysToUpdate.forEach(key => {
                     udfValues.push({
                         meta: { id: udfMetaByName.get(UDO_MAP.get(key))?.id },

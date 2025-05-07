@@ -149,10 +149,11 @@ const utils = (() => {
         skenData.forEach(sken => bodSet.add((sken.bod).split(' ')[0]));
 
         let retObj = {};
-        bodSet.forEach((value1, value2) => retObj[value1] = value2);
         if (finalBod && finalBod != 'null') {
             retObj[finalBod] = finalBod;
         }
+        bodSet.forEach((value1, value2) => retObj[value1] = value2);
+       
         return retObj;
     }
     function goForward(next = 0) {
@@ -176,7 +177,7 @@ const utils = (() => {
         }
 
         let captionText = getDomElement('#caption');
-        console.warn(imgToNavigate);
+      
         actualImg.src = imgToNavigate[nextIndex].src;
         actualImg.setAttribute('data-id', imgToNavigate[nextIndex].id);
         captionText.innerHTML = imgToNavigate[nextIndex].description;
@@ -325,7 +326,6 @@ const utils = (() => {
      * @param {boolean} useColors 
      */
     function initSelectOptions(domId, data, selectedValue, useColors) {
-        console.log("🚀 ~ initSelectOptions ~ data:", data)
         
         const select = getDomElement(domId);
         for (let key in data) {
@@ -343,7 +343,6 @@ const utils = (() => {
             select.value = selectedValue;
             select.style.backgroundColor = COLOR_MAP.get(selectedValue);
         } else if (selectedValue && !useColors) {
-            console.log("🚀 ~ initSelectOptions ~ selectedValue:", selectedValue)
             select.value = selectedValue;
         }
 
