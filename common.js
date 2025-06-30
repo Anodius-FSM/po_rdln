@@ -481,37 +481,37 @@ const common = (() => {
                 }
             }
 
-            if (uiStav != generalData.stav) {
-                const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_sc_obhliadkastav']);
-                const udfMetaFieldByName = new Map(udfMetaFieldName.map(e => [e.name, e]));
+            // if (uiStav != generalData.stav) {
+            //     const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_sc_obhliadkastav']);
+            //     const udfMetaFieldByName = new Map(udfMetaFieldName.map(e => [e.name, e]));
 
-                const scUpdate = [{
-                    id: serviceCallId,
-                    udfValues: [
-                        {
-                            meta: { id: udfMetaFieldByName.get('z_f_sc_obhliadkastav').id },
-                            value: uiStav
-                        }
-                    ]
-                }];
+            //     const scUpdate = [{
+            //         id: serviceCallId,
+            //         udfValues: [
+            //             {
+            //                 meta: { id: udfMetaFieldByName.get('z_f_sc_obhliadkastav').id },
+            //                 value: uiStav
+            //             }
+            //         ]
+            //     }];
 
-                const stavUpdateResponse = await fetch(
-                    'https://eu.fsm.cloud.sap/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
-                        ...await common.getSearchParams(),
-                        dtos: 'ServiceCall.27',
-                        forceUpdate: true
-                    }), {
-                    method: 'PATCH',
-                    headers: await common.getHeaders(),
-                    body: JSON.stringify(scUpdate)
-                });
+            //     const stavUpdateResponse = await fetch(
+            //         'https://eu.fsm.cloud.sap/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
+            //             ...await common.getSearchParams(),
+            //             dtos: 'ServiceCall.27',
+            //             forceUpdate: true
+            //         }), {
+            //         method: 'PATCH',
+            //         headers: await common.getHeaders(),
+            //         body: JSON.stringify(scUpdate)
+            //     });
 
-                if (!stavUpdateResponse.ok) {
-                    saveFailed = true;
-                    saveMessage = `Zmena stavu nebola uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
-                    throw new Error(`🚀🚀🚀 Failed to save data, got status ${stavUpdateResponse.status}`);
-                }
-            }
+            //     if (!stavUpdateResponse.ok) {
+            //         saveFailed = true;
+            //         saveMessage = `Zmena stavu nebola uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
+            //         throw new Error(`🚀🚀🚀 Failed to save data, got status ${stavUpdateResponse.status}`);
+            //     }
+            // }
 
             if (devicesToSave.delete.length > 0) {
                 devicesToSave.delete.forEach(async (d) => {
@@ -574,6 +574,39 @@ const common = (() => {
                     }
                 });
             }
+
+            if (uiStav != generalData.stav) {
+                const udfMetaFieldName = await common.fetchUdfMetaByFieldName(['z_f_sc_obhliadkastav']);
+                const udfMetaFieldByName = new Map(udfMetaFieldName.map(e => [e.name, e]));
+
+                const scUpdate = [{
+                    id: serviceCallId,
+                    udfValues: [
+                        {
+                            meta: { id: udfMetaFieldByName.get('z_f_sc_obhliadkastav').id },
+                            value: uiStav
+                        }
+                    ]
+                }];
+
+                const stavUpdateResponse = await fetch(
+                    'https://eu.fsm.cloud.sap/api/data/v4/ServiceCall/bulk?' + new URLSearchParams({
+                        ...await common.getSearchParams(),
+                        dtos: 'ServiceCall.27',
+                        forceUpdate: true
+                    }), {
+                    method: 'PATCH',
+                    headers: await common.getHeaders(),
+                    body: JSON.stringify(scUpdate)
+                });
+
+                if (!stavUpdateResponse.ok) {
+                    saveFailed = true;
+                    saveMessage = `Zmena stavu nebola uložené, skúste to znova. Pokiaľ problém pretrváva, kontaktujte administrátora.`;
+                    throw new Error(`🚀🚀🚀 Failed to save data, got status ${stavUpdateResponse.status}`);
+                }
+            }
+
         }
         if (!saveFailed) {
             utils.showSavePopup('Zmeny boli úspešne uložené');
