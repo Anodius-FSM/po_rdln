@@ -12,6 +12,5 @@
     }
 
     bootstrap();
-    my_extension.testMyExtension();
-
+    my_extension.startExtension();
 })();
