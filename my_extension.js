@@ -8,6 +8,8 @@ const my_extension = (() => {
             if (serviceCallType[0].typeCode !== '-7') {
                 utils.setFieldValue('#info', 'Toto SV nie je typu Obhliadka a teda neobsahuje žiadne dáta na zobrazenie.');
                 utils.getDomElement('.general_content').remove();
+                utils.getDomElement('.fotky').remove();
+                utils.getDomElement('.sken').remove();
             } else {
                 // run the extension
                 const generalData = await common.fetchGeneralData(serviceCallId);
