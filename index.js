@@ -14,5 +14,5 @@
     bootstrap();
     my_extension.startExtension();
     console.log("🚀 ~ my_extension:", window.location.href);
-    
+    console.log("🚀 ~ my_extension:", window.location.href);
 })();
