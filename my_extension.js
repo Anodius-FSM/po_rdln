@@ -33,7 +33,8 @@ const my_extension = (() => {
                             '4 - Náročné': '4 - Náročné',
                             '5 - Veľmi náročné': '5 - Veľmi náročné'
                         }, generalData[0].narocnost, true);
-                        utils.initSelectOptions('#uspesna', { 'Úspešná': 'Úspešná', 'Neúspešná': 'Neúspešná' }, generalData[0].uspesna, true);
+                        //utils.initSelectOptions('#uspesna', { 'Úspešná': 'Úspešná', 'Neúspešná': 'Neúspešná' }, generalData[0].uspesna, true);
+                        utils.initSelectOptions('#uspesna', { 'Zriaditeľná': 'Zriaditeľná', 'Nezriaditeľná': 'Nezriaditeľná' }, generalData[0].uspesna, true);
                         utils.initSelectOptions('#install_technik', { 'Áno': 'Áno', 'Nie': 'Nie' }, generalData[0].install_technik, false);
 
                         utils.getDomElement('.save-button').addEventListener('click', async () => {

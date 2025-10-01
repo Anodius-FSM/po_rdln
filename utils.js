@@ -21,8 +21,8 @@ const utils = (() => {
         ['Nie', '#ff6666'],
         ['ANO', '#66b266'],
         ['NIE', '#ff6666'],
-        ['Úspešná', '#A9DFBF'],
-        ['Neúspešná', '#F57A7A']
+        ['Zriaditeľná', '#A9DFBF'],
+        ['Nezriaditeľná', '#F57A7A']
     ]);
 
     const STAV_MAP = new Map([
