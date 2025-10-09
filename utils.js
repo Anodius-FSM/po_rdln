@@ -7,6 +7,7 @@ const utils = (() => {
         ['ZRIADITELNA', '#A9DFBF'],
         ['ZMENA_SLUZBY ', '#A9DFBF'],
         ['NEZRIADITELNA', '#F57A7A'],
+        ['ZRUSENA', '#F57A7A'],
         ['1', '#A9DFBF'],
         ['2', '#f5ef7a'],
         ['3', '#f5a77a'],
@@ -31,7 +32,8 @@ const utils = (() => {
         ['ZMENA_SLUZBY', 'Zriad. so zmenou služby'],
         ['KONTROLA', 'Kontrola'],
         ['PREBIEHA', 'Prebieha'],
-        ['ZRIADITELNA', 'Zriaditeľná']
+        ['ZRIADITELNA', 'Zriaditeľná'],
+        ['ZRUSENA', 'Zrušená']
     ]);
 
     const DEVICE = new Map([
