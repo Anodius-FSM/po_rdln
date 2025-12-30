@@ -517,7 +517,7 @@ const common = (() => {
                 devicesToSave.delete.forEach(async (d) => {
 
                     const deleteDeviceResponse = await fetch(
-                        `https://eu.coresuite.com/api/data/v4/UdoValue/${d}/?` + new URLSearchParams({
+                        `https://eu.fsm.cloud.sap/api/data/v4/UdoValue/${d}/?` + new URLSearchParams({
                             ...await common.getSearchParams(),
                             forceDelete: true
                         }), {
