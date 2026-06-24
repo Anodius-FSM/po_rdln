@@ -210,7 +210,7 @@ const common = (() => {
                         JOIN ServiceCall sc ON sc.id = ac.object.objectId
                         JOIN Address ad ON ac.address = ad.id
                         JOIN BusinessPartner bp ON ac.businessPartner = bp.id
-                        LEFT JOIN UnifiedPerson up ON up.id IN ac.responsibles
+                        JOIN UnifiedPerson up ON up.id IN ac.responsibles
                     WHERE sc.id = '${serviceCallId}'`
             })
         }
